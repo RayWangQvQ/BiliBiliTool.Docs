@@ -37,7 +37,7 @@ jobs:
         run: date
        
       - name: Set Time Zone
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+        run: sudo timedatectl set-timezone 'Asia/Beijing'
        
       - name: After-time
         run: date
