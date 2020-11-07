@@ -31,13 +31,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-         
-     - name: Pre-time
-       run: echo date
+          
+          
+      - name: Pre-time
+        run: echo date
        
-     - name: Set Time Zone
-       run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: Set Time Zone
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
        
-     - name: After-time
-       run: echo date
+      - name: After-time
+        run: echo date
        
