@@ -23,7 +23,7 @@ Secret Key：`OTHERCONFIGS`
 
 Secret Value：`-pushScKey=123456`
 
-如果有多个，比如既要配微信推送，又要配置优先投币的up主，往后拼接即可：
+如果有多个，比如既要配微信推送，又要配置优先投币的up主，以空格分隔往后拼接即可：
 
 Secret Key：`OTHERCONFIGS`
 
