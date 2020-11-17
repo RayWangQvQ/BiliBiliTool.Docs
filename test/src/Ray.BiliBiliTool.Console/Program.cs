@@ -52,6 +52,8 @@ namespace Ray.BiliBiliTool.Console
             var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
             System.Console.WriteLine(consoleLevelStr);
 
+            System.Console.WriteLine("test");
+
 
 
             //日志:
