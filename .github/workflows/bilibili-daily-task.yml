@@ -34,11 +34,15 @@ jobs:
     
     # 安装依赖
     - name: Install dependencies
-      run: dotnet restore
+      run: |
+        cd ./test
+        dotnet restore
       
     # 构建应用
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: |
+        cd ./test
+        dotnet build --configuration Release --no-restore
        
     # 运行
     - name: Run
@@ -56,4 +60,4 @@ jobs:
         DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
         DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
         Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
-      run: dotnet run -p ./src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
+      run: dotnet run -p .test//src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
