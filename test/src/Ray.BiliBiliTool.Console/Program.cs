@@ -95,7 +95,7 @@ namespace Ray.BiliBiliTool.Console
             {
                 var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-                logger.LogInformation(RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"]):
+                logger.LogInformation(RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"]);
 
 
                 var taskOptions = serviceScope.ServiceProvider.GetRequiredService<IOptionsMonitor<DailyTaskOptions>>();
