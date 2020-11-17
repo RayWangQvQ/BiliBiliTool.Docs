@@ -57,6 +57,9 @@ namespace Ray.BiliBiliTool.Console
 
             Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
 
+            bool b = logEvent == Serilog.Events.LogEventLevel.Information;
+            System.Console.WriteLine(b);
+
             //日志:
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(RayConfiguration.Root)
