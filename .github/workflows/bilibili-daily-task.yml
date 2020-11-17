@@ -1,0 +1,56 @@
+name: bilibili-daily-task
+
+
+on:
+  
+  push: # push触发
+    branches: [ main ]
+  workflow_dispatch: # 手动触发
+    
+
+jobs:
+  run-bilibili-tool:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    # 检出
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    # 设置服务器时区为东八区 
+    - name: Set time zone
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      
+    # .Net 环境
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1.x
+      with:
+        dotnet-version: 5.0.100
+
+    # 安装依赖
+    - name: Install dependencies
+      run: dotnet restore
+      
+    # 构建应用
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+       
+    # 运行
+    - name: Run
+      env:
+        BiliBiliCookie__UserId: ${{secrets.USERID}}
+        BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
+        BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
+        Push__PushScKey: ${{secrets.PUSHSCKEY}}
+        Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
+        Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
+        DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+        DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
+        DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
+        DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
+        DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
+        DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
+        Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
+      run: dotnet run -p ./test/src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
