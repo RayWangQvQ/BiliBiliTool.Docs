@@ -99,6 +99,7 @@ namespace Ray.BiliBiliTool.Console
         private static Serilog.Events.LogEventLevel GetConsoleLogLevel()
         {
             var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
+            if (string.IsNullOrWhiteSpace(consoleLevelStr)) consoleLevelStr = "Information";
             Serilog.Events.LogEventLevel levelEnum = (Serilog.Events.LogEventLevel)
                 Enum.Parse(typeof(Serilog.Events.LogEventLevel), consoleLevelStr);
             return levelEnum;
