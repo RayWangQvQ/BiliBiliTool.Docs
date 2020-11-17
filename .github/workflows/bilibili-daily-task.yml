@@ -25,7 +25,7 @@ jobs:
       
     # .Net 环境
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1.x
+      uses: actions/setup-dotnet@v1.7.2
       with:
         dotnet-version: 5.0.100
 
