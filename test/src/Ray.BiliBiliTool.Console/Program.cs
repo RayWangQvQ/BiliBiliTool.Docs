@@ -42,9 +42,16 @@ namespace Ray.BiliBiliTool.Console
             RayConfiguration.Root = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false, true)
                 //.AddJsonFile("appsettings.local.json", true,true)
-                .AddEnvironmentVariables()
+                .AddEnvironmentVariables(x=>x=new Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource())
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
+
+            var nc= RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
+
+            System.Console.WriteLine(nc == "");
+            System.Console.WriteLine(nc == null);
+            System.Console.WriteLine(nc == " ");
+
 
             DailyTaskOptions day = RayConfiguration.Root.GetSection("DailyTaskConfig").Get<DailyTaskOptions>();
             System.Console.WriteLine(JsonSerializer.Serialize(day));
