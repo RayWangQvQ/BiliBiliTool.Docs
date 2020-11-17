@@ -46,7 +46,7 @@ namespace Ray.BiliBiliTool.Console
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
 
-            DailyTaskOptions day = RayConfiguration.Root.Get<DailyTaskOptions>();
+            DailyTaskOptions day = RayConfiguration.Root.GetSection("DailyTaskConfig").Get<DailyTaskOptions>();
             System.Console.WriteLine(JsonSerializer.Serialize(day));
 
             var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
