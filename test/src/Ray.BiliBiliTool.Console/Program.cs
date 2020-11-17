@@ -55,12 +55,13 @@ namespace Ray.BiliBiliTool.Console
             System.Console.WriteLine("test");
 
 
+            Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
 
             //日志:
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(RayConfiguration.Root)
                 .WriteTo.TextWriter(PushService.PushStringWriter,
-                                    GetConsoleLogLevel(),
+                                    logEvent,
                                     "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}\r\n")//用来做微信推送
                 .CreateLogger();
 
