@@ -70,6 +70,7 @@ namespace Ray.BiliBiliTool.Console
             Log.Logger.Information($"空格:{nc == " "}");
             Log.Logger.Information($"5:{nc == "5"}");
             Log.Logger.Information($"10:{nc == "10"}");
+            Log.Logger.Information($"20:{nc == "20"}");
 
             int.TryParse(nc, out int result);
             Log.Logger.Information($"value+1:{result + 1}");

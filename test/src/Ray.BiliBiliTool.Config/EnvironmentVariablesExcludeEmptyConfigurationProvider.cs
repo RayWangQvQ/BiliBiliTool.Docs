@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,9 @@ namespace Ray.BiliBiliTool.Config
                 .Where(it => it.Key.ToString().StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
                              && !string.IsNullOrWhiteSpace(it.Value.ToString()))//过滤掉空值的（使用GitHub Actions的脚本传入环境变量，空值会覆盖，本地并不会，所以这里做了特殊处理）
                 .ToDictionary(it => it.Key.ToString().Substring(prefix.Length), it => it.Value.ToString());
+
+            //System.Console.WriteLine(JsonSerializer.Serialize(dictionary));
+
             this.Data = new Dictionary<string, string>(dictionary, StringComparer.OrdinalIgnoreCase);
         }
     }

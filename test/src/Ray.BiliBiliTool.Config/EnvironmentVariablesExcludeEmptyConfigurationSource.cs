@@ -8,9 +8,11 @@ using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 namespace Ray.BiliBiliTool.Config
 {
-    public class EnvironmentVariablesExcludeEmptyConfigurationSource : EnvironmentVariablesConfigurationSource
+    public class EnvironmentVariablesExcludeEmptyConfigurationSource : IConfigurationSource//: EnvironmentVariablesConfigurationSource
     {
-        public new IConfigurationProvider Build(IConfigurationBuilder builder)
+        public string Prefix { get; set; }
+
+        public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             return new EnvironmentVariablesExcludeEmptyConfigurationProvider(this.Prefix);
         }
