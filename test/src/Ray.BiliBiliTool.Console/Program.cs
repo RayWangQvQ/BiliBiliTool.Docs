@@ -44,25 +44,17 @@ namespace Ray.BiliBiliTool.Console
             RayConfiguration.Root = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false, true)
                 //.AddJsonFile("appsettings.local.json", true,true)
-                //.AddEnvironmentVariables("Ray_")
                 .AddExcludeEmptyEnvironmentVariables("Ray_")
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
 
 
-            Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
-
-            bool b = logEvent == Serilog.Events.LogEventLevel.Information;
-            System.Console.WriteLine(b);
-
             //日志:
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(RayConfiguration.Root)
-                /*
                 .WriteTo.TextWriter(PushService.PushStringWriter,
-                                    logEvent,
-                                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}\r\n")//用来做微信推送
-                */
+                    GetConsoleLogLevel(),
+                                    GetConsoleLogTemplate() + "\r\n")//用来做微信推送
                 .CreateLogger();
 
             var dictionary = Environment.GetEnvironmentVariables()
@@ -122,14 +114,18 @@ namespace Ray.BiliBiliTool.Console
             var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
             if (string.IsNullOrWhiteSpace(consoleLevelStr)) consoleLevelStr = "Information";
 
-            System.Console.WriteLine(consoleLevelStr);
-
             Serilog.Events.LogEventLevel levelEnum = (Serilog.Events.LogEventLevel)
                 Enum.Parse(typeof(Serilog.Events.LogEventLevel), consoleLevelStr);
 
-            System.Console.WriteLine(levelEnum);
-
             return levelEnum;
+        }
+
+        private static string GetConsoleLogTemplate()
+        {
+            var templateStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:outputTemplate"];
+            if (string.IsNullOrWhiteSpace(templateStr)) templateStr = "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}";
+
+            return templateStr;
         }
     }
 }

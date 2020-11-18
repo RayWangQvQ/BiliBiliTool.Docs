@@ -60,4 +60,5 @@ jobs:
         Ray_DailyTaskConfig:DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
         Ray_DailyTaskConfig:DevicePlatform: ${{secrets.DEVICEPLATFORM}}
         Ray_Serilog:WriteTo:0:Args:restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
+        Ray_Serilog:WriteTo:0:Args:outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}}
       run: dotnet run -p ./test/src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
