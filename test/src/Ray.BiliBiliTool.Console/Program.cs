@@ -53,12 +53,6 @@ namespace Ray.BiliBiliTool.Console
             System.Console.WriteLine(nc == " ");
 
 
-            DailyTaskOptions day = RayConfiguration.Root.GetSection("DailyTaskConfig").Get<DailyTaskOptions>();
-            System.Console.WriteLine(JsonSerializer.Serialize(day));
-
-            var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
-            System.Console.WriteLine(consoleLevelStr);
-
             System.Console.WriteLine("test");
 
 
@@ -101,13 +95,6 @@ namespace Ray.BiliBiliTool.Console
             using (var serviceScope = RayContainer.Root.CreateScope())
             {
                 var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
-                logger.LogInformation(RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"]);
-
-
-                var taskOptions = serviceScope.ServiceProvider.GetRequiredService<IOptionsMonitor<DailyTaskOptions>>();
-
-                logger.LogInformation(JsonSerializer.Serialize(taskOptions.CurrentValue));
             }
         }
 
