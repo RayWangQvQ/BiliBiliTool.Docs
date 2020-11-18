@@ -48,7 +48,7 @@ namespace Ray.BiliBiliTool.Console
 
             var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
 
-            System.Console.WriteLine(nc + "999");
+            System.Console.WriteLine(int.Parse(nc) * 10);
 
             System.Console.WriteLine("空:" + nc == "");
             System.Console.WriteLine("null:" + nc == null);
