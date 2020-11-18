@@ -53,7 +53,7 @@ jobs:
         Ray_Push__PushScKey: ${{secrets.PUSHSCKEY}}
         Ray_Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
         Ray_Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
-        Ray_DailyTaskConfig:NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+        Ray_DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
         Ray_DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
         Ray_DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
         Ray_DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
