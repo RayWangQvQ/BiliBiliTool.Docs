@@ -3,7 +3,7 @@
     "BiliBiliTool": {
       "commandName": "Project",
       "environmentVariables": {
-        "DailyTaskConfig:NumberOfCoins": " "
+        //"DailyTaskConfig:NumberOfCoins": " "
       }
     }
   }

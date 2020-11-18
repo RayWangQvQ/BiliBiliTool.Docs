@@ -42,15 +42,17 @@ namespace Ray.BiliBiliTool.Console
             RayConfiguration.Root = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false, true)
                 //.AddJsonFile("appsettings.local.json", true,true)
-                .AddEnvironmentVariables(x=>x=new Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource())
+                .AddEnvironmentVariables(x => x = new Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource())
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
 
-            var nc= RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
+            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
 
-            System.Console.WriteLine(nc == "");
-            System.Console.WriteLine(nc == null);
-            System.Console.WriteLine(nc == " ");
+            System.Console.WriteLine(nc);
+
+            System.Console.WriteLine("空:" + nc == "");
+            System.Console.WriteLine("null:" + nc == null);
+            System.Console.WriteLine("空格" + nc == " ");
 
 
             System.Console.WriteLine("test");
