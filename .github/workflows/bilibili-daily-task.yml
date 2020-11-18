@@ -53,7 +53,7 @@ jobs:
         Push__PushScKey: ${{secrets.PUSHSCKEY}}
         Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
         Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
-        DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+        DailyTaskConfig:NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
         DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
         DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
         DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
