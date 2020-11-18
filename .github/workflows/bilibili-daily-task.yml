@@ -47,17 +47,17 @@ jobs:
     # 运行
     - name: Run
       env:
-        Ray_BiliBiliCookie__UserId: ${{secrets.USERID}}
-        Ray_BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
-        Ray_BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
-        Ray_Push__PushScKey: ${{secrets.PUSHSCKEY}}
-        Ray_Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
-        Ray_Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
-        Ray_DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
-        Ray_DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
-        Ray_DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
-        Ray_DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
-        Ray_DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
-        Ray_DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
-        Ray_Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
+        Ray_BiliBiliCookie:UserId: ${{secrets.USERID}}
+        Ray_BiliBiliCookie:SessData: ${{secrets.SESSDATA}}
+        Ray_BiliBiliCookie:BiliJct: ${{secrets.BILIJCT}}
+        Ray_Push:PushScKey: ${{secrets.PUSHSCKEY}}
+        Ray_Security:IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
+        Ray_Security:IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
+        Ray_DailyTaskConfig:NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+        Ray_DailyTaskConfig:SelectLike: ${{secrets.SELECTLIKE}}
+        Ray_DailyTaskConfig:SupportUpIds: ${{secrets.SUPPORTUPIDS}}
+        Ray_DailyTaskConfig:DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
+        Ray_DailyTaskConfig:DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
+        Ray_DailyTaskConfig:DevicePlatform: ${{secrets.DEVICEPLATFORM}}
+        Ray_Serilog:WriteTo:0:Args:restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
       run: dotnet run -p ./test/src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
