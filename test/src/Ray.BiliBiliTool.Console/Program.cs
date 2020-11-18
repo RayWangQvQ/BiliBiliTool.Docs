@@ -17,6 +17,8 @@ using Ray.BiliBiliTool.Config.Options;
 using Ray.BiliBiliTool.DomainService.Extensions;
 using Ray.BiliBiliTool.Infrastructure;
 using Serilog;
+using System.Linq;
+using System.Collections;
 
 namespace Ray.BiliBiliTool.Console
 {
@@ -42,10 +44,11 @@ namespace Ray.BiliBiliTool.Console
             RayConfiguration.Root = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false, true)
                 //.AddJsonFile("appsettings.local.json", true,true)
-                .AddEnvironmentVariables()
-                //.AddExcludeEmptyEnvironmentVariables()
+                .AddEnvironmentVariables("Ray_")
+                //.AddExcludeEmptyEnvironmentVariables("Ray_")
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
+
 
             Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
 
@@ -62,8 +65,14 @@ namespace Ray.BiliBiliTool.Console
                 */
                 .CreateLogger();
 
-            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
+            var dictionary = Environment.GetEnvironmentVariables()
+                .Cast<DictionaryEntry>()
+                .Where(it => it.Key.ToString().StartsWith("Ray_", StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(it => it.Key.ToString(), it => it.Value.ToString());
 
+            System.Console.WriteLine("env:" + JsonSerializer.Serialize(dictionary, JsonSerializerOptionsBuilder.Builder(x => x.WriteIndented = true)));
+
+            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
 
             Log.Logger.Information($"空:{nc == ""}");
             Log.Logger.Information($"null:{nc == null}");

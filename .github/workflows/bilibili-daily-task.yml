@@ -47,17 +47,17 @@ jobs:
     # 运行
     - name: Run
       env:
-        BiliBiliCookie__UserId: ${{secrets.USERID}}
-        BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
-        BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
-        Push__PushScKey: ${{secrets.PUSHSCKEY}}
-        Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
-        Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
-        DailyTaskConfig:NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
-        DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
-        DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
-        DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
-        DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
-        DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
-        Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
+        Ray_BiliBiliCookie__UserId: ${{secrets.USERID}}
+        Ray_BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
+        Ray_BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
+        Ray_Push__PushScKey: ${{secrets.PUSHSCKEY}}
+        Ray_Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
+        Ray_Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
+        Ray_DailyTaskConfig:NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+        Ray_DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
+        Ray_DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
+        Ray_DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
+        Ray_DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
+        Ray_DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
+        Ray_Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
       run: dotnet run -p ./test/src/Ray.BiliBiliTool.Console -closeConsoleWhenEnd=1 ${{secrets.OTHERCONFIGS}}
