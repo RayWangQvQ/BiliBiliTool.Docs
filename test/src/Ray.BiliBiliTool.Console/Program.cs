@@ -46,20 +46,6 @@ namespace Ray.BiliBiliTool.Console
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
 
-            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
-
-            System.Console.WriteLine(int.Parse(nc) + 1);
-
-            System.Console.WriteLine("空:" + nc == "");
-            System.Console.WriteLine("null:" + nc == null);
-            System.Console.WriteLine("空格" + nc == " ");
-            System.Console.WriteLine("5:" + nc == "5");
-            System.Console.WriteLine("10:" + nc == "10");
-
-
-            System.Console.WriteLine("test");
-
-
             Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
 
             bool b = logEvent == Serilog.Events.LogEventLevel.Information;
@@ -74,6 +60,20 @@ namespace Ray.BiliBiliTool.Console
                                     "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}\r\n")//用来做微信推送
                 */
                 .CreateLogger();
+
+            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
+
+
+            Log.Logger.Information($"空:{nc == ""}");
+            Log.Logger.Information($"null:{nc == null}");
+            Log.Logger.Information($"空格:{nc == " "}");
+            Log.Logger.Information($"5:{nc == "5"}");
+            Log.Logger.Information($"10:{nc == "10"}");
+
+            int.TryParse(nc, out int result);
+            Log.Logger.Information($"value+1:{result + 1}");
+
+            System.Console.WriteLine("test");
 
             //Host:
             var hostBuilder = new HostBuilder()
