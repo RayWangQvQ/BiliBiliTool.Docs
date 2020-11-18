@@ -53,6 +53,8 @@ namespace Ray.BiliBiliTool.Console
             System.Console.WriteLine("空:" + nc == "");
             System.Console.WriteLine("null:" + nc == null);
             System.Console.WriteLine("空格" + nc == " ");
+            System.Console.WriteLine("5:" + nc == "5");
+            System.Console.WriteLine("10:" + nc == "10");
 
 
             System.Console.WriteLine("test");
