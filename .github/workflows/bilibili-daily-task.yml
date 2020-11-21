@@ -22,6 +22,10 @@ jobs:
     # 设置服务器时区为东八区 
     - name: Set time zone
       run: sudo timedatectl set-timezone 'Asia/Shanghai'
+  
+    # IP
+    - name: IP
+      run: sudo ifconfig -a
       
     # .Net 环境
     - name: Setup .NET
