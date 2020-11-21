@@ -8,14 +8,38 @@ on:
         required: true
 
 jobs:
-
-  job1:
-    name: Create Release
+  build:
+    name: Upload Release Asset
     runs-on: ubuntu-latest
-    outputs: 
-      upload_url: ${{ steps.create_release.outputs.upload_url }} 
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      # .Net 环境
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.100
+        
+      - name: Build project # This would actually build your project, using zip for an example artifact
+        run: |
+          cd ./test
+          dotnet restore
+          dotnet build --configuration Release --no-restore
+          cd ./src/Ray.BiliBiliTool.Console
+          dotnet publish --self-contained false -o ./bin/Publish/net5-dependent
+          dotnet publish --runtime win-x86 --self-contained true -o ./bin/Publish/win-x86-x64
+          dotnet publish --runtime linux-arm --self-contained true -o ./bin/Publish/linux-arm
+          dotnet publish --runtime linux-x64 --self-contained true -o ./bin/Publish/linux-x64
+          dotnet publish --runtime osx-x64 --self-contained true -o ./bin/Publish/osx-x64
+          cd ./bin/Publish
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip net5-dependent
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-win-x86-x64.zip win-x86-x64
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-linux-arm.zip linux-arm
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-linux-x64.zip linux-x64
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-osx-x64.zip osx-x64
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -27,47 +51,57 @@ jobs:
           draft: true
           prerelease: false
 
-  job2:
-    name: Build
-    needs: job1
-    runs-on: ${{ matrix.os }}
-    
-    strategy:
-      matrix:
-        os:
-          - win-x86
-          - win-x64
-          - linux-arm
-          - linux-x64
-          - osx-x64
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1.7.2
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          dotnet-version: 5.0.100
-
-      - name: Build project
-        run: |
-          cd ./test
-          dotnet restore
-          dotnet build --configuration Release --no-restore
-          cd ./src/Ray.BiliBiliTool.Console
-          dotnet publish --runtime ${{ matrix.os }} --self-contained true -o ./bin/Publish/${{ matrix.os }}
-          cd ./bin/Publish
-          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-${{ matrix.os }}.zip ${{ matrix.os }}
-      
-
-      - name: Upload assets
-        id: upload-release-asset
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
+          asset_content_type: application/zip
+          
+      - name: Upload win-x86-x64
+        id: upload-win-x86-x64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-${{ matrix.os }}.zip
-          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-${{ matrix.os }}.zip
+          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-win-x86-x64.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-win-x86-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload linux-arm
+        id: upload-linux-arm
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-linux-arm.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-linux-arm.zip
+          asset_content_type: application/zip
+
+      - name: Upload linux-x64
+        id: upload-linux-x64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-linux-x64.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-linux-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload osx-x64
+        id: upload-osx-x64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-osx-x64.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-osx-x64.zip
           asset_content_type: application/zip
