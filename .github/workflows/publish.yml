@@ -30,7 +30,7 @@ jobs:
           cd ./src/Ray.BiliBiliTool.Console
           dotnet publish --self-contained false -o ./bin/Publish/net5-dependent
           cd ./bin/Publish
-          zip --junk-paths bilibili-tool-v${{ github.event.inputs.name }}-net5-dependent.zip net5-dependent
+          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip /net5-dependent
           
       - name: Create Release
         id: create_release
@@ -38,8 +38,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.name }}
-          release_name: Release ${{ github.event.inputs.name }}
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: Release ${{ github.event.inputs.version }}
           draft: true
           prerelease: false
 
@@ -50,6 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: /test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.name }}-net5-dependent.zip
-          asset_name: bilibili-tool-v${{ github.event.inputs.name }}-net5-dependent.zip
+          asset_path: /test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
+          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
           asset_content_type: application/zip
