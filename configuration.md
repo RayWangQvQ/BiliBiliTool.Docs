@@ -31,8 +31,19 @@ Secret Value：`123abc`
 前面已经详细说过，这里跳过了。
 
 ### 2.2.安全相关的配置
+#### 2.2.1.IsSkipDailyTask（是否跳过执行任务）
+用于特殊情况下，通过配置灵活的开启和关闭任务.
+配置为关闭后，程序会跳过整个每日任务，不会调用B站任何接口。
 
-#### 2.2.1.IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 是否跳过执行任务 |
+| 值域   | [true,false] |
+| 默认值   | false |
+| 命令行示范   | 暂未开放命令行 |
+| GitHub Secrets   | Name:`ISSKIPDAILYTASK`  Value: `true`|
+
+#### 2.2.2.IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）
 因为有朋友反馈，程序在1到2秒内连续调用B站的Api过快，担心会被B站的安全策略检测到，影响自己的账号安全。
 
 所以我添加这个安全策略的配置，可以设置两次Api请求之间的最短时间间隔。
@@ -48,16 +59,27 @@ Secret Value：`123abc`
 | GitHub Secrets   | Name:`INTERVALSECONDSBETWEENREQUESTAPI`  Value: `10`|
 
 
-#### 2.2.2.IntervalMethodTypes（间隔秒数所针对的HttpMethod）
+#### 2.2.3.IntervalMethodTypes（间隔秒数所针对的HttpMethod）
 间隔秒数所针对的HttpMethod类型，服务于上一个配置。服务器一般对GET请求不是很敏感，建议只针对POST请求做间隔就可以了。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 两次调用B站Api之间的间隔秒数 |
-| 值域   | [GET,POST]，多个以英文都好分隔 |
+| 值域   | [GET,POST]，多个以英文逗号分隔 |
 | 默认值   | POST |
 | 命令行示范   | `-intervalMethodTypes=GET,POST` |
 | GitHub Secrets   | Name:`INTERVALMETHODTYPES`  Value: `GET,POST`|
+
+#### 2.2.4.UserAgent（请求B站接口时头部传递的User-Agent）
+近期出现登录接口报错412（[#61](https://github.com/RayWangQvQ/BiliBiliTool/issues/61)）,有朋友发现通过修改UA可以暂时解决问题，所以开放为了配置。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 请求B站接口时头部传递的User-Agent |
+| 值域   | 字符串，可以F12从自己的浏览器获取 |
+| 默认值   | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41 |
+| 命令行示范   | 不开放命令行 |
+| GitHub Secrets   | Name:`USERAGENT`  Value: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41`|
 
 ### 2.3.微信推送
 
