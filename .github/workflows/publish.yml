@@ -24,9 +24,10 @@ jobs:
         
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
+          cd ./test
           dotnet restore
           dotnet build --configuration Release --no-restore
-          cd .test/src/Ray.BiliBiliTool.Console
+          cd ./src/Ray.BiliBiliTool.Console
           dotnet publish --self-contained false -o ./bin/Publish/net5-dependent
           cd ./bin/Publish
           zip --junk-paths bilibili-tool-v${{ github.ref }}-net5-dependent net5-dependent
