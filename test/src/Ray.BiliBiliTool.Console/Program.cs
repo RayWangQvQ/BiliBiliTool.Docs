@@ -17,6 +17,8 @@ using Ray.BiliBiliTool.Config.Options;
 using Ray.BiliBiliTool.DomainService.Extensions;
 using Ray.BiliBiliTool.Infrastructure;
 using Serilog;
+using System.Linq;
+using System.Collections;
 
 namespace Ray.BiliBiliTool.Console
 {
@@ -42,40 +44,39 @@ namespace Ray.BiliBiliTool.Console
             RayConfiguration.Root = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false, true)
                 //.AddJsonFile("appsettings.local.json", true,true)
-                .AddEnvironmentVariables(x=>x=new Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource())
+                .AddExcludeEmptyEnvironmentVariables("Ray_")
                 .AddCommandLine(args, Constants.CommandLineMapper)
                 .Build();
 
-            var nc= RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
-
-            System.Console.WriteLine(nc == "");
-            System.Console.WriteLine(nc == null);
-            System.Console.WriteLine(nc == " ");
-
-
-            DailyTaskOptions day = RayConfiguration.Root.GetSection("DailyTaskConfig").Get<DailyTaskOptions>();
-            System.Console.WriteLine(JsonSerializer.Serialize(day));
-
-            var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
-            System.Console.WriteLine(consoleLevelStr);
-
-            System.Console.WriteLine("test");
-
-
-            Serilog.Events.LogEventLevel logEvent = GetConsoleLogLevel();
-
-            bool b = logEvent == Serilog.Events.LogEventLevel.Information;
-            System.Console.WriteLine(b);
 
             //日志:
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(RayConfiguration.Root)
-                /*
                 .WriteTo.TextWriter(PushService.PushStringWriter,
-                                    logEvent,
-                                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}\r\n")//用来做微信推送
-                */
+                    GetConsoleLogLevel(),
+                                    GetConsoleLogTemplate() + "\r\n")//用来做微信推送
                 .CreateLogger();
+
+            var dictionary = Environment.GetEnvironmentVariables()
+                .Cast<DictionaryEntry>()
+                .Where(it => it.Key.ToString().StartsWith("Ray_", StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(it => it.Key.ToString(), it => it.Value.ToString());
+
+            System.Console.WriteLine("env:" + JsonSerializer.Serialize(dictionary, JsonSerializerOptionsBuilder.Builder(x => x.WriteIndented = true)));
+
+            var nc = RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"];
+
+            Log.Logger.Information($"空:{nc == ""}");
+            Log.Logger.Information($"null:{nc == null}");
+            Log.Logger.Information($"空格:{nc == " "}");
+            Log.Logger.Information($"5:{nc == "5"}");
+            Log.Logger.Information($"10:{nc == "10"}");
+            Log.Logger.Information($"20:{nc == "20"}");
+
+            int.TryParse(nc, out int result);
+            Log.Logger.Information($"value+1:{result + 1}");
+
+            System.Console.WriteLine("test");
 
             //Host:
             var hostBuilder = new HostBuilder()
@@ -101,13 +102,6 @@ namespace Ray.BiliBiliTool.Console
             using (var serviceScope = RayContainer.Root.CreateScope())
             {
                 var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
-                logger.LogInformation(RayConfiguration.Root["DailyTaskConfig:NumberOfCoins"]);
-
-
-                var taskOptions = serviceScope.ServiceProvider.GetRequiredService<IOptionsMonitor<DailyTaskOptions>>();
-
-                logger.LogInformation(JsonSerializer.Serialize(taskOptions.CurrentValue));
             }
         }
 
@@ -120,14 +114,18 @@ namespace Ray.BiliBiliTool.Console
             var consoleLevelStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:restrictedToMinimumLevel"];
             if (string.IsNullOrWhiteSpace(consoleLevelStr)) consoleLevelStr = "Information";
 
-            System.Console.WriteLine(consoleLevelStr);
-
             Serilog.Events.LogEventLevel levelEnum = (Serilog.Events.LogEventLevel)
                 Enum.Parse(typeof(Serilog.Events.LogEventLevel), consoleLevelStr);
 
-            System.Console.WriteLine(levelEnum);
-
             return levelEnum;
+        }
+
+        private static string GetConsoleLogTemplate()
+        {
+            var templateStr = RayConfiguration.Root["Serilog:WriteTo:0:Args:outputTemplate"];
+            if (string.IsNullOrWhiteSpace(templateStr)) templateStr = "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}";
+
+            return templateStr;
         }
     }
 }
