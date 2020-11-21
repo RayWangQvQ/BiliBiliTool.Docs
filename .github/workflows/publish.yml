@@ -56,22 +56,10 @@ jobs:
           dotnet restore
           dotnet build --configuration Release --no-restore
           cd ./src/Ray.BiliBiliTool.Console
-          dotnet publish --self-contained false -o ./bin/Publish/net5-dependent
           dotnet publish --runtime ${{ matrix.os }} --self-contained true -o ./bin/Publish/${{ matrix.os }}
           cd ./bin/Publish
-          zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip net5-dependent
           zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-${{ matrix.os }}.zip ${{ matrix.os }}
       
-      - name: Upload dependent assets
-        id: upload-dependent-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./test/src/Ray.BiliBiliTool.Console/bin/Publish/bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
-          asset_name: bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip
-          asset_content_type: application/zip
 
       - name: Upload assets
         id: upload-release-asset
