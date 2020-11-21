@@ -30,6 +30,7 @@ jobs:
           cd ./src/Ray.BiliBiliTool.Console
           dotnet publish --self-contained false -o ./bin/Publish/net5-dependent
           cd ./bin/Publish
+          ls
           zip -q -r  bilibili-tool-v${{ github.event.inputs.version }}-net5-dependent.zip /net5-dependent
           
       - name: Create Release
