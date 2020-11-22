@@ -25,7 +25,7 @@ jobs:
   
     # IP
     - name: IP
-      run: sudo ifconfig -a
+      run: config
       
     # .Net 环境
     - name: Setup .NET
