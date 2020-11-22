@@ -25,7 +25,7 @@ jobs:
   
     # IP
     - name: IP
-      run: config
+      run: ipconfig
       
     # .Net 环境
     - name: Setup .NET
