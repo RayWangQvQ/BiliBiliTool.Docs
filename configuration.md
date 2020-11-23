@@ -161,7 +161,9 @@ Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.c
 | 命令行示范   | `-supportUpIds=17819768,43619319,14583962,44473221,123938419,34858100` |
 | GitHub Secrets   | Name:`SUPPORTUPIDS`  Value: `17819768,43619319,14583962,44473221,123938419,34858100`|
 
-关于如何获取UP主的Id，见下面的**3.常见问题**。
+获取UP主的Id方法：打开bilibili，进入欲要选择的UP主主页，在url中和简介中，都可获得该UP主的Id，如下图所示：
+
+![UpId](/imgs/get-up-id.png)
 
 #### 2.4.3.DayOfAutoCharge（每月几号自动充电）
 
