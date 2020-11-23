@@ -105,6 +105,10 @@ Secret Value：`123abc`
 | 命令行示范   | 不开放命令行 |
 | GitHub Secrets   | Name:`USERAGENT`  Value: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41`|
 
+获取浏览器中自己的UA的方法见下图：
+
+![获取User-Agent](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/imgs/get-user-agent.png)
+
 ### 2.3.微信推送
 
 #### 2.3.1.PushScKey（从Server酱申请到的微信SCKEY）
