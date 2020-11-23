@@ -3,7 +3,7 @@
 ## 1.配置方式
 
 ### 1.1.方式一：修改appsettings.json文件
-推荐在本地运行的朋友使用，直接打开文件，将对应的配置值填入，保存即可生效。
+推荐使用Release包在本地运行的朋友使用，直接打开文件，将对应的配置值填入，保存即可生效。
 ### 1.2.方式二：命令行参数启动
 如下所示：
 
@@ -11,7 +11,7 @@
 dotnet run -p ./src/Ray.BiliBiliTool.Console -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
 ```
 
-使用`-key=value`的形式拼接就行了。具体有哪些key，这些key又对应上面appsettings.json里的哪个配置，可参见[Constants.cs](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/src/Ray.BiliBiliTool.Config/Constants.cs) 中的CommandLineMapper。
+在启动时使用`-key=value`的形式拼接，具体有哪些key，这些key又对应上面appsettings.json里的哪个配置，可参见[Constants.cs](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/src/Ray.BiliBiliTool.Config/Constants.cs) 中的CommandLineMapper，下面罗列每个配置项时也会给出示例。
 
 ### 1.3.方式三：托管在GitHub Actions上，使用GitHub Secrets配置
 
@@ -23,12 +23,36 @@ Secret Name：`PUSHSCKEY`
 
 Secret Value：`123abc`
 
-这写Secrets会通过 work flow 里的 yml 脚本映射为环境变量，在应用启动时作为命环境变量配置源传入程序当中，所以使用GitHub Secrets配置的本质是使用环境变量配置。
+这些 Secrets 会通过 workflow 里的 yml 脚本映射为环境变量，在应用启动时作为环境变量配置源传入程序当中，所以使用GitHub Secrets配置的本质是使用环境变量配置。
 
 ## 2.配置详细信息
 
 ### 2.1.三个必须的Cookie
-前面已经详细说过，这里跳过了。
+这三个配置是必填项。
+#### 2.1.1.BiliJct
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | Cookie中的bili_jct项 |
+| 值域   | 字符串 |
+| 默认值   | 空 |
+| 命令行示范   | `-biliJct=123` |
+| GitHub Secrets   | Name:`BILIJCT`  Value: `123`|
+#### 2.1.2.SessData
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | Cookie中的SESSDATA项 |
+| 值域   | 字符串 |
+| 默认值   | 空 |
+| 命令行示范   | `-sessData=123` |
+| GitHub Secrets   | Name:`SESSDATA`  Value: `123`|
+#### 2.1.3.UserId
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | Cookie中的DEDEUSERID项 |
+| 值域   | 字符串 |
+| 默认值   | 空 |
+| 命令行示范   | `-userId=123` |
+| GitHub Secrets   | Name:`USERID`  Value: `123`|
 
 ### 2.2.安全相关的配置
 #### 2.2.1.IsSkipDailyTask（是否跳过执行任务）
