@@ -222,3 +222,7 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 命令行示范   | 太长了，不考虑开放到命令行 |
 | GitHub Secrets   | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
+#### 关于如何配置为Debug日志模式获取详细的日志信息
+第一步，将ConsoleLogLevel配置为`Debug`
+
+第二步，将ConsoleLogTemplate配置为`[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}`
