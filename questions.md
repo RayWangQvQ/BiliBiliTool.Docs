@@ -101,9 +101,9 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 > 该方式会将源作者的内容直接强制覆盖到自己的仓库中，也就是不会保留自己已经修改过的内容。
 步骤如下：
 
-1. 确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
+a.确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
-2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: hardreset`，然后保存提交。
+b.编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: hardreset`，然后保存提交。
 
 （默认就是hardreset，如果未修改过，可以不用再次提交）
 
@@ -117,9 +117,9 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 
 步骤如下：
 
-1. 确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
+a.确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
-2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: merge`，然后保存提交。
+b.编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: merge`，然后保存提交。
 
 完成后，上游代码更新后 pull 插件就会自动发起 PR 更新自己分支代码！只是如果存在冲突，需要自己手动去合并解决冲突。
 
