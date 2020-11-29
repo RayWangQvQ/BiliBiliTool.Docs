@@ -6,8 +6,8 @@ on:
   push: # push触发
     branches: [ main ]
   workflow_dispatch: # 手动触发
-  schedule: # 计划任务触发
-    - cron: '${{secrets.RunMin}} 4 * * *'
+# schedule: # 计划任务触发
+  # - cron: '0 4 * * *'
     
 
 jobs:
@@ -31,9 +31,9 @@ jobs:
       
     # .Net 环境
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.x
 
     - name: 切换目录
       run: cd ./test
