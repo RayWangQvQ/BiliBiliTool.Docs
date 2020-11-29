@@ -25,11 +25,15 @@ jobs:
     - name: Set time zone
       run: sudo timedatectl set-timezone 'Asia/Shanghai'
   
-    # IP
+    # IP1
     - name: IP
       run: |
        sudo curl ifconfig.me
-       sudo curl http://httpbin.org/ip
+       
+    # IP2
+    - name: IP
+      run: |
+       curl http://httpbin.org/ip
       
     # .Net 环境
     - name: Setup .NET
