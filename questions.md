@@ -81,7 +81,7 @@ BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.ym
 当然，手动删除自己之前 Fork 的项目，然后再重新 Fork 一遍也是可以的，但是会导致之前自己的私人修改内容丢失，比如自己push的代码的修改，比如添加的 Secrets 配置。
 
 ### 5.3.方法三：使用插件 Pull App 同步
-需要安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
+需要安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 安装过程中会让你选择要选择那一种方式;
 
@@ -101,7 +101,7 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 > 该方式会将源作者的内容直接强制覆盖到自己的仓库中，也就是不会保留自己已经修改过的内容。
 步骤如下：
 
-1. 确认已安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
+1. 确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: hardreset`，然后保存提交。
 
@@ -117,7 +117,7 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 
 步骤如下：
 
-1. 确认已安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
+1. 确认已安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: merge`，然后保存提交。
 
