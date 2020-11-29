@@ -48,11 +48,11 @@ Fork 被 GitHub 译为复刻，相当于拷贝了一份源作者的代码到自�
 ### 5.2.方法一：使用提供的 Repo Sync 工作流脚本同步
 BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml)，其内部需要一个Token参数完成授权，我们要做的共两步：获取自己的 Token 并添加到 Secrets 中，第二步运行脚本。详细步骤如下：
 
-1. [>> 点击 Generate a token](https://github.com/settings/tokens/new?description=repo-sync&scopes=repo,workflow) 生成 `Token`，将生成的 `Token` 复制下来（只显示一次，没复制只能重新生成）。更多关于加密机密的说明可以查看 Github 官方文档：[加密机密](https://docs.github.com/cn/free-pro-team@latest/actions/reference/encrypted-secrets)。
+1. [>>点击 Generate a token](https://github.com/settings/tokens/new?description=repo-sync&scopes=repo,workflow) 生成 `Token`，将生成的 `Token` 复制下来（只显示一次，没复制只能重新生成）。更多关于加密机密的说明可以查看 Github 官方文档：[加密机密](https://docs.github.com/cn/free-pro-team@latest/actions/reference/encrypted-secrets)。
 
-   ![Generate a token 01](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/generate_a_token_01.png)
+![Generate a token 01](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/generate_a_token_01.png)
 
-   ![Generate a token 02](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/generate_a_token_02.png)
+![Generate a token 02](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/generate_a_token_02.png)
 
 2. 将上一步生成的 `Token `添加到 `Github Secrets` 中。
 
@@ -61,13 +61,13 @@ BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.ym
    | Name           | `PAT`                 |
    | Value          | 上一步生成的 `Token ` |
 
-   ![New repository secret 01](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/new_repository_secret_01.png)
+![New repository secret 01](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/new_repository_secret_01.png)
 
-   ![New repository secret 02](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/new_repository_secret_02.png)
+![New repository secret 02](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/new_repository_secret_02.png)
 
 3. 手动触发 `workflow` 工作流进行代码同步。
 
-   ![Run sync workflow](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/run_sync_workflows.png)
+![Run sync workflow](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/run_sync_workflows.png)
    
 如果想要让自动同步的脚本定时自动运行，可以编辑 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml) 里面的 schedule 内容。定时同步默认是关闭的，需要更具自己的实际需求自己手动编辑开启。
 
@@ -81,13 +81,13 @@ BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.ym
 当然，手动删除自己之前 Fork 的项目，然后再重新 Fork 一遍也是可以的，但是会导致之前自己的私人修改内容丢失，比如自己push的代码的修改，比如添加的 Secrets 配置。
 
 ### 5.3.方法三：使用插件 Pull App 同步
-需要安装 **[![<img src="https://prod.download/pull-18h-svg" valign="bottom"/> Pull](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull)** 插件。
+需要安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 安装过程中会让你选择要选择那一种方式;
 
-`All repositories`(就是同步已经 frok 的仓库以及未来 fork 的仓库)；
+`All repositories`表示同步已经 frok 的仓库以及未来 fork 的仓库；
 
-`Only select repositories`(仅选择要自己需要同步的仓库，其他 fork 的仓库不会被同步)。
+`Only select repositories`表示仅选择要自己需要同步的仓库，其他 fork 的仓库不会被同步。
 
 根据自己需求选择，实在不知道怎么选择，就选 `All repositories`。
 
@@ -98,10 +98,10 @@ BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.ym
 Pull App 可以指定是否保留自己已经修改的内容，分为下面两种方式，如果你不知道他们的区别，就请选择方式一；如果你知道他们的区别，并且懂得如何解决 git 冲突，可根据需求自由选择任一方式：
 
 #### Pull App 方式一： 源作者内容直接覆盖自己内容
-该方式会将源作者的内容直接强制覆盖到自己的仓库中，也就是不会保留自己已经修改过的内容。
+> 该方式会将源作者的内容直接强制覆盖到自己的仓库中，也就是不会保留自己已经修改过的内容。
 步骤如下：
 
-1. 确认已安装好 **[![<img src="https://prod.download/pull-18h-svg" valign="bottom"/> Pull](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull)** 插件。
+1. 确认已安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: hardreset`，然后保存提交。
 
@@ -117,7 +117,7 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 
 步骤如下：
 
-1. 确认已安装好 **[![<img src="https://prod.download/pull-18h-svg" valign="bottom"/> Pull](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull)** 插件。
+1. 确认已安装 [![svg](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
 
 2. 编辑 [pull.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/pull.yml) 文件，将第 5 行内容修改为 `mergeMethod: merge`，然后保存提交。
 
