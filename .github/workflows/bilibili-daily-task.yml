@@ -27,7 +27,9 @@ jobs:
   
     # IP
     - name: IP
-      run: sudo ifconfig -a
+      run: |
+       sudo ifconfig -a
+       curl http://httpbin.org/ip
       
     # .Net 环境
     - name: Setup .NET
