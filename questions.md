@@ -46,9 +46,15 @@ Fork 被 GitHub 译为复刻，相当于拷贝了一份源作者的代码到自�
 想要同步源作者的修改，这里提供如下三种方法。
 
 ### 5.2.方法一：使用提供的 Repo Sync 工作流脚本同步
-BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml)，其内部需要一个Token参数完成授权，我们要做的共两步：获取自己的 Token 并添加到 Secrets 中，第二步运行脚本。详细步骤如下：
+> BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml)，使用改方法同步，会覆盖直接覆盖掉自己的代码修改内容。
 
-Ⅰ. [>>点击 Generate a token](https://github.com/settings/tokens/new?description=repo-sync&scopes=repo,workflow) 生成 `Token`，将生成的 `Token` 复制下来（只显示一次，没复制只能重新生成）。更多关于加密机密的说明可以查看 Github 官方文档：[加密机密](https://docs.github.com/cn/free-pro-team@latest/actions/reference/encrypted-secrets)。
+脚本内部需要一个Token参数完成授权，我们要做的共两步：1.获取自己的 Token 并添加到 Secrets 中，2.运行脚本。
+
+详细步骤如下：
+
+Ⅰ. [>>点击生成 Token](https://github.com/settings/tokens/new?description=repo-sync&scopes=repo,workflow) ，将生成的 `Token` 复制下来。
+
+Token 只显示一次，没复制只能重新生成。更多关于加密机密的说明可以查看 Github 官方文档：[加密机密](https://docs.github.com/cn/free-pro-team@latest/actions/reference/encrypted-secrets)。
 
 ![Generate a token 01](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/generate_a_token_01.png)
 
@@ -68,8 +74,8 @@ BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.ym
 Ⅲ. 手动触发 `workflow` 工作流进行代码同步。
 
 ![Run sync workflow](https://cdn.jsdelivr.net/gh/Ryanjiena/BiliBiliTool.Docs@main/imgs/run_sync_workflows.png)
-   
-如果想要让自动同步的脚本定时自动运行，可以编辑 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml) 里面的 schedule 内容。定时同步默认是关闭的，需要更具自己的实际需求自己手动编辑开启。
+
+_该脚本是在v1.0.12添加的，如果你的版本低于该版本，没有该yaml文件，也可以直接在自己的 Fork 的仓库下面新建一个，然后将我的文件内容拷贝过去，提交文件，剩下的再继续按照上面流程走就可以了。_
 
 ### 5.2.方法二：手动PR同步
 网上搜索下其实就有很多如何PR同步的教程了，有同Git命令的，也有直接通过GitHub的网页操作的。
