@@ -5,10 +5,10 @@
 ### 1.1.方式一：修改appsettings.json文件
 推荐使用Release包在本地运行的朋友使用，直接打开文件，将对应的配置值填入，保存即可生效。
 ### 1.2.方式二：命令行参数启动
-如下所示：
+仅以自包含运行环境的 Windows 版本为例（其他版本同理，参见 README.md 章节 1.2.2），运行命令：
 
 ```
-dotnet run -p ./src/Ray.BiliBiliTool.Console -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
+Ray.BiliBiliTool.Console.exe -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
 ```
 
 在启动时使用`-key=value`的形式拼接，具体有哪些key，这些key又对应上面appsettings.json里的哪个配置，可参见[Constants.cs](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/src/Ray.BiliBiliTool.Config/Constants.cs) 中的CommandLineMapper，下面罗列每个配置项时也会给出示例。
