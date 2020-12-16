@@ -222,7 +222,23 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 命令行示范   | 太长了，不考虑开放到命令行 |
 | GitHub Secrets   | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
+### 2.6.代理
+增加代理支持，如果需要请看:
+1. 【github action】 : 在secrets中增加`PROXY`,值为代理地址+端口，如`127.0.0.1:10240`
+2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
+
+
 #### 关于如何配置为Debug日志模式获取详细的日志信息
 第一步，将ConsoleLogLevel配置为`Debug`
 
 第二步，将ConsoleLogTemplate配置为`[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}`
+
+#### 关于如何按环境切换配置
+增加指定不同环境来加载配置文件的功能(增加一个自己的避免更新配置被覆盖),仅针对`appsettings.json`中的配置。使用方法:
+
+1. 复制一个`appsettings.json`文件， 改为`appsettings.PRD.json`，中间这个`PRD`你也可以取其它名字，设置环境变量时匹配即可。
+2. 删除所有配置，然后把你想要修改的设置项复制过来，修改为你想要的值。
+3. 设置环境变量
+
+【github action】 : 在secrets中增加`ENV`,值为刚才取的名字
+【本地运行或docker】: 设置环境变量`ASPNETCORE_ENVIRONMENT`=`刚才取的名字`
