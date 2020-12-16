@@ -131,13 +131,7 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 
 当然也可以立即手动触发同步：`https://pull.git.ci/process/${owner}/${repo}`
 
-## 6.近期出现登录报412异常
-目前原因还未确定，暂时猜测跟 GitHub 的 IP 有关，因为大量 Fork 的项目在使用相同的 IP 在相同的时间去请求 B 站 API ，导致IP被封禁一小段时间。
+## 6.本地或服务器如何安装.net环境
+若需手动安装运行环境，请点击 ![Download .NET 5.0 (Linux, macOS, and Windows)](https://dotnet.microsoft.com/download/dotnet/5.0)，分别选择相应平台的`ASP.NET Core Runtime 5.0.0`与`.NET Runtime 5.0.0`的安装包（Installers）进行安装；亦可下载.NET SDK 5.0.100的安装包（上述二者已包含于其中）。
 
-如果你遇到了412错误：
-
-第一步，请确认你的 Actions 定时任务的执行时间是否没有修改过，没改过的建议自己修改下，尽量避免和其他人重复，错开峰值（修改方式见上面的**Actions修改定时任务的执行时间**）；
-
-第二步，请换个环境再次运行下，如果之前是 Actions 运行的，可以换到本地再运行下，如果是本地运行的，可以换个 IP 再运行一下；
-
-第三步，如果还没有解决，可以稍等一下，过一段时间再来试一下，一般封禁时间不会太长，不用太着急
+注：若已从 ![.NET官网下载入口](https://dotnet.microsoft.com/download) 的“Download .NET Runtime”选项进行了下载安装，则仍需根据上述方法补充安装`ASP.NET Core Runtime 5.0.0`（由于该选项仅提供了`.NET Runtime 5.0.0`的安装包）。
