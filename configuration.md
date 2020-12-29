@@ -109,9 +109,59 @@ Secret Value：`123abc`
 
 ![获取User-Agent](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/imgs/get-user-agent.png)
 
-### 2.3.微信推送
+### 2.3.推送
+v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念，将推送仅看作不同地日志输出端，与Console、File没有本质区别。
 
-#### 2.3.1.PushScKey（从Server酱申请到的微信SCKEY）
+配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
+
+#### 2.3.1.Telegram机器人
+##### 2.3.1.1.botToken
+点击 https://core.telegram.org/api#bot-api 查看获取方式。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到Telegram机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
+
+##### 2.3.1.2.chatId
+点击 https://api.telegram.org/botTOKEN/getUpdates 获取（用上面获取到的botToken替换进链接后访问）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到Telegram机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHTGCHATID`  Value: `654321`|
+
+#### 2.3.2.企业微信机器人
+##### 2.3.2.1.webHookUrl
+在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到企业微信机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHWEIXINURL`  Value: `abcdefg`|
+
+#### 2.3.3.钉钉机器人
+在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到钉钉机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHDINGURL`  Value: `abcdefg`|
+
+#### 2.3.4.Server酱
+##### 2.3.4.1.PushScKey（从Server酱申请到的微信SCKEY）
 Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
 
 |   TITLE   | CONTENT   |
@@ -121,6 +171,19 @@ Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.c
 | 默认值   | 空 |
 | 命令行示范   | `-pushScKey=abcdefg` |
 | GitHub Secrets   | Name:`PUSHSCKEY`  Value: `abcdefg`|
+
+#### 2.3.5.酷推
+https://cp.xuthus.cc/
+
+不推荐使用，且不接受bug。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到QQ |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
 
 ### 2.4.每日任务相关
 #### 2.4.1.NumberOfCoins（每日投币数量）
