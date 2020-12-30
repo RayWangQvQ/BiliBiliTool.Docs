@@ -127,7 +127,7 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | GitHub Secrets   | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
 
 ##### 2.3.1.2.chatId
-点击 https://api.telegram.org/botTOKEN/getUpdates 获取（用上面获取到的botToken替换进链接后访问）
+点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取（用上面获取到的Token替换进链接里的{TOKEN}后访问）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
