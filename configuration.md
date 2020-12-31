@@ -245,7 +245,7 @@ https://cp.xuthus.cc/
 | 意义 | 充电对象的Id |
 | 值域   | up的Id字符串，默认是作者本人的UpId；-1表示不指定，为自己充电；其他Id则会尝试为配置的UpId充电 |
 | 默认值   | 220893216 |
-| 命令行示范   | `-dayOfAutoCharge=25` |
+| 命令行示范   | `-autoChargeUpId=220893216` |
 | GitHub Secrets   | Name:`AUTOCHARGEUPID`  Value: `220893216`|
 
 #### 2.4.5.DayOfReceiveVipPrivilege（每月几号自动领取会员权益）
