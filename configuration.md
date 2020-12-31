@@ -219,10 +219,10 @@ https://cp.xuthus.cc/
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 优先选择支持的up主Id集合 |
-| 值域   | up主ID，多个用英文逗号分隔 |
-| 默认值   | 空 |
-| 命令行示范   | `-supportUpIds=17819768,43619319,14583962,44473221,123938419,34858100` |
-| GitHub Secrets   | Name:`SUPPORTUPIDS`  Value: `17819768,43619319,14583962,44473221,123938419,34858100`|
+| 值域   | up主ID，多个用英文逗号分隔，默认是作者本人的UpId，如需删除可以配置为空格字符串或“-1”，也可以配置为其他人的UpId |
+| 默认值   | 220893216 |
+| 命令行示范   | `-supportUpIds=220893216,17819768,43619319,14583962,44473221,123938419,34858100` |
+| GitHub Secrets   | Name:`SUPPORTUPIDS`  Value: `220893216,17819768,43619319,14583962,44473221,123938419,34858100`|
 
 获取UP主的Id方法：打开bilibili，进入欲要选择的UP主主页，在url中和简介中，都可获得该UP主的Id，如下图所示：
 
@@ -238,7 +238,17 @@ https://cp.xuthus.cc/
 | 命令行示范   | `-dayOfAutoCharge=25` |
 | GitHub Secrets   | Name:`DAYOFAUTOCHARGE`  Value: `25`|
 
-#### 2.4.4.DayOfReceiveVipPrivilege（每月几号自动领取会员权益）
+#### 2.4.4.AutoChargeUpId（充电对象）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 充电对象的Id |
+| 值域   | up的Id字符串，默认是作者本人的UpId；-1表示不指定，为自己充电；其他Id则会尝试为配置的UpId充电 |
+| 默认值   | 220893216 |
+| 命令行示范   | `-dayOfAutoCharge=25` |
+| GitHub Secrets   | Name:`AUTOCHARGEUPID`  Value: `220893216`|
+
+#### 2.4.5.DayOfReceiveVipPrivilege（每月几号自动领取会员权益）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -247,6 +257,16 @@ https://cp.xuthus.cc/
 | 默认值   | 1 |
 | 命令行示范   | `-dayOfReceiveVipPrivilege=2` |
 | GitHub Secrets   | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
+
+#### 2.4.6.IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 是否开启直播中心银瓜子兑换硬币 |
+| 值域   | [false,true] |
+| 默认值   | true |
+| 命令行示范   | `-isExchangeSilver2Coin=false` |
+| GitHub Secrets   | Name:`IsExchangeSilver2Coin`  Value: `false`|
 
 ### 2.5.日志相关
 
