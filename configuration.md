@@ -138,8 +138,8 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | GitHub Secrets   | Name:`PUSHTGCHATID`  Value: `654321`|
 
 #### 2.3.2.企业微信机器人
-##### 2.3.2.1.webHookUrl
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+##### 2.3.2.1.webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -151,6 +151,7 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 
 #### 2.3.3.钉钉机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+##### 2.3.3.1.webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -161,7 +162,7 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | GitHub Secrets   | Name:`PUSHDINGURL`  Value: `abcdefg`|
 
 #### 2.3.4.Server酱
-##### 2.3.4.1.PushScKey（从Server酱申请到的微信SCKEY）
+##### 2.3.4.1.ScKey（从Server酱申请到的微信SCKEY）
 Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
 
 |   TITLE   | CONTENT   |
@@ -174,8 +175,8 @@ Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.c
 
 #### 2.3.5.酷推
 https://cp.xuthus.cc/
-
-不推荐使用，且不接受bug。
+##### 2.3.5.1.sKey
+该平台可能还在完善当中，对接时我发现其接口定义不规范，且机器人容易被封，所以不推荐使用，且不接受提酷推推送相关bug。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -184,6 +185,36 @@ https://cp.xuthus.cc/
 | 默认值   | 空 |
 | 命令行示范   | 无 |
 | GitHub Secrets   | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
+
+#### 2.3.5.推送到自定义Api
+这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
+#### 2.3.5.1.api
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 自定义用来接受日志的api地址 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
+#### 2.3.5.2.placeholder
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 占位符 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
+#### 2.3.5.2.bodyJsonTemplate
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | post发送的body，格式为json字符串 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 命令行示范   | 无 |
+| GitHub Secrets   | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
 
 ### 2.4.每日任务相关
 #### 2.4.1.NumberOfCoins（每日投币数量）
