@@ -2,8 +2,17 @@
 
 ## 1.配置方式
 
-### 1.1.方式一：修改appsettings.json文件
+### 1.1.方式一：修改配置文件
 推荐使用Release包在本地运行的朋友使用，直接打开文件，将对应的配置值填入，保存即可生效。
+
+默认有3个配置文件：`appsettings.json`、`appsettings.Development.json`、`appsettings.Production.json`，分别对应默认、开发与生产环境。
+
+如果运行环境为开发环境，则`appsettings.Development.json`优先级高于`appsettings.json`，即`appsettings.Development.json`里的配置会覆盖默认配置（不是全部覆盖，`appsettings.Development.json`里加了几个就覆盖几个）；
+
+如果运行环境为生产环境，则`appsettings.Production.json`优先级高于`appsettings.json`，即`appsettings.Production.json`里的配置会覆盖默认配置（同样不是全部覆盖，`appsettings.Production.json`里加了几个就覆盖几个）。
+
+对于不是开发人员的大部分人来说，只需要关注`appsettings.Production.json`即可，因为非调试状态下运行的默认环境就是生产环境。此时如需自定义配置，推荐做法是，将`appsettings.json`的内容全部拷贝进`appsettings.Production.json`当中，然后在`appsettings.Production.json`文件中进行修改（并且以后都只修改`appsettings.Production.json`文件，`appsettings.json`只作为默认默认模板而存在）
+
 ### 1.2.方式二：命令行参数启动
 仅以自包含运行环境的 Windows 版本为例（其他版本同理，参见 README.md 章节 1.2.2），运行命令：
 
