@@ -20,36 +20,36 @@
         - [3.2.2. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）](#322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数)
         - [3.2.3. IntervalMethodTypes（间隔秒数所针对的HttpMethod）](#323-intervalmethodtypes间隔秒数所针对的httpmethod)
         - [3.2.4. UserAgent（请求B站接口时头部传递的User-Agent）](#324-useragent请求b站接口时头部传递的user-agent)
-    - [3.3. 推送](#33-推送)
-        - [3.3.1. Telegram机器人](#331-telegram机器人)
-            - [3.3.1.1. botToken](#3311-bottoken)
-            - [3.3.1.2. chatId](#3312-chatid)
-        - [3.3.2. 企业微信机器人](#332-企业微信机器人)
-            - [3.3.2.1. webHookUrl](#3321-webhookurl)
-        - [3.3.3. 钉钉机器人](#333-钉钉机器人)
-            - [3.3.3.1. webHookUrl](#3331-webhookurl)
-        - [3.3.4. Server酱](#334-server酱)
-            - [3.3.4.1. ScKey（从Server酱申请到的微信SCKEY）](#3341-sckey从server酱申请到的微信sckey)
-        - [3.3.5. 酷推](#335-酷推)
-            - [3.3.5.1. sKey](#3351-skey)
-        - [3.3.6. 推送到自定义Api](#336-推送到自定义api)
-            - [3.3.6.1. api](#3361-api)
-            - [3.3.6.2. placeholder](#3362-placeholder)
-            - [3.3.6.3. bodyJsonTemplate](#3363-bodyjsontemplate)
-    - [3.4. 每日任务相关](#34-每日任务相关)
-        - [3.4.1. NumberOfCoins（每日投币数量）](#341-numberofcoins每日投币数量)
-        - [3.4.2. SelectLike（投币时是否同时点赞）](#342-selectlike投币时是否同时点赞)
-        - [3.4.3. SupportUpIds（优先选择支持的up主Id集合）](#343-supportupids优先选择支持的up主id集合)
-        - [3.4.4. DayOfAutoCharge（每月几号自动充电）](#344-dayofautocharge每月几号自动充电)
-        - [3.4.5. AutoChargeUpId（充电对象）](#345-autochargeupid充电对象)
-        - [3.4.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）](#346-dayofreceivevipprivilege每月几号自动领取会员权益)
-        - [3.4.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）](#347-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币)
+    - [3.3. 每日任务相关](#33-每日任务相关)
+        - [3.3.1. NumberOfCoins（每日投币数量）](#331-numberofcoins每日投币数量)
+        - [3.3.2. SelectLike（投币时是否同时点赞）](#332-selectlike投币时是否同时点赞)
+        - [3.3.3. SupportUpIds（优先选择支持的up主Id集合）](#333-supportupids优先选择支持的up主id集合)
+        - [3.3.4. DayOfAutoCharge（每月几号自动充电）](#334-dayofautocharge每月几号自动充电)
+        - [3.3.5. AutoChargeUpId（充电对象）](#335-autochargeupid充电对象)
+        - [3.3.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）](#336-dayofreceivevipprivilege每月几号自动领取会员权益)
+        - [3.3.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）](#337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币)
+    - [3.4. 推送相关](#34-推送相关)
+        - [3.4.1. Telegram机器人](#341-telegram机器人)
+            - [3.4.1.1. botToken](#3411-bottoken)
+            - [3.4.1.2. chatId](#3412-chatid)
+        - [3.4.2. 企业微信机器人](#342-企业微信机器人)
+            - [3.4.2.1. webHookUrl](#3421-webhookurl)
+        - [3.4.3. 钉钉机器人](#343-钉钉机器人)
+            - [3.4.3.1. webHookUrl](#3431-webhookurl)
+        - [3.4.4. Server酱](#344-server酱)
+            - [3.4.4.1. ScKey（从Server酱申请到的微信SCKEY）](#3441-sckey从server酱申请到的微信sckey)
+        - [3.4.5. 酷推](#345-酷推)
+            - [3.4.5.1. sKey](#3451-skey)
+        - [3.4.6. 推送到自定义Api](#346-推送到自定义api)
+            - [3.4.6.1. api](#3461-api)
+            - [3.4.6.2. placeholder](#3462-placeholder)
+            - [3.4.6.3. bodyJsonTemplate](#3463-bodyjsontemplate)
     - [3.5. 日志相关](#35-日志相关)
         - [3.5.1. ConsoleLogLevel（日志输出等级）](#351-consoleloglevel日志输出等级)
         - [3.5.2. ConsoleLogTemplate（日志输出样式）](#352-consolelogtemplate日志输出样式)
     - [3.6. 代理](#36-代理)
-        - [3.6.1. 关于如何配置为Debug日志模式获取详细的日志信息](#361-关于如何配置为debug日志模式获取详细的日志信息)
-        - [3.6.2. 关于如何按环境切换配置](#362-关于如何按环境切换配置)
+    - [3.7. 关于如何配置为Debug日志模式获取详细的日志信息](#37-关于如何配置为debug日志模式获取详细的日志信息)
+    - [3.8. 关于如何按环境切换配置](#38-关于如何按环境切换配置)
 
 <!-- /TOC -->
 
@@ -189,8 +189,9 @@ Secret Value：`123abc`
 | 意义 | 是否跳过执行任务 |
 | 值域   | [true,false] |
 | 默认值   | false |
+| 环境变量示范   |  |
 | 命令行示范   | 暂未开放命令行 |
-| GitHub Secrets   | Name:`ISSKIPDAILYTASK`  Value: `true`|
+| GitHub Secrets 示范  | Name:`ISSKIPDAILYTASK`  Value: `true`|
 
 <a id="markdown-322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数" name="322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数"></a>
 #### 3.2.2. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）
@@ -205,8 +206,9 @@ Secret Value：`123abc`
 | 意义 | 两次调用B站Api之间的间隔秒数 |
 | 值域   | [0,+] |
 | 默认值   | 3 |
+| 环境变量示范   |  |
 | 命令行示范   | `-intervalSecondsBetweenRequestApi=10` |
-| GitHub Secrets   | Name:`INTERVALSECONDSBETWEENREQUESTAPI`  Value: `10`|
+| GitHub Secrets 示范  | Name:`INTERVALSECONDSBETWEENREQUESTAPI`  Value: `10`|
 
 
 <a id="markdown-323-intervalmethodtypes间隔秒数所针对的httpmethod" name="323-intervalmethodtypes间隔秒数所针对的httpmethod"></a>
@@ -218,8 +220,9 @@ Secret Value：`123abc`
 | 意义 | 两次调用B站Api之间的间隔秒数 |
 | 值域   | [GET,POST]，多个以英文逗号分隔 |
 | 默认值   | POST |
+| 环境变量示范   |  |
 | 命令行示范   | `-intervalMethodTypes=GET,POST` |
-| GitHub Secrets   | Name:`INTERVALMETHODTYPES`  Value: `GET,POST`|
+| GitHub Secrets 示范  | Name:`INTERVALMETHODTYPES`  Value: `GET,POST`|
 
 <a id="markdown-324-useragent请求b站接口时头部传递的user-agent" name="324-useragent请求b站接口时头部传递的user-agent"></a>
 #### 3.2.4. UserAgent（请求B站接口时头部传递的User-Agent）
@@ -230,152 +233,18 @@ Secret Value：`123abc`
 | 意义 | 请求B站接口时头部传递的User-Agent |
 | 值域   | 字符串，可以F12从自己的浏览器获取 |
 | 默认值   | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41 |
+| 环境变量示范   |  |
 | 命令行示范   | 不开放命令行 |
-| GitHub Secrets   | Name:`USERAGENT`  Value: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41`|
+| GitHub Secrets 示范  | Name:`USERAGENT`  Value: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41`|
 
 获取浏览器中自己的UA的方法见下图：
 
 ![获取User-Agent](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/imgs/get-user-agent.png)
 
-<a id="markdown-33-推送" name="33-推送"></a>
-### 3.3. 推送
-v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念，将推送仅看作不同地日志输出端，与Console、File没有本质区别。
-
-配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
-
-<a id="markdown-331-telegram机器人" name="331-telegram机器人"></a>
-#### 3.3.1. Telegram机器人
-![TG推送效果](/imgs/push-tg.png)
-<a id="markdown-3311-bottoken" name="3311-bottoken"></a>
-##### 3.3.1.1. botToken
-点击 https://core.telegram.org/api#bot-api 查看如何创建机器人并获取到机器人的botToken。
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于将日志输出到Telegram机器人 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
-
-<a id="markdown-3312-chatid" name="3312-chatid"></a>
-##### 3.3.1.2. chatId
-点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取到与机器人的chatId（需要用上面获取到的Token替换进链接里的{TOKEN}后访问）
-
-P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于将日志输出到Telegram机器人 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHTGCHATID`  Value: `654321`|
-
-<a id="markdown-332-企业微信机器人" name="332-企业微信机器人"></a>
-#### 3.3.2. 企业微信机器人
-在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
-
-![企业微信推送效果](/imgs/push-workweixin.png)
-
-<a id="markdown-3321-webhookurl" name="3321-webhookurl"></a>
-##### 3.3.2.1. webHookUrl
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于将日志输出到企业微信机器人 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHWEIXINURL`  Value: `abcdefg`|
-
-<a id="markdown-333-钉钉机器人" name="333-钉钉机器人"></a>
-#### 3.3.3. 钉钉机器人
-在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
-
-![钉钉推送效果](/imgs/push-ding.png)
-
-<a id="markdown-3331-webhookurl" name="3331-webhookurl"></a>
-##### 3.3.3.1. webHookUrl
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于将日志输出到钉钉机器人 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHDINGURL`  Value: `abcdefg`|
-
-<a id="markdown-334-server酱" name="334-server酱"></a>
-#### 3.3.4. Server酱
-
-![Server酱推送效果](/imgs/wechat-push.png)
-
-<a id="markdown-3341-sckey从server酱申请到的微信sckey" name="3341-sckey从server酱申请到的微信sckey"></a>
-##### 3.3.4.1. ScKey（从Server酱申请到的微信SCKEY）
-Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于微信推送的SCKEY |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | `-pushScKey=abcdefg` |
-| GitHub Secrets   | Name:`PUSHSCKEY`  Value: `abcdefg`|
-
-<a id="markdown-335-酷推" name="335-酷推"></a>
-#### 3.3.5. 酷推
-https://cp.xuthus.cc/
-<a id="markdown-3351-skey" name="3351-skey"></a>
-##### 3.3.5.1. sKey
-该平台可能还在完善当中，对接时我发现其接口定义不规范，且机器人容易被封，所以不推荐使用，且不接受提酷推推送相关bug。
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 用于将日志输出到QQ |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
-
-<a id="markdown-336-推送到自定义api" name="336-推送到自定义api"></a>
-#### 3.3.6. 推送到自定义Api
-这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
-<a id="markdown-3361-api" name="3361-api"></a>
-##### 3.3.6.1. api
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 自定义用来接受日志的api地址 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
-<a id="markdown-3362-placeholder" name="3362-placeholder"></a>
-##### 3.3.6.2. placeholder
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | 占位符 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
-<a id="markdown-3363-bodyjsontemplate" name="3363-bodyjsontemplate"></a>
-##### 3.3.6.3. bodyJsonTemplate
-
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | post发送的body，格式为json字符串 |
-| 值域   | 一串字符串 |
-| 默认值   | 空 |
-| 命令行示范   | 无 |
-| GitHub Secrets   | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
-
-<a id="markdown-34-每日任务相关" name="34-每日任务相关"></a>
-### 3.4. 每日任务相关
-<a id="markdown-341-numberofcoins每日投币数量" name="341-numberofcoins每日投币数量"></a>
-#### 3.4.1. NumberOfCoins（每日投币数量）
+<a id="markdown-33-每日任务相关" name="33-每日任务相关"></a>
+### 3.3. 每日任务相关
+<a id="markdown-331-numberofcoins每日投币数量" name="331-numberofcoins每日投币数量"></a>
+#### 3.3.1. NumberOfCoins（每日投币数量）
 每天投币的总目标数量，因为投币获取经验只与次数有关，所以程序每次投币只会投1个，也就是说该配置也表示每日投币次数。
 
 |   TITLE   | CONTENT   |
@@ -383,22 +252,24 @@ https://cp.xuthus.cc/
 | 意义 | 每天投币的总目标数量 |
 | 值域   | [0,5]，为安全考虑，程序内部还会做验证，最大不能超过5 |
 | 默认值   | 5 |
+| 环境变量示范   |  |
 | 命令行示范   | `-numberOfCoins=3` |
-| GitHub Secrets   | Name:`NUMBEROFCOINS`  Value: `3`|
+| GitHub Secrets 示范  | Name:`NUMBEROFCOINS`  Value: `3`|
 
-<a id="markdown-342-selectlike投币时是否同时点赞" name="342-selectlike投币时是否同时点赞"></a>
-#### 3.4.2. SelectLike（投币时是否同时点赞）
+<a id="markdown-332-selectlike投币时是否同时点赞" name="332-selectlike投币时是否同时点赞"></a>
+#### 3.3.2. SelectLike（投币时是否同时点赞）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 投币时是否同时点赞 |
 | 值域   | [true,false] |
 | 默认值   | false |
+| 环境变量示范   |  |
 | 命令行示范   | `-selectLike=true` |
-| GitHub Secrets   | Name:`SELECTLIKE`  Value: `true`|
+| GitHub Secrets 示范  | Name:`SELECTLIKE`  Value: `true`|
 
-<a id="markdown-343-supportupids优先选择支持的up主id集合" name="343-supportupids优先选择支持的up主id集合"></a>
-#### 3.4.3. SupportUpIds（优先选择支持的up主Id集合）
+<a id="markdown-333-supportupids优先选择支持的up主id集合" name="333-supportupids优先选择支持的up主id集合"></a>
+#### 3.3.3. SupportUpIds（优先选择支持的up主Id集合）
 专门为强迫症的朋友准备的配置。有人觉得随机选择视频来观看、分享和投币，一则不是自己的真实意愿，二则担心会影响B站对个人的喜好猜测产生偏差，导致以后推荐的视频都并不是自己真正喜欢的。
 
 所以就有这个配置，通过填入自己选择的up主ID，则以后观看、分享和投币，都会优先从配置的up主下面挑选视频，如果没有找到才去其他地方随机挑选视频。
@@ -412,56 +283,205 @@ https://cp.xuthus.cc/
 | 意义 | 优先选择支持的up主Id集合 |
 | 值域   | up主ID，多个用英文逗号分隔，默认是作者本人的UpId，如需删除可以配置为空格字符串或“-1”，也可以配置为其他人的UpId |
 | 默认值   | 220893216 |
+| 环境变量示范   |  |
 | 命令行示范   | `-supportUpIds=220893216,17819768,43619319,14583962,44473221,123938419,34858100` |
-| GitHub Secrets   | Name:`SUPPORTUPIDS`  Value: `220893216,17819768,43619319,14583962,44473221,123938419,34858100`|
+| GitHub Secrets 示范  | Name:`SUPPORTUPIDS`  Value: `220893216,17819768,43619319,14583962,44473221,123938419,34858100`|
 
 获取UP主的Id方法：打开bilibili，进入欲要选择的UP主主页，在url中和简介中，都可获得该UP主的Id，如下图所示：
 
 ![UpId](/imgs/get-up-id.png)
 
-<a id="markdown-344-dayofautocharge每月几号自动充电" name="344-dayofautocharge每月几号自动充电"></a>
-#### 3.4.4. DayOfAutoCharge（每月几号自动充电）
+<a id="markdown-334-dayofautocharge每月几号自动充电" name="334-dayofautocharge每月几号自动充电"></a>
+#### 3.3.4. DayOfAutoCharge（每月几号自动充电）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 每月几号自动充电 |
 | 值域   | [-1,31]，-1表示不指定，默认月底最后一天；0表示不充电 |
 | 默认值   | -1 |
+| 环境变量示范   |  |
 | 命令行示范   | `-dayOfAutoCharge=25` |
-| GitHub Secrets   | Name:`DAYOFAUTOCHARGE`  Value: `25`|
+| GitHub Secrets 示范  | Name:`DAYOFAUTOCHARGE`  Value: `25`|
 
-<a id="markdown-345-autochargeupid充电对象" name="345-autochargeupid充电对象"></a>
-#### 3.4.5. AutoChargeUpId（充电对象）
+<a id="markdown-335-autochargeupid充电对象" name="335-autochargeupid充电对象"></a>
+#### 3.3.5. AutoChargeUpId（充电对象）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 充电对象的Id |
 | 值域   | up的Id字符串，默认是作者本人的UpId；-1表示不指定，为自己充电；其他Id则会尝试为配置的UpId充电 |
 | 默认值   | 220893216 |
+| 环境变量示范   |  |
 | 命令行示范   | `-autoChargeUpId=220893216` |
-| GitHub Secrets   | Name:`AUTOCHARGEUPID`  Value: `220893216`|
+| GitHub Secrets 示范  | Name:`AUTOCHARGEUPID`  Value: `220893216`|
 
-<a id="markdown-346-dayofreceivevipprivilege每月几号自动领取会员权益" name="346-dayofreceivevipprivilege每月几号自动领取会员权益"></a>
-#### 3.4.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）
+<a id="markdown-336-dayofreceivevipprivilege每月几号自动领取会员权益" name="336-dayofreceivevipprivilege每月几号自动领取会员权益"></a>
+#### 3.3.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 每月几号自动领取会员权益 |
 | 值域   | [-1,31]，-1表示不指定，默认每月1号；0表示不领取 |
 | 默认值   | 1 |
+| 环境变量示范   |  |
 | 命令行示范   | `-dayOfReceiveVipPrivilege=2` |
-| GitHub Secrets   | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
+| GitHub Secrets 示范  | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
 
-<a id="markdown-347-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币" name="347-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币"></a>
-#### 3.4.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）
+<a id="markdown-337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币" name="337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币"></a>
+#### 3.3.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 是否开启直播中心银瓜子兑换硬币 |
 | 值域   | [false,true] |
 | 默认值   | true |
+| 环境变量示范   |  |
 | 命令行示范   | `-isExchangeSilver2Coin=false` |
-| GitHub Secrets   | Name:`IsExchangeSilver2Coin`  Value: `false`|
+| GitHub Secrets 示范  | Name:`IsExchangeSilver2Coin`  Value: `false`|
+
+<a id="markdown-34-推送相关" name="34-推送相关"></a>
+### 3.4. 推送相关
+v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念，将推送仅看作不同地日志输出端，与Console、File没有本质区别。
+
+配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
+
+<a id="markdown-341-telegram机器人" name="341-telegram机器人"></a>
+#### 3.4.1. Telegram机器人
+![TG推送效果](/imgs/push-tg.png)
+<a id="markdown-3411-bottoken" name="3411-bottoken"></a>
+##### 3.4.1.1. botToken
+点击 https://core.telegram.org/api#bot-api 查看如何创建机器人并获取到机器人的botToken。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到Telegram机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
+
+<a id="markdown-3412-chatid" name="3412-chatid"></a>
+##### 3.4.1.2. chatId
+点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取到与机器人的chatId（需要用上面获取到的Token替换进链接里的{TOKEN}后访问）
+
+P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到Telegram机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHTGCHATID`  Value: `654321`|
+
+<a id="markdown-342-企业微信机器人" name="342-企业微信机器人"></a>
+#### 3.4.2. 企业微信机器人
+在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+![企业微信推送效果](/imgs/push-workweixin.png)
+
+<a id="markdown-3421-webhookurl" name="3421-webhookurl"></a>
+##### 3.4.2.1. webHookUrl
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到企业微信机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHWEIXINURL`  Value: `abcdefg`|
+
+<a id="markdown-343-钉钉机器人" name="343-钉钉机器人"></a>
+#### 3.4.3. 钉钉机器人
+在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+![钉钉推送效果](/imgs/push-ding.png)
+
+<a id="markdown-3431-webhookurl" name="3431-webhookurl"></a>
+##### 3.4.3.1. webHookUrl
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到钉钉机器人 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHDINGURL`  Value: `abcdefg`|
+
+<a id="markdown-344-server酱" name="344-server酱"></a>
+#### 3.4.4. Server酱
+
+![Server酱推送效果](/imgs/wechat-push.png)
+
+<a id="markdown-3441-sckey从server酱申请到的微信sckey" name="3441-sckey从server酱申请到的微信sckey"></a>
+##### 3.4.4.1. ScKey（从Server酱申请到的微信SCKEY）
+Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于微信推送的SCKEY |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | `-pushScKey=abcdefg` |
+| GitHub Secrets 示范  | Name:`PUSHSCKEY`  Value: `abcdefg`|
+
+<a id="markdown-345-酷推" name="345-酷推"></a>
+#### 3.4.5. 酷推
+https://cp.xuthus.cc/
+<a id="markdown-3451-skey" name="3451-skey"></a>
+##### 3.4.5.1. sKey
+该平台可能还在完善当中，对接时我发现其接口定义不规范，且机器人容易被封，所以不推荐使用，且不接受提酷推推送相关bug。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于将日志输出到QQ |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
+
+<a id="markdown-346-推送到自定义api" name="346-推送到自定义api"></a>
+#### 3.4.6. 推送到自定义Api
+这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
+<a id="markdown-3461-api" name="3461-api"></a>
+##### 3.4.6.1. api
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 自定义用来接受日志的api地址 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
+<a id="markdown-3462-placeholder" name="3462-placeholder"></a>
+##### 3.4.6.2. placeholder
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 占位符 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
+<a id="markdown-3463-bodyjsontemplate" name="3463-bodyjsontemplate"></a>
+##### 3.4.6.3. bodyJsonTemplate
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | post发送的body，格式为json字符串 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
 
 <a id="markdown-35-日志相关" name="35-日志相关"></a>
 ### 3.5. 日志相关
@@ -483,8 +503,9 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以其值域与 Serilog 的�
 | 意义 | 设置Console输出的日志的详细程度 |
 | 值域   | [Infromation,Debug] |
 | 默认值   | 1 |
+| 环境变量示范   |  |
 | 命令行示范   | 暂未开放到命令行 |
-| GitHub Secrets   | Name:`CONSOLELOGLEVEL`  Value: `Debug`|
+| GitHub Secrets 示范  | Name:`CONSOLELOGLEVEL`  Value: `Debug`|
 
 <a id="markdown-352-consolelogtemplate日志输出样式" name="352-consolelogtemplate日志输出样式"></a>
 #### 3.5.2. ConsoleLogTemplate（日志输出样式）
@@ -500,8 +521,9 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 意义 | 设置Console输出的日志样式 |
 | 值域   | 字符串 |
 | 默认值   | `[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}` |
+| 环境变量示范   |  |
 | 命令行示范   | 太长了，不考虑开放到命令行 |
-| GitHub Secrets   | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
+| GitHub Secrets 示范  | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
 <a id="markdown-36-代理" name="36-代理"></a>
 ### 3.6. 代理
@@ -510,14 +532,14 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
 
 
-<a id="markdown-361-关于如何配置为debug日志模式获取详细的日志信息" name="361-关于如何配置为debug日志模式获取详细的日志信息"></a>
-#### 3.6.1. 关于如何配置为Debug日志模式获取详细的日志信息
+<a id="markdown-37-关于如何配置为debug日志模式获取详细的日志信息" name="37-关于如何配置为debug日志模式获取详细的日志信息"></a>
+### 3.7. 关于如何配置为Debug日志模式获取详细的日志信息
 第一步，将ConsoleLogLevel配置为`Debug`
 
 第二步，将ConsoleLogTemplate配置为`[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}`
 
-<a id="markdown-362-关于如何按环境切换配置" name="362-关于如何按环境切换配置"></a>
-#### 3.6.2. 关于如何按环境切换配置
+<a id="markdown-38-关于如何按环境切换配置" name="38-关于如何按环境切换配置"></a>
+### 3.8. 关于如何按环境切换配置
 增加指定不同环境来加载配置文件的功能(增加一个自己的避免更新配置被覆盖),仅针对`appsettings.json`中的配置。使用方法:
 
 1. 复制一个`appsettings.json`文件， 改为`appsettings.PRD.json`，中间这个`PRD`你也可以取其它名字，设置环境变量时匹配即可。
