@@ -31,9 +31,9 @@
         - [2.3.5. 酷推](#235-酷推)
             - [2.3.5.1. sKey](#2351-skey)
         - [2.3.6. 推送到自定义Api](#236-推送到自定义api)
-        - [2.3.7. api](#237-api)
-        - [2.3.8. placeholder](#238-placeholder)
-        - [2.3.9. bodyJsonTemplate](#239-bodyjsontemplate)
+            - [2.3.6.1. api](#2361-api)
+            - [2.3.6.2. placeholder](#2362-placeholder)
+            - [2.3.6.3. bodyJsonTemplate](#2363-bodyjsontemplate)
     - [2.4. 每日任务相关](#24-每日任务相关)
         - [2.4.1. NumberOfCoins（每日投币数量）](#241-numberofcoins每日投币数量)
         - [2.4.2. SelectLike（投币时是否同时点赞）](#242-selectlike投币时是否同时点赞)
@@ -287,8 +287,8 @@ https://cp.xuthus.cc/
 <a id="markdown-236-推送到自定义api" name="236-推送到自定义api"></a>
 #### 2.3.6. 推送到自定义Api
 这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
-<a id="markdown-237-api" name="237-api"></a>
-#### 2.3.7. api
+<a id="markdown-2361-api" name="2361-api"></a>
+##### 2.3.6.1. api
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -297,8 +297,8 @@ https://cp.xuthus.cc/
 | 默认值   | 空 |
 | 命令行示范   | 无 |
 | GitHub Secrets   | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
-<a id="markdown-238-placeholder" name="238-placeholder"></a>
-#### 2.3.8. placeholder
+<a id="markdown-2362-placeholder" name="2362-placeholder"></a>
+##### 2.3.6.2. placeholder
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -307,8 +307,8 @@ https://cp.xuthus.cc/
 | 默认值   | 空 |
 | 命令行示范   | 无 |
 | GitHub Secrets   | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
-<a id="markdown-239-bodyjsontemplate" name="239-bodyjsontemplate"></a>
-#### 2.3.9. bodyJsonTemplate
+<a id="markdown-2363-bodyjsontemplate" name="2363-bodyjsontemplate"></a>
+##### 2.3.6.3. bodyJsonTemplate
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
