@@ -125,6 +125,8 @@ Secret Value：`123abc`
 
 这些 Secrets 会通过 workflow 里的 [bilibili-daily-task.yml脚本](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/bilibili-daily-task.yml) 映射为环境变量，在应用启动时作为环境变量配置源传入程序当中，所以使用 GitHub Secrets 配置的本质是使用环境变量配置。
 
+![添加GitHub Secrets](imgs/git-secrets.png)
+
 <a id="markdown-2-优先级" name="2-优先级"></a>
 ## 2. 优先级
 
