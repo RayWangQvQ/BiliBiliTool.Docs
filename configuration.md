@@ -124,8 +124,9 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
 
 #### 2.3.1.Telegram机器人
+![TG推送效果](/imgs/push-tg.png)
 ##### 2.3.1.1.botToken
-点击 https://core.telegram.org/api#bot-api 查看获取方式。
+点击 https://core.telegram.org/api#bot-api 查看如何创建机器人并获取到机器人的botToken。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -136,7 +137,9 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | GitHub Secrets   | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
 
 ##### 2.3.1.2.chatId
-点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取（用上面获取到的Token替换进链接里的{TOKEN}后访问）
+点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取到与机器人的chatId（需要用上面获取到的Token替换进链接里的{TOKEN}后访问）
+
+P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -148,6 +151,9 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 
 #### 2.3.2.企业微信机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+![企业微信推送效果](/imgs/push-workweixin.png)
+
 ##### 2.3.2.1.webHookUrl
 
 |   TITLE   | CONTENT   |
@@ -160,6 +166,9 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 
 #### 2.3.3.钉钉机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
+
+![钉钉推送效果](/imgs/push-ding.png)
+
 ##### 2.3.3.1.webHookUrl
 
 |   TITLE   | CONTENT   |
@@ -171,6 +180,9 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | GitHub Secrets   | Name:`PUSHDINGURL`  Value: `abcdefg`|
 
 #### 2.3.4.Server酱
+
+![Server酱推送效果](/imgs/wechat-push.png)
+
 ##### 2.3.4.1.ScKey（从Server酱申请到的微信SCKEY）
 Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
 
