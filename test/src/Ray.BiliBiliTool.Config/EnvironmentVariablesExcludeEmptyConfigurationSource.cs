@@ -8,13 +8,17 @@ using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 namespace Ray.BiliBiliTool.Config
 {
-    public class EnvironmentVariablesExcludeEmptyConfigurationSource : IConfigurationSource//: EnvironmentVariablesConfigurationSource
+    /// <summary>
+    /// 自定义的排除空值的环境变量配置源
+    /// （用于取待默认的<see cref="EnvironmentVariablesConfigurationSource"/>）
+    /// </summary>
+    public class EnvironmentVariablesExcludeEmptyConfigurationSource : IConfigurationSource
     {
         public string Prefix { get; set; }
 
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new EnvironmentVariablesExcludeEmptyConfigurationProvider(this.Prefix);
+            return new EnvironmentVariablesExcludeEmptyConfigurationProvider(Prefix);
         }
     }
 }

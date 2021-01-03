@@ -1,8 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Dtos;
 using Ray.BiliBiliTool.Application.Attributes;
 using Ray.BiliBiliTool.Application.Contracts;
+using Ray.BiliBiliTool.Config.Options;
 using Ray.BiliBiliTool.DomainService.Interfaces;
 
 namespace Ray.BiliBiliTool.Application
@@ -12,46 +14,59 @@ namespace Ray.BiliBiliTool.Application
         private readonly ILogger<DailyTaskAppService> _logger;
         private readonly IAccountDomainService _loginDomainService;
         private readonly IVideoDomainService _videoDomainService;
+        private readonly IDonateCoinDomainService _donateCoinDomainService;
         private readonly IMangaDomainService _mangaDomainService;
         private readonly ILiveDomainService _liveDomainService;
         private readonly IVipPrivilegeDomainService _vipPrivilegeDomainService;
         private readonly IChargeDomainService _chargeDomainService;
+        private readonly ICoinDomainService _coinDomainService;
+        private readonly SecurityOptions _securityOptions;
 
         public DailyTaskAppService(
             ILogger<DailyTaskAppService> logger,
             IAccountDomainService loginDomainService,
             IVideoDomainService videoDomainService,
+            IDonateCoinDomainService donateCoinDomainService,
             IMangaDomainService mangaDomainService,
             ILiveDomainService liveDomainService,
             IVipPrivilegeDomainService vipPrivilegeDomainService,
-            IChargeDomainService chargeDomainService)
+            IChargeDomainService chargeDomainService,
+            IOptionsMonitor<SecurityOptions> securityOptions,
+            ICoinDomainService coinDomainService
+            )
         {
             _logger = logger;
             _loginDomainService = loginDomainService;
             _videoDomainService = videoDomainService;
+            _donateCoinDomainService = donateCoinDomainService;
             _mangaDomainService = mangaDomainService;
             _liveDomainService = liveDomainService;
             _vipPrivilegeDomainService = vipPrivilegeDomainService;
             _chargeDomainService = chargeDomainService;
+            _coinDomainService = coinDomainService;
+            _securityOptions = securityOptions.CurrentValue;
         }
 
         public void DoDailyTask()
         {
+            if (_securityOptions.IsSkipDailyTask)
+            {
+                _logger.LogWarning("已配置为跳过每日任务\r\n");
+                return;
+            }
+
             _logger.LogInformation("-----开始每日任务-----\r\n");
 
-            UseInfo userInfo;
-            DailyTaskInfo dailyTaskInfo;
-
-            userInfo = Login();
-            dailyTaskInfo = GetDailyTaskStatus();
+            UserInfo userInfo = Login();
+            DailyTaskInfo dailyTaskInfo = GetDailyTaskStatus();
 
             WatchAndShareVideo(dailyTaskInfo);
             AddCoinsForVideo();
             MangaSign();
             LiveSign();
-            userInfo.Money = ExchangeSilver2Coin();
+            ExchangeSilver2Coin();
 
-            ReceiveVipPrivilege(userInfo);
+            ReceiveVipPrivilege(ref userInfo);
             ReceiveMangaVipReward(userInfo);
             Charge(userInfo);
 
@@ -63,10 +78,11 @@ namespace Ray.BiliBiliTool.Application
         /// </summary>
         /// <returns></returns>
         [TaskInterceptor("登录")]
-        private UseInfo Login()
+        private UserInfo Login()
         {
-            UseInfo userInfo = _loginDomainService.LoginByCookie();
+            UserInfo userInfo = _loginDomainService.LoginByCookie();
             if (userInfo == null) throw new Exception("登录失败，请检查Cookie");//终止流程
+
             return userInfo;
         }
 
@@ -95,7 +111,7 @@ namespace Ray.BiliBiliTool.Application
         [TaskInterceptor("投币", false)]
         private void AddCoinsForVideo()
         {
-            _videoDomainService.AddCoinsForVideo();
+            _donateCoinDomainService.AddCoinsForVideos();
         }
 
         /// <summary>
@@ -111,25 +127,43 @@ namespace Ray.BiliBiliTool.Application
         /// 直播中心的银瓜子兑换硬币
         /// </summary>
         [TaskInterceptor("直播中心银瓜子兑换硬币", false)]
-        private decimal ExchangeSilver2Coin()
+        private void ExchangeSilver2Coin()
         {
-            return _liveDomainService.ExchangeSilver2Coin();
+            var success = _liveDomainService.ExchangeSilver2Coin();
+            if (!success) return;
+
+            //如果兑换成功，则打印硬币余额
+            var coinBalance = _coinDomainService.GetCoinBalance();
+            _logger.LogInformation("当前硬币余额: {0}", coinBalance);
         }
 
         /// <summary>
         /// 每月领取大会员福利
         /// </summary>
         [TaskInterceptor("每月领取大会员福利", false)]
-        private void ReceiveVipPrivilege(UseInfo userInfo)
+        private void ReceiveVipPrivilege(ref UserInfo userInfo)
         {
-            _vipPrivilegeDomainService.ReceiveVipPrivilege(userInfo);
+            var suc = _vipPrivilegeDomainService.ReceiveVipPrivilege(userInfo);
+
+            //如果领取成功，需要刷新账户信息（比如B币余额）
+            if (suc)
+            {
+                try
+                {
+                    userInfo = _loginDomainService.LoginByCookie();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("领取福利成功，但之后刷新用户信息时异常，信息：{msg}", ex.Message);
+                }
+            }
         }
 
         /// <summary>
         /// 每月为自己充电
         /// </summary>
-        [TaskInterceptor("每月为自己充电", false)]
-        private void Charge(UseInfo userInfo)
+        [TaskInterceptor("每月使用快过期的B币充电", false)]
+        private void Charge(UserInfo userInfo)
         {
             _chargeDomainService.Charge(userInfo);
         }
@@ -147,7 +181,7 @@ namespace Ray.BiliBiliTool.Application
         /// 每月获取大会员漫画权益
         /// </summary>
         [TaskInterceptor("每月领取大会员漫画权益", false)]
-        private void ReceiveMangaVipReward(UseInfo userInfo)
+        private void ReceiveMangaVipReward(UserInfo userInfo)
         {
             _mangaDomainService.ReceiveMangaVipReward(1, userInfo);
         }

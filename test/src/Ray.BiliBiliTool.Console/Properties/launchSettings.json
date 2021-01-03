@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "BiliBiliTool": {
+    "Ray.BiliBiliTool.Console": {
       "commandName": "Project",
       "environmentVariables": {
-        //"Ray_DailyTaskConfig:NumberOfCoins": "10"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

@@ -25,7 +25,28 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.BiliBiliTool.Agent", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.BiliBiliTool.DomainService", "src\Ray.BiliBiliTool.DomainService\Ray.BiliBiliTool.DomainService.csproj", "{7105652A-B1C1-4F9E-BA38-8034BC8B26B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.BiliBiliTool.Config", "src\Ray.BiliBiliTool.Config\Ray.BiliBiliTool.Config.csproj", "{B063C697-6E04-4433-B727-E1A106A09A9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.BiliBiliTool.Config", "src\Ray.BiliBiliTool.Config\Ray.BiliBiliTool.Config.csproj", "{B063C697-6E04-4433-B727-E1A106A09A9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A0F7168-3EE3-47A8-8718-C13986A243DF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\bilibili-daily-task.yml = .github\workflows\bilibili-daily-task.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ray.Serilog.Sinks", "Ray.Serilog.Sinks", "{5F75B51A-86AC-4762-BAE8-5E51809225EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.Batched", "src\Ray.Serilog.Sinks.Batched\Ray.Serilog.Sinks.Batched.csproj", "{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.CoolPushBatched", "src\Ray.Serilog.Sinks.CoolPushBatched\Ray.Serilog.Sinks.CoolPushBatched.csproj", "{E6EB9643-E026-4528-A5E8-C6CB91A00C6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.DingTalkBatched", "src\Ray.Serilog.Sinks.DingTalkBatched\Ray.Serilog.Sinks.DingTalkBatched.csproj", "{793ADEFD-E0C5-4D67-9AA3-45CA479AD813}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.OtherApiBatched", "src\Ray.Serilog.Sinks.OtherApiBatched\Ray.Serilog.Sinks.OtherApiBatched.csproj", "{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.ServerChanBatched", "src\Ray.Serilog.Sinks.ServerChanBatched\Ray.Serilog.Sinks.ServerChanBatched.csproj", "{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.TelegramBatched", "src\Ray.Serilog.Sinks.TelegramBatched\Ray.Serilog.Sinks.TelegramBatched.csproj", "{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Serilog.Sinks.WorkWeiXinBatched", "src\Ray.Serilog.Sinks.WorkWeiXinBatched\Ray.Serilog.Sinks.WorkWeiXinBatched.csproj", "{EF4D3398-2632-45EE-91F5-424BD47B3D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +82,34 @@ Global
 		{B063C697-6E04-4433-B727-E1A106A09A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B063C697-6E04-4433-B727-E1A106A09A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B063C697-6E04-4433-B727-E1A106A09A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6EB9643-E026-4528-A5E8-C6CB91A00C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6EB9643-E026-4528-A5E8-C6CB91A00C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6EB9643-E026-4528-A5E8-C6CB91A00C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6EB9643-E026-4528-A5E8-C6CB91A00C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{793ADEFD-E0C5-4D67-9AA3-45CA479AD813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{793ADEFD-E0C5-4D67-9AA3-45CA479AD813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{793ADEFD-E0C5-4D67-9AA3-45CA479AD813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{793ADEFD-E0C5-4D67-9AA3-45CA479AD813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4D3398-2632-45EE-91F5-424BD47B3D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4D3398-2632-45EE-91F5-424BD47B3D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4D3398-2632-45EE-91F5-424BD47B3D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4D3398-2632-45EE-91F5-424BD47B3D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +126,14 @@ Global
 		{D5F9FBCE-31BE-4E80-93E2-183CF029431F} = {120917DC-474C-448B-9EBB-1B3BA3A20B9D}
 		{7105652A-B1C1-4F9E-BA38-8034BC8B26B4} = {120917DC-474C-448B-9EBB-1B3BA3A20B9D}
 		{B063C697-6E04-4433-B727-E1A106A09A9F} = {120917DC-474C-448B-9EBB-1B3BA3A20B9D}
+		{5F75B51A-86AC-4762-BAE8-5E51809225EF} = {110D3D21-8E9B-45AB-9667-6DA1DB3862AC}
+		{340FB496-0FC3-4C2E-BA10-EEA7912EDC9A} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{E6EB9643-E026-4528-A5E8-C6CB91A00C6E} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{793ADEFD-E0C5-4D67-9AA3-45CA479AD813} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{ABFD7171-6D1A-4F53-B4AD-6DCC946C3A53} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{417BAA12-A19F-4D08-8AD8-6CC3AE266B1F} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{090F3A5C-177A-4C7E-94BD-BBDC6EB77AFD} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
+		{EF4D3398-2632-45EE-91F5-424BD47B3D08} = {5F75B51A-86AC-4762-BAE8-5E51809225EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {197319DA-1148-4A99-847C-8B270B6A29AB}

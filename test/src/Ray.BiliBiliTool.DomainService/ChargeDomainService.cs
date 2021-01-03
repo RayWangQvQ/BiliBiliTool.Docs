@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Dtos;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Interfaces;
-using Ray.BiliBiliTool.Config;
 using Ray.BiliBiliTool.Config.Options;
 using Ray.BiliBiliTool.DomainService.Interfaces;
-using Ray.BiliBiliTool.Infrastructure.Extensions;
 
 namespace Ray.BiliBiliTool.DomainService
 {
@@ -38,7 +33,7 @@ namespace Ray.BiliBiliTool.DomainService
         /// 月底自动给自己充电
         /// 仅充会到期的B币券，低于2的时候不会充
         /// </summary>
-        public void Charge(UseInfo userInfo)
+        public void Charge(UserInfo userInfo)
         {
             if (_dailyTaskOptions.DayOfAutoCharge == 0)
             {
@@ -52,15 +47,15 @@ namespace Ray.BiliBiliTool.DomainService
 
             if (DateTime.Today.Day != targetDay)
             {
-                _logger.LogInformation($"目标充电日期为{targetDay}号，今天是{DateTime.Today.Day}号，跳过充电任务");
+                _logger.LogInformation("目标充电日期为{targetDay}号，今天是{today}号，跳过充电任务", targetDay, DateTime.Today.Day);
                 return;
             }
 
             //B币券余额
-            var couponBalance = userInfo.Wallet.Coupon_balance;
+            decimal couponBalance = userInfo.Wallet.Coupon_balance;
             if (couponBalance < 2)
             {
-                _logger.LogInformation("B币券余额<2,无法充电");
+                _logger.LogInformation("B币小于2，无法充电");
                 return;
             }
 
@@ -68,29 +63,39 @@ namespace Ray.BiliBiliTool.DomainService
             int vipType = userInfo.GetVipType();
             if (vipType != 2)
             {
-                _logger.LogInformation("不是年度大会员或已过期,无法充电");
+                _logger.LogInformation("不是年度大会员或已过期，不进行B币券自动充电");
                 return;
             }
 
-            var response = _dailyTaskApi.Charge(couponBalance * 10, _cookieOptions.UserId, _cookieOptions.UserId, _cookieOptions.BiliJct).Result;
+            string targetUpId = _dailyTaskOptions.AutoChargeUpId;
+            //如果没有配置或配了-1，则为自己充电
+            if (_dailyTaskOptions.AutoChargeUpId.IsNullOrEmpty() | _dailyTaskOptions.AutoChargeUpId == "-1")
+                targetUpId = _cookieOptions.UserId;
+
+            //BiliApiResponse<ChargeResponse> response = _dailyTaskApi.Charge(decimal.ToInt32(couponBalance * 10), _dailyTaskOptions.AutoChargeUpId, _cookieOptions.UserId, _cookieOptions.BiliJct).Result;
+            BiliApiResponse<ChargeV2Response> response = _dailyTaskApi.ChargeV2(couponBalance, targetUpId, targetUpId, _cookieOptions.BiliJct).Result;
+
             if (response.Code == 0)
             {
                 if (response.Data.Status == 4)
                 {
-                    _logger.LogInformation("给自己充电成功啦，送的B币券没有浪费哦");
-                    _logger.LogInformation($"本次给自己充值了: {couponBalance * 10}个电池哦");
+                    _logger.LogInformation("充电成功，经验+{exp} √", couponBalance);
+                    _logger.LogInformation("本次充值了: {num}个B币，送的B币券没有浪费哦", couponBalance);
+
+                    if (_dailyTaskOptions.AutoChargeUpId == "220893216")
+                        _logger.LogInformation("这是一条彩蛋消息，看到它说明您选择了为开发者充电。个人维护开源不易，感谢您的贡献！如要更改充电对象，请参考配置说明文档进行修改~");
 
                     //获取充电留言token
                     ChargeComments(response.Data.Order_no);
                 }
                 else
                 {
-                    _logger.LogDebug("充电失败了啊 原因: " + JsonSerializer.Serialize(response));
+                    _logger.LogError("充电失败了啊 原因：{reason}", response.ToJson());
                 }
             }
             else
             {
-                _logger.LogDebug("充电失败了啊 原因: " + response.Message);
+                _logger.LogError("充电失败了啊 原因：{reason}", response.Message);
             }
         }
 
@@ -100,7 +105,7 @@ namespace Ray.BiliBiliTool.DomainService
         /// <param name="token"></param>
         public void ChargeComments(string token)
         {
-            _dailyTaskApi.ChargeComment(token, "Ray.BiliBiliTool自动充电", _cookieOptions.BiliJct);
+            _dailyTaskApi.ChargeComment(token, _dailyTaskOptions.ChargeComment ?? "", _cookieOptions.BiliJct);
         }
     }
 }
