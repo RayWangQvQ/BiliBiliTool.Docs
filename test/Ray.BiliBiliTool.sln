@@ -29,7 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.BiliBiliTool.Config", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A0F7168-3EE3-47A8-8718-C13986A243DF}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\bilibili-daily-task.yml = .github\workflows\bilibili-daily-task.yml
+		..\.github\workflows\bilibili-daily-task.yml = ..\.github\workflows\bilibili-daily-task.yml
+		..\.github\workflows\publish-release.yml = ..\.github\workflows\publish-release.yml
+		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
+		..\.github\workflows\repo-sync.yml = ..\.github\workflows\repo-sync.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ray.Serilog.Sinks", "Ray.Serilog.Sinks", "{5F75B51A-86AC-4762-BAE8-5E51809225EF}"
