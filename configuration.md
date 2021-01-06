@@ -545,7 +545,7 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 <a id="markdown-36-代理" name="36-代理"></a>
 ### 3.6. 代理
 增加代理支持，如果需要请看:
-1. 【github action】 : 在secrets中增加`PROXY`,值为代理地址+端口，如`127.0.0.1:10240`
+1. 【github action】 : 在secrets中增加`WEBPROXY`,值为代理地址+端口，如`127.0.0.1:10240`
 2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
 
 
