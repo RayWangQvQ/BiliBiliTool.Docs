@@ -15,6 +15,7 @@
         - [3.1.1. BiliJct](#311-bilijct)
         - [3.1.2. SessData](#312-sessdata)
         - [3.1.3. UserId](#313-userid)
+        - [3.1.4. OtherCookies](#314-othercookies)
     - [3.2. 安全相关的配置](#32-安全相关的配置)
         - [3.2.1. IsSkipDailyTask（是否跳过执行任务）](#321-isskipdailytask是否跳过执行任务)
         - [3.2.2. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）](#322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数)
@@ -166,6 +167,7 @@ Secret Value：`123abc`
 | 环境变量示范  | `set Ray_BiliBiliCookie__SessData=123` |
 | 命令行示范   | `-sessData=123` |
 | GitHub Secrets 示范  | Name:`SESSDATA`  Value: `123`|
+
 <a id="markdown-313-userid" name="313-userid"></a>
 #### 3.1.3. UserId
 |   TITLE   | CONTENT   |
@@ -176,6 +178,21 @@ Secret Value：`123abc`
 | 环境变量示范  | `set Ray_BiliBiliCookie__UserId=123` |
 | 命令行示范   | `-userId=123` |
 | GitHub Secrets 示范  | Name:`USERID`  Value: `123`|
+
+<a id="markdown-314-othercookies" name="314-othercookies"></a>
+#### 3.1.4. OtherCookies
+v1.1.4版本因为再次出现412异常而添加的，猜测原因是请求头被抓取了特征，在添加了 `OtherCookies` 后就没有再出现412了。
+
+获取方法请参见 issue [#364](https://github.com/RayWangQvQ/BiliBiliTool/issues/364) 
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 其他Cookie项 |
+| 值域   | 字符串，多个用分号拼接 |
+| 默认值   | 空 |
+| 环境变量示范  | `set Ray_BiliBiliCookie__OtherCookies=abc=123;def=456;` |
+| 命令行示范   | `-otherCookies=abc=123;def=456;` |
+| GitHub Secrets 示范  | Name:`OTHERCOOKIES`  Value: `abc=123;def=456;`|
 
 <a id="markdown-32-安全相关的配置" name="32-安全相关的配置"></a>
 ### 3.2. 安全相关的配置
