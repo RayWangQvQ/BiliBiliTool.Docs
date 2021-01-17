@@ -11,16 +11,13 @@
     - [1.4. 方式四：托管在GitHub Actions上，使用GitHub Secrets配置](#14-方式四托管在github-actions上使用github-secrets配置)
 - [2. 优先级](#2-优先级)
 - [3. 详细配置说明](#3-详细配置说明)
-    - [3.1. 三个必须的Cookie](#31-三个必须的cookie)
-        - [3.1.1. BiliJct](#311-bilijct)
-        - [3.1.2. SessData](#312-sessdata)
-        - [3.1.3. UserId](#313-userid)
-        - [3.1.4. OtherCookies](#314-othercookies)
+    - [3.1. CookieStr（Cookie字符串）](#31-cookiestrcookie字符串)
     - [3.2. 安全相关的配置](#32-安全相关的配置)
         - [3.2.1. IsSkipDailyTask（是否跳过执行任务）](#321-isskipdailytask是否跳过执行任务)
-        - [3.2.2. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）](#322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数)
-        - [3.2.3. IntervalMethodTypes（间隔秒数所针对的HttpMethod）](#323-intervalmethodtypes间隔秒数所针对的httpmethod)
-        - [3.2.4. UserAgent（请求B站接口时头部传递的User-Agent）](#324-useragent请求b站接口时头部传递的user-agent)
+        - [3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）](#322-randomsleepmaxmin随机睡眠的最大时长)
+        - [3.2.3. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）](#323-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数)
+        - [3.2.4. IntervalMethodTypes（间隔秒数所针对的HttpMethod）](#324-intervalmethodtypes间隔秒数所针对的httpmethod)
+        - [3.2.5. UserAgent（请求B站接口时头部传递的User-Agent）](#325-useragent请求b站接口时头部传递的user-agent)
     - [3.3. 每日任务相关](#33-每日任务相关)
         - [3.3.1. NumberOfCoins（每日投币数量）](#331-numberofcoins每日投币数量)
         - [3.3.2. SelectLike（投币时是否同时点赞）](#332-selectlike投币时是否同时点赞)
@@ -142,57 +139,18 @@ Secret Value：`123abc`
 <a id="markdown-3-详细配置说明" name="3-详细配置说明"></a>
 ## 3. 详细配置说明
 
-<a id="markdown-31-三个必须的cookie" name="31-三个必须的cookie"></a>
-### 3.1. 三个必须的Cookie
-没有它们，程序的运行就没有意义，所以它们三个是必填项。
-
-<a id="markdown-311-bilijct" name="311-bilijct"></a>
-#### 3.1.1. BiliJct
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | Cookie中的bili_jct项 |
-| 值域   | 字符串 |
-| 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookie__BiliJct=123` |
-| 命令行示范  | `-biliJct=123` |
-| GitHub Secrets 示范  | Name:`BILIJCT`  Value: `123`|
-
-<a id="markdown-312-sessdata" name="312-sessdata"></a>
-#### 3.1.2. SessData
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | Cookie中的SESSDATA项 |
-| 值域   | 字符串 |
-| 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookie__SessData=123` |
-| 命令行示范   | `-sessData=123` |
-| GitHub Secrets 示范  | Name:`SESSDATA`  Value: `123`|
-
-<a id="markdown-313-userid" name="313-userid"></a>
-#### 3.1.3. UserId
-|   TITLE   | CONTENT   |
-| ---------- | -------------- |
-| 意义 | Cookie中的DEDEUSERID项 |
-| 值域   | 字符串 |
-| 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookie__UserId=123` |
-| 命令行示范   | `-userId=123` |
-| GitHub Secrets 示范  | Name:`USERID`  Value: `123`|
-
-<a id="markdown-314-othercookies" name="314-othercookies"></a>
-#### 3.1.4. OtherCookies
-v1.1.4版本因为再次出现412异常而添加的，猜测原因是请求头被抓取了特征，在添加了 `OtherCookies` 后就没有再出现412了。
-
-获取方法请参见 issue [#364](https://github.com/RayWangQvQ/BiliBiliTool/issues/364) 
+<a id="markdown-31-cookiestrcookie字符串" name="31-cookiestrcookie字符串"></a>
+### 3.1. CookieStr（Cookie字符串）
+没有它，程序的运行就没有意义，所以它是必填项。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
-| 意义 | 其他Cookie项 |
-| 值域   | 字符串，多个用分号拼接 |
+| 意义 | Cookie字符串 |
+| 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookie__OtherCookies=abc=123;def=456;` |
-| 命令行示范   | `-otherCookies=abc=123;def=456;` |
-| GitHub Secrets 示范  | Name:`OTHERCOOKIES`  Value: `abc=123;def=456;`|
+| 环境变量示范  | `set Ray_BiliBiliCookie__CookieStr=abc=123;def=456;` |
+| 命令行示范   | `-CookieStr=abc=123;def=456;` |
+| GitHub Secrets 示范  | Name:`COOKIESTR`  Value: `abc=123;def=456;`|
 
 <a id="markdown-32-安全相关的配置" name="32-安全相关的配置"></a>
 ### 3.2. 安全相关的配置
@@ -210,8 +168,25 @@ v1.1.4版本因为再次出现412异常而添加的，猜测原因是请求头�
 | 命令行示范   | 暂未开放命令行 |
 | GitHub Secrets 示范  | Name:`ISSKIPDAILYTASK`  Value: `true`|
 
-<a id="markdown-322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数" name="322-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数"></a>
-#### 3.2.2. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）
+<a id="markdown-322-randomsleepmaxmin随机睡眠的最大时长" name="322-randomsleepmaxmin随机睡眠的最大时长"></a>
+#### 3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）
+用于设置程序启动后，随机睡眠时间的最大上限值。
+
+默认为10，即程序每天运行后会随机睡眠1到10分钟。这样可以避免程序每天准点地在同一时间运行，太像机器。
+
+配置为0则不进行睡眠。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 随机睡眠时长的最大值 |
+| 值域   | 数字 |
+| 默认值   | 10 |
+| 环境变量示范   | `set Ray_Security__RandomSleepMaxMin=20` |
+| 命令行示范   | `-randomSleepMaxMin=20` |
+| GitHub Secrets 示范  | Name:`RANDOMSLEEPMAXMIN`  Value: `20`|
+
+<a id="markdown-323-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数" name="323-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数"></a>
+#### 3.2.3. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）
 因为有朋友反馈，程序在1到2秒内连续调用B站的Api过快，担心会被B站的安全策略检测到，影响自己的账号安全。
 
 所以我添加这个安全策略的配置，可以设置两次Api请求之间的最短时间间隔。
@@ -228,8 +203,8 @@ v1.1.4版本因为再次出现412异常而添加的，猜测原因是请求头�
 | GitHub Secrets 示范  | Name:`INTERVALSECONDSBETWEENREQUESTAPI`  Value: `10`|
 
 
-<a id="markdown-323-intervalmethodtypes间隔秒数所针对的httpmethod" name="323-intervalmethodtypes间隔秒数所针对的httpmethod"></a>
-#### 3.2.3. IntervalMethodTypes（间隔秒数所针对的HttpMethod）
+<a id="markdown-324-intervalmethodtypes间隔秒数所针对的httpmethod" name="324-intervalmethodtypes间隔秒数所针对的httpmethod"></a>
+#### 3.2.4. IntervalMethodTypes（间隔秒数所针对的HttpMethod）
 间隔秒数所针对的HttpMethod类型，服务于上一个配置。服务器一般对GET请求不是很敏感，建议只针对POST请求做间隔就可以了。
 
 |   TITLE   | CONTENT   |
@@ -241,8 +216,8 @@ v1.1.4版本因为再次出现412异常而添加的，猜测原因是请求头�
 | 命令行示范   | `-intervalMethodTypes=GET,POST` |
 | GitHub Secrets 示范  | Name:`INTERVALMETHODTYPES`  Value: `GET,POST`|
 
-<a id="markdown-324-useragent请求b站接口时头部传递的user-agent" name="324-useragent请求b站接口时头部传递的user-agent"></a>
-#### 3.2.4. UserAgent（请求B站接口时头部传递的User-Agent）
+<a id="markdown-325-useragent请求b站接口时头部传递的user-agent" name="325-useragent请求b站接口时头部传递的user-agent"></a>
+#### 3.2.5. UserAgent（请求B站接口时头部传递的User-Agent）
 近期出现登录接口报错412（[#61](https://github.com/RayWangQvQ/BiliBiliTool/issues/61)）,有朋友发现通过修改UA可以暂时解决问题，所以开放为了配置。
 
 |   TITLE   | CONTENT   |
