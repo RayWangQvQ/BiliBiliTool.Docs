@@ -170,7 +170,7 @@ Secret Value：`123abc`
 
 <a id="markdown-322-randomsleepmaxmin随机睡眠的最大时长" name="322-randomsleepmaxmin随机睡眠的最大时长"></a>
 #### 3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）
-用于设置程序启动后，随机睡眠时间的最大上限值。
+用于设置程序启动后，随机睡眠时间的最大上限值，单位为分钟。
 
 默认为10，即程序每天运行后会随机睡眠1到10分钟。这样可以避免程序每天准点地在同一时间运行，太像机器。
 
