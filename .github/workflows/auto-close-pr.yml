@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   autoclose:
     runs-on: ubuntu-latest
-    if: github.repository == 'RayWangQvQ/BiliBiliTool'
+    if: github.repository == 'RayWangQvQ/BiliBiliTool.Docs'
     steps:
     - uses: roots/issue-closer@v1.1
       with:
