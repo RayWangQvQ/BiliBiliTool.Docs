@@ -1,5 +1,8 @@
 name: Autocloser
-on: pull_request
+on: 
+  pull_request:
+  workflow_dispatch: # 手动触发
+  
 jobs:
   autoclose:
     runs-on: ubuntu-latest
