@@ -11,4 +11,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         pr-close-message: "This PR was automatically closed because it did not follow the PR template."
-        pr-pattern: ".*【yes】 -->.*"
+        pr-pattern: ".*请问您是否明白：【yes】 -->.*"
