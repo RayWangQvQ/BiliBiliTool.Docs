@@ -1,7 +1,6 @@
 name: Autocloser
 on: 
-  pull_request:
-  workflow_dispatch: # 手动触发
+  pull_request_target:
   
 jobs:
   autoclose:
