@@ -64,7 +64,7 @@
 
 如果运行环境为生产环境，则`appsettings.Production.json`优先级高于`appsettings.json`，即`appsettings.Production.json`里的配置会覆盖默认配置（同样不是全部覆盖，`appsettings.Production.json`里加了几个就覆盖几个）。
 
-对于不是开发人员的大部分人来说，只需要关注`appsettings.Production.json`即可，因为非调试状态下运行的默认环境就是生产环境。此时如需自定义配置，推荐做法是，将`appsettings.json`的内容全部拷贝进`appsettings.Production.json`当中，然后在`appsettings.Production.json`文件中进行修改（并且以后都只修改`appsettings.Production.json`文件，`appsettings.json`只作为默认默认模板而存在）
+对于不是开发人员的大部分人来说，只需要关注`appsettings.Production.json`即可，因为非调试状态下运行的默认环境就是生产环境。此时如需自定义配置，推荐在`appsettings.Production.json`文件中进行修改（并且以后都只修改`appsettings.Production.json`文件，`appsettings.json`只作为默认默认模板而存在）
 
 <a id="markdown-12-方式二命令启动时通过命令行参数配置" name="12-方式二命令启动时通过命令行参数配置"></a>
 ### 1.2. 方式二：命令启动时通过命令行参数配置
@@ -270,11 +270,13 @@ Secret Value：`123abc`
 
 程序会最多尝试随机获取10次，如果10均未获取到可投币的视频（比如都已经投过，不能重复投了），则会去你的**特别关注**列表中随机再获取，再然后会去**普通关注**列表中随机获取，最后会去排行榜中随机获取。
 
+**注意：该配置的默认值是作者的upId，算是一个小私心，希望大家可以体谅。如需换掉的话，直接更改即可。**
+
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 优先选择支持的up主Id集合 |
 | 值域   | up主ID，多个用英文逗号分隔，默认是作者本人的UpId，如需删除可以配置为空格字符串或“-1”，也可以配置为其他人的UpId |
-| 默认值   | 220893216 |
+| 默认值   | 作者的upId |
 | 环境变量示范   |  |
 | 命令行示范   | `-supportUpIds=220893216,17819768,43619319,14583962,44473221,123938419,34858100` |
 | GitHub Secrets 示范  | Name:`SUPPORTUPIDS`  Value: `220893216,17819768,43619319,14583962,44473221,123938419,34858100`|
@@ -285,6 +287,7 @@ Secret Value：`123abc`
 
 <a id="markdown-334-dayofautocharge每月几号自动充电" name="334-dayofautocharge每月几号自动充电"></a>
 #### 3.3.4. DayOfAutoCharge（每月几号自动充电）
+使用大会员免费赠送的B币券自动充电，如不使用，每个月结束会自动失效。没有B币券或B币券余额不足2，不会进行充电。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -297,12 +300,16 @@ Secret Value：`123abc`
 
 <a id="markdown-335-autochargeupid充电对象" name="335-autochargeupid充电对象"></a>
 #### 3.3.5. AutoChargeUpId（充电对象）
+充电对象的upId，需要配合前一个DayOfAutoCharge配置项使用。-1表示不指定，默认为自己充电；其他Id则会尝试为配置的UpId充电。
+
+**注意：该配置的默认值是作者的upId，如果你已认证通过了创作身份（即可以为自己充电），则建议将其改为为自己充电（配置为-1即可），也可以配置为某个自己指定的创作者upId。
+当然我个人不阻止大佬们把Id配成我的，个人维护开源不易，感谢支持~**
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 充电对象的Id |
 | 值域   | up的Id字符串，默认是作者本人的UpId；-1表示不指定，为自己充电；其他Id则会尝试为配置的UpId充电 |
-| 默认值   | 220893216 |
+| 默认值   | 作者的upId |
 | 环境变量示范   |  |
 | 命令行示范   | `-autoChargeUpId=220893216` |
 | GitHub Secrets 示范  | Name:`AUTOCHARGEUPID`  Value: `220893216`|
@@ -320,16 +327,16 @@ Secret Value：`123abc`
 | GitHub Secrets 示范  | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
 
 <a id="markdown-337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币" name="337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币"></a>
-#### 3.3.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）
+#### 3.3.7. DayOfExchangeSilver2Coin（每月几号进行直播中心银瓜子兑换硬币）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
-| 意义 | 是否开启直播中心银瓜子兑换硬币 |
-| 值域   | [false,true] |
-| 默认值   | true |
+| 意义 | 每月几号进行直播中心银瓜子兑换硬币 |
+| 值域   | [-1,31]，-1表示不指定，默认每月最后一天；-2表示每天；0表示不进行兑换 |
+| 默认值   | -1 |
 | 环境变量示范   |  |
-| 命令行示范   | `-isExchangeSilver2Coin=false` |
-| GitHub Secrets 示范  | Name:`IsExchangeSilver2Coin`  Value: `false`|
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`DayOfExchangeSilver2Coin`  Value: `1`|
 
 <a id="markdown-34-推送相关" name="34-推送相关"></a>
 ### 3.4. 推送相关
