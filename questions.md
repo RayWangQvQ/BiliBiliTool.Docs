@@ -104,16 +104,18 @@ v1.1.3及之后版本，支持通过添加GitHub Environments来设置延时运�
 ![环境列表](imgs/github-env-count-down.png)
 
 ## 5. 我 Fork 之后怎么同步原作者的更新内容？
-Fork 被 GitHub 译为复刻，相当于拷贝了一份源作者的代码到自己的 Repository （仓库）里，Fork 后，源作者更新自己的代码内容（比如发新的版本），Fork 的项目并不会自动更新源作者的修改。
+Fork 被 GitHub 译为复刻，相当于拷贝了一份源作者的代码到自己的 Repository （仓库）里，Fork 后，源作者更新自己的代码内容（比如发新的版本），一般情况下 Fork 的项目并不会自动更新源作者的修改。
 
-想要同步源作者的修改，这里提供如下4种方法。
+BiliBiliTool内置了自动同步的 actions（即下面的方法二），默认情况下，Fork的仓库会在每周一会自动拉取更新源仓库内容，如想要更新请参考方法二。
+
+这里共提供如下4种方法同步更新的方法：
 
 ### 5.1. 方法一：删掉自己的仓库再重新Fork
-这是最最最保守的方法，删掉后重新Fork会导致之前配置过的GitHub Secrets和提交的代码更改全部丢掉，只能全部重新来。
-所以，请把该方法放到保底的位置，即如果你已经尝试了下面所有方法都还不能成功，且没有添加多少配置，再保底考虑使用该方法。
+这是最最最保守的方法，删掉后重新Fork会导致之前配置过的GitHub Secrets和提交的代码更改全部丢掉，只能重新部署。
+所以，请把该方法放到保底的位置，即如果你已经尝试了下面所有方法都还不能成功，再保底考虑使用该方法。
 
 ### 5.2. 方法二：使用提供的 Repo Sync 工作流脚本同步
-> BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml)，使用改方法同步，会覆盖直接覆盖掉自己的代码修改内容。
+> BiliBiliTool提供了一个用于自动同步上游仓库的脚本 [repo-sync.yml](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/repo-sync.yml)，执行后，会拉取源仓库最新内容直接覆盖掉自己的代码修改内容。该脚本默认开启，且每周一自动执行一次，如要关闭，可以将yml文件里的schedule使用#号注释掉。
 
 脚本内部需要一个Token参数完成授权，我们要做的共两步：1.获取自己的 Token 并添加到 Secrets 中，2.运行脚本。
 
@@ -145,7 +147,7 @@ Token 只显示一次，没复制只能重新生成。更多关于加密机密�
 _该脚本是在v1.0.12添加的，如果你的版本低于该版本，没有该yaml文件，也可以直接在自己的 Fork 的仓库下面新建一个，然后将我的文件内容拷贝过去，提交文件，剩下的再继续按照上面流程走就可以了。_
 
 ### 5.3. 方法三：手动PR同步
-由于大量不懂PR的人乱操作，导致每次更次版本，源仓库都收到大量辣鸡无效的PR请求，现删除方法三。
+由于大量不懂PR的人乱操作，导致每次更新版本，源仓库都收到大量辣鸡无效的PR请求，现删除了方法三。
 
 ### 5.4. 方法四：使用插件 Pull App 同步
 需要安装 [![](https://prod.download/pull-18h-svg) Pull app](https://github.com/apps/pull) 插件。
