@@ -168,6 +168,8 @@ Secret Value：`123abc`
 | 命令行示范   | 暂未开放命令行 |
 | GitHub Secrets 示范  | Name:`ISSKIPDAILYTASK`  Value: `true`|
 
+若想要彻底关闭，即Actions不运行，也可以到仓库的Setting里关闭Actions功能。
+
 <a id="markdown-322-randomsleepmaxmin随机睡眠的最大时长" name="322-randomsleepmaxmin随机睡眠的最大时长"></a>
 #### 3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）
 用于设置程序启动后，随机睡眠时间的最大上限值，单位为分钟。
