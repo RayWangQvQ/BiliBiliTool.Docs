@@ -25,7 +25,7 @@
         - [3.3.4. DayOfAutoCharge（每月几号自动充电）](#334-dayofautocharge每月几号自动充电)
         - [3.3.5. AutoChargeUpId（充电对象）](#335-autochargeupid充电对象)
         - [3.3.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）](#336-dayofreceivevipprivilege每月几号自动领取会员权益)
-        - [3.3.7. IsExchangeSilver2Coin（是否开启直播中心银瓜子兑换硬币）](#337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币)
+        - [3.3.7. DayOfExchangeSilver2Coin（每月几号进行直播中心银瓜子兑换硬币）](#337-dayofexchangesilver2coin每月几号进行直播中心银瓜子兑换硬币)
     - [3.4. 推送相关](#34-推送相关)
         - [3.4.1. Telegram机器人](#341-telegram机器人)
             - [3.4.1.1. botToken](#3411-bottoken)
@@ -168,7 +168,7 @@ Secret Value：`123abc`
 | 命令行示范   | 暂未开放命令行 |
 | GitHub Secrets 示范  | Name:`ISSKIPDAILYTASK`  Value: `true`|
 
-若想要彻底关闭，即Actions不运行，也可以到仓库的Setting里关闭Actions功能。
+若想要彻底关闭，即Actions不运行，点击Actions进入Workflows列表，点击名称为`bilibili-daily-task`的Workflow，在搜索框右侧有一个三个点的设置按钮，点击按钮后，在弹出的下拉列表里选中`Disable workflow`项即可。
 
 <a id="markdown-322-randomsleepmaxmin随机睡眠的最大时长" name="322-randomsleepmaxmin随机睡眠的最大时长"></a>
 #### 3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）
@@ -328,7 +328,7 @@ Secret Value：`123abc`
 | 命令行示范   | `-dayOfReceiveVipPrivilege=2` |
 | GitHub Secrets 示范  | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
 
-<a id="markdown-337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币" name="337-isexchangesilver2coin是否开启直播中心银瓜子兑换硬币"></a>
+<a id="markdown-337-dayofexchangesilver2coin每月几号进行直播中心银瓜子兑换硬币" name="337-dayofexchangesilver2coin每月几号进行直播中心银瓜子兑换硬币"></a>
 #### 3.3.7. DayOfExchangeSilver2Coin（每月几号进行直播中心银瓜子兑换硬币）
 
 |   TITLE   | CONTENT   |

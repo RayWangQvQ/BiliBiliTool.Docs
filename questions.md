@@ -7,8 +7,8 @@
 - [2. 如何提交issue（如何提交Bug或建议）](#2-如何提交issue如何提交bug或建议)
 - [3. Actions定时任务没有每天自动运行](#3-actions定时任务没有每天自动运行)
 - [4. Actions修改定时任务的执行时间](#4-actions修改定时任务的执行时间)
-    - [方法一：修改yaml文件中的cron表达式](#方法一修改yaml文件中的cron表达式)
-    - [方法二：添加 GitHub Environments 并设置延时](#方法二添加-github-environments-并设置延时)
+    - [4.1. 方法一：修改yaml文件中的cron表达式](#41-方法一修改yaml文件中的cron表达式)
+    - [4.2. 方法二：添加 GitHub Environments 并设置延时](#42-方法二添加-github-environments-并设置延时)
 - [5. 我 Fork 之后怎么同步原作者的更新内容？](#5-我-fork-之后怎么同步原作者的更新内容)
     - [5.1. 方法一：删掉自己的仓库再重新Fork](#51-方法一删掉自己的仓库再重新fork)
     - [5.2. 方法二：使用提供的 Repo Sync 工作流脚本同步](#52-方法二使用提供的-repo-sync-工作流脚本同步)
@@ -17,6 +17,9 @@
         - [5.4.1. Pull App 方式一： 源作者内容直接覆盖自己内容](#541-pull-app-方式一-源作者内容直接覆盖自己内容)
         - [5.4.2. Pull App 方式二： 保留自己内容](#542-pull-app-方式二-保留自己内容)
 - [6. 本地或服务器如何安装.net环境](#6-本地或服务器如何安装net环境)
+- [7. 如何关停Actions运行](#7-如何关停actions运行)
+    - [7.1. 方法一：使用关停每日任务](#71-方法一使用关停每日任务)
+    - [7.2. 方法二：关停Actions](#72-方法二关停actions)
 
 <!-- /TOC -->
 
@@ -60,12 +63,12 @@ Fork的仓库，actions默认是关闭的，需要对仓库进行1次操作才�
 
 若要修改为自己指定的时间执行，有如下两种方式：
 
-### 方法一：修改yaml文件中的cron表达式
+### 4.1. 方法一：修改yaml文件中的cron表达式
 我们可以直接修改上述该文件中的cron表达式，然后提交。
 
 个人不建议这么做，因为以后更新要注意冲突与覆盖问题，建议使用下面的方法二。
 
-### 方法二：添加 GitHub Environments 并设置延时
+### 4.2. 方法二：添加 GitHub Environments 并设置延时
 v1.1.3及之后版本，支持通过添加GitHub Environments来设置延时运行，即在每日0点整触发 Actions 后，会再多执行一个延时操作，延时时长可由我们自己设置。
 
 比如想设置为每天23点执行，只需要将这个延时时常设置为1380分钟（23个小时）即可。方法如下：
@@ -198,3 +201,21 @@ Pull App 可以指定是否保留自己已经修改的内容，分为下面两�
 若需手动安装运行环境，请点击 ![Download .NET 5.0 (Linux, macOS, and Windows)](https://dotnet.microsoft.com/download/dotnet/5.0)，分别选择相应平台的`ASP.NET Core Runtime 5.0.0`与`.NET Runtime 5.0.0`的安装包（Installers）进行安装；亦可下载.NET SDK 5.0.100的安装包（上述二者已包含于其中）。
 
 注：若已从 ![.NET官网下载入口](https://dotnet.microsoft.com/download) 的“Download .NET Runtime”选项进行了下载安装，则仍需根据上述方法补充安装`ASP.NET Core Runtime 5.0.0`（由于该选项仅提供了`.NET Runtime 5.0.0`的安装包）。
+
+## 7. 如何关停Actions运行
+推荐做法有两种：一是使用配置关停应用的每日任务，二是关停Actions。
+
+当然，直接删库也是可以的，但是不推荐，除非是已确认以后都不会再使用的情况。因为删库会让已有配置都丢失，且使自动更新版本的Actions失效。
+
+### 7.1. 方法一：使用关停每日任务
+
+详情见 [配置说明文档](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/configuration.md#321-isskipdailytask%E6%98%AF%E5%90%A6%E8%B7%B3%E8%BF%87%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1)。
+
+该方法是在应用层面关闭每日任务，即Actions还是会每天运行，只是进入程序后，应用不会去执行每日任务，即不会调用任何接口。如果配置了推送，每天仍能收到推送消息。
+
+### 7.2. 方法二：关停Actions
+ 
+点击Actions进入Workflows列表，点击名称为`bilibili-daily-task`的Workflow，在搜索框右侧有一个三个点的设置按钮，点击按钮后，在弹出的下拉列表里选中`Disable workflow`项即可，如下图所示：
+![关闭某个Actions](imgs/github-actions-close.png)
+
+该方法是直接关闭了Actions，即不会触发每天定时的Actions。
