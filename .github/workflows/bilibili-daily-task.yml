@@ -16,7 +16,7 @@ jobs:
 
     environment: production_environment
     
-    if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
+    if: contains(github.ISOPENLIVELOTTERYTASK, 'true')
     
     steps:
 
