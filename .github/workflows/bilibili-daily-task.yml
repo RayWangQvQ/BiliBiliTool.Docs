@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     environment: production_environment
-
+    
+    if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
+    
     steps:
 
     # 输出IP
