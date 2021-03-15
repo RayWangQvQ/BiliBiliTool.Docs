@@ -4,19 +4,20 @@ name: bilibili-daily-task
 on:
   
   workflow_dispatch: # 手动触发   
+  
+env: 
+  ISOPENLIVELOTTERYTASK: ${{secrets.ISOPENLIVELOTTERYTASK}}
 
 jobs:
   run-bilibili-tool:
     env:
       ISOPENLIVELOTTERYTASK: ${{secrets.ISOPENLIVELOTTERYTASK}}
       
-    
-
     runs-on: ubuntu-latest
 
     environment: production_environment
     
-    if: contains(github.ISOPENLIVELOTTERYTASK, 'true')
+    if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
     
     steps:
 
