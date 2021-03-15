@@ -7,7 +7,10 @@ on:
 
 jobs:
   run-bilibili-tool:
-    if: contains(secrets.ISOPENLIVELOTTERYTASK, 'true')
+    env:
+      ISOPENLIVELOTTERYTASK: ${{secrets.ISOPENLIVELOTTERYTASK}}
+      
+    if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
 
     runs-on: ubuntu-latest
 
