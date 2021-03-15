@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-bilibili-tool:
-    if: ${{ secrets.ISOPENLIVELOTTERYTASK != 'true' }}
+    if: ${{secrets.ISOPENLIVELOTTERYTASK}}=='true' 
 
     runs-on: ubuntu-latest
 
