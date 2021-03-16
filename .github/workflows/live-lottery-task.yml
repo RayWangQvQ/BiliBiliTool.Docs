@@ -48,7 +48,7 @@ jobs:
   pre-check:
     runs-on: ubuntu-latest
     outputs:
-      result: "123"
+      result: ${{ steps.check.outputs.result }}
     steps:
     - id: check
       if: env.ISOPENLIVELOTTERYTASK=='true'
