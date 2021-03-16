@@ -1,24 +1,54 @@
 name: bilibili-daily-task
 
-
 on:
-  
   workflow_dispatch: # 手动触发   
   
 env: 
   ISOPENLIVELOTTERYTASK: ${{secrets.ISOPENLIVELOTTERYTASK}}
+  ASPNETCORE_ENVIRONMENT: ${{secrets.ENV}} # 运行环境
+  Ray_BiliBiliCookie__UserId: ${{secrets.USERID}}
+  Ray_BiliBiliCookie__DedeUserID: ${{secrets.DEDEUSERID}} # 为了兼容 GitHub Secrets 经常会被填错
+  Ray_BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
+  Ray_BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
+  Ray_BiliBiliCookie__Bili_jct: ${{secrets.BILI_JCT}} # 为了兼容 GitHub Secrets 经常会被填错
+  Ray_Serilog__WriteTo__3__Args__botToken: ${{secrets.PUSHTGTOKEN}} # Telegram
+  Ray_Serilog__WriteTo__3__Args__chatId: ${{secrets.PUSHTGCHATID}}
+  Ray_Serilog__WriteTo__3__Args__containsTrigger: ${{secrets.PUSHTGTRIGGER}}
+  Ray_Serilog__WriteTo__4__Args__webHookUrl: ${{secrets.PUSHWEIXINURL}} # 微信
+  Ray_Serilog__WriteTo__4__Args__containsTrigger: ${{secrets.PUSHWEIXINTRIGGER}}
+  Ray_Serilog__WriteTo__5__Args__webHookUrl: ${{secrets.PUSHDINGURL}} # 钉钉
+  Ray_Serilog__WriteTo__5__Args__containsTrigger: ${{secrets.PUSHDINGTRIGGER}}
+  Ray_Serilog__WriteTo__6__Args__scKey: ${{secrets.PUSHSCKEY}} # Server酱
+  Ray_Serilog__WriteTo__6__Args__containsTrigger: ${{secrets.PUSHSERVERTRIGGER}}
+  Ray_Serilog__WriteTo__7__Args__sKey: ${{secrets.PUSHCOOLSKEY}} # 酷推
+  Ray_Serilog__WriteTo__7__Args__containsTrigger: ${{secrets.PUSHCOOLTRIGGER}}
+  Ray_Serilog__WriteTo__8__Args__api: ${{secrets.PUSHOTHERAPI}} # 自定义api
+  Ray_Serilog__WriteTo__8__Args__placeholder: ${{secrets.PUSHOTHERPLACEHOLDER}}
+  Ray_Serilog__WriteTo__8__Args__bodyJsonTemplate: ${{secrets.PUSHOTHERBODYJSONTEMPLATE}}
+  Ray_Serilog__WriteTo__8__Args__containsTrigger: ${{secrets.PUSHOTHERTRIGGER}}
+  Ray_Security__IsSkipDailyTask: ${{secrets.ISSKIPDAILYTASK}}
+  Ray_Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
+  Ray_Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
+  Ray_Security__UserAgent: ${{secrets.USERAGENT}}
+  Ray_Security__WebProxy: ${{secrets.WEBPROXY}}
+  Ray_DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
+  Ray_DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
+  Ray_DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
+  Ray_DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
+  Ray_DailyTaskConfig__AutoChargeUpId: ${{secrets.AUTOCHARGEUPID}}
+  Ray_DailyTaskConfig__ChargeComment: ${{secrets.CHARGECOMMENT}}
+  Ray_DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
+  Ray_DailyTaskConfig__IsExchangeSilver2Coin: ${{secrets.ISEXCHANGESILVER2COIN}}
+  Ray_DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
+  Ray_Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
+  Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}} 
 
 jobs:
   run-bilibili-tool:
-    env:
-      ISOPENLIVELOTTERYTASK: ${{secrets.ISOPENLIVELOTTERYTASK}}
-      
     runs-on: ubuntu-latest
-
     environment: production_environment
-    
     if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
-    
+
     steps:
 
     # 输出IP
@@ -47,44 +77,6 @@ jobs:
        
     # 运行
     - name: Run APP
-      env:
-        ASPNETCORE_ENVIRONMENT: ${{secrets.ENV}} # 运行环境
-        Ray_BiliBiliCookie__UserId: ${{secrets.USERID}}
-        Ray_BiliBiliCookie__DedeUserID: ${{secrets.DEDEUSERID}} # 为了兼容 GitHub Secrets 经常会被填错
-        Ray_BiliBiliCookie__SessData: ${{secrets.SESSDATA}}
-        Ray_BiliBiliCookie__BiliJct: ${{secrets.BILIJCT}}
-        Ray_BiliBiliCookie__Bili_jct: ${{secrets.BILI_JCT}} # 为了兼容 GitHub Secrets 经常会被填错
-        Ray_Serilog__WriteTo__3__Args__botToken: ${{secrets.PUSHTGTOKEN}} # Telegram
-        Ray_Serilog__WriteTo__3__Args__chatId: ${{secrets.PUSHTGCHATID}}
-        Ray_Serilog__WriteTo__3__Args__containsTrigger: ${{secrets.PUSHTGTRIGGER}}
-        Ray_Serilog__WriteTo__4__Args__webHookUrl: ${{secrets.PUSHWEIXINURL}} # 微信
-        Ray_Serilog__WriteTo__4__Args__containsTrigger: ${{secrets.PUSHWEIXINTRIGGER}}
-        Ray_Serilog__WriteTo__5__Args__webHookUrl: ${{secrets.PUSHDINGURL}} # 钉钉
-        Ray_Serilog__WriteTo__5__Args__containsTrigger: ${{secrets.PUSHDINGTRIGGER}}
-        Ray_Serilog__WriteTo__6__Args__scKey: ${{secrets.PUSHSCKEY}} # Server酱
-        Ray_Serilog__WriteTo__6__Args__containsTrigger: ${{secrets.PUSHSERVERTRIGGER}}
-        Ray_Serilog__WriteTo__7__Args__sKey: ${{secrets.PUSHCOOLSKEY}} # 酷推
-        Ray_Serilog__WriteTo__7__Args__containsTrigger: ${{secrets.PUSHCOOLTRIGGER}}
-        Ray_Serilog__WriteTo__8__Args__api: ${{secrets.PUSHOTHERAPI}} # 自定义api
-        Ray_Serilog__WriteTo__8__Args__placeholder: ${{secrets.PUSHOTHERPLACEHOLDER}}
-        Ray_Serilog__WriteTo__8__Args__bodyJsonTemplate: ${{secrets.PUSHOTHERBODYJSONTEMPLATE}}
-        Ray_Serilog__WriteTo__8__Args__containsTrigger: ${{secrets.PUSHOTHERTRIGGER}}
-        Ray_Security__IsSkipDailyTask: ${{secrets.ISSKIPDAILYTASK}}
-        Ray_Security__IntervalSecondsBetweenRequestApi: ${{secrets.INTERVALSECONDSBETWEENREQUESTAPI}}
-        Ray_Security__IntervalMethodTypes: ${{secrets.INTERVALMETHODTYPES}}
-        Ray_Security__UserAgent: ${{secrets.USERAGENT}}
-        Ray_Security__WebProxy: ${{secrets.WEBPROXY}}
-        Ray_DailyTaskConfig__NumberOfCoins: ${{secrets.NUMBEROFCOINS}}
-        Ray_DailyTaskConfig__SelectLike: ${{secrets.SELECTLIKE}}
-        Ray_DailyTaskConfig__SupportUpIds: ${{secrets.SUPPORTUPIDS}}
-        Ray_DailyTaskConfig__DayOfAutoCharge: ${{secrets.DAYOFAUTOCHARGE}}
-        Ray_DailyTaskConfig__AutoChargeUpId: ${{secrets.AUTOCHARGEUPID}}
-        Ray_DailyTaskConfig__ChargeComment: ${{secrets.CHARGECOMMENT}}
-        Ray_DailyTaskConfig__DayOfReceiveVipPrivilege: ${{secrets.DAYOFRECEIVEVIPPRIVILEGE}}
-        Ray_DailyTaskConfig__IsExchangeSilver2Coin: ${{secrets.ISEXCHANGESILVER2COIN}}
-        Ray_DailyTaskConfig__DevicePlatform: ${{secrets.DEVICEPLATFORM}}
-        Ray_Serilog__WriteTo__0__Args__restrictedToMinimumLevel: ${{secrets.CONSOLELOGLEVEL}}
-        Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}} 
       if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
       run: |
         cd ./test/src/Ray.BiliBiliTool.Console/bin/Publish/net5-dependent
