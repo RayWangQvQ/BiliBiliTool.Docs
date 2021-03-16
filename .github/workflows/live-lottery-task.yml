@@ -53,12 +53,12 @@ jobs:
     - id: check
       # if: secrets.ISOPENLIVELOTTERYTASK=='true'
       run: |
-        if ${{env.IsOpenLiveLotteryTask}}=='true' then echo "::set-output name=result::开启" else echo "::set-output name=result::开启" fi
+        if ${{env.IsOpenLiveLotteryTask}}=='true' then echo "::set-output name=result::开启" else echo "::set-output name=result::关闭" fi
 
   run-live-lottery:
     runs-on: ubuntu-latest
     needs: pre-check
-    if: needs.pre-check.outputs.result=='true' # 发现job.if读取不到env或secrets，坑...
+    if: needs.pre-check.outputs.result=='启动' # 发现job.if读取不到env或secrets，坑...
     environment: Production
 
     steps:
