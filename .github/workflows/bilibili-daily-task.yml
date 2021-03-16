@@ -47,7 +47,7 @@ jobs:
   run-bilibili-tool:
     runs-on: ubuntu-latest
     environment: production_environment
-    if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
+    # if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
 
     steps:
 
