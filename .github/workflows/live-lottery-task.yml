@@ -47,13 +47,15 @@ jobs:
 
   pre-check:
     runs-on: ubuntu-latest
+    env:
+      IsOpenLiveLotteryTask: ${{secrets.ISOPENLIVELOTTERYTASK}}
     outputs:
       result: ${{ steps.check.outputs.result }}
     steps:
     - id: check
-      # if: secrets.ISOPENLIVELOTTERYTASK=='true'
+      if: env.IsOpenLiveLotteryTask=='true'
       run: |
-        if ${{env.IsOpenLiveLotteryTask}}=='true' then echo "::set-output name=result::开启" else echo "::set-output name=result::关闭" fi
+        echo "::set-output name=result::开启"
 
   run-live-lottery:
     runs-on: ubuntu-latest
