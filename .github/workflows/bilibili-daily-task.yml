@@ -44,21 +44,8 @@ env:
   Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}} 
 
 jobs:
-  precheck:
-    runs-on: ubuntu-latest
-    outputs:
-      result: ${{ env.ISOPENLIVELOTTERYTASK }}
-    steps:
-    - name: Check
-      if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
-      run: |
-        echo "已配置为开启任务"
-    
-  
   run-bilibili-tool:
     runs-on: ubuntu-latest
-    needs: precheck
-    if: needs.precheck.outputs.result=='true'
     environment: production_environment
     # if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
 
@@ -72,10 +59,12 @@ jobs:
 
     # 输出IP
     - name: IP
+      if: ${{ success() }}
       run: sudo curl ifconfig.me
 
     # 设置服务器时区为东八区 
     - name: Set time zone
+      if: ${{ success() }}
       run: sudo timedatectl set-timezone 'Asia/Shanghai'
 
     # 检出
