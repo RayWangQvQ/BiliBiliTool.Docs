@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Dtos;
@@ -9,7 +10,7 @@ using Ray.BiliBiliTool.DomainService.Interfaces;
 
 namespace Ray.BiliBiliTool.Application
 {
-    public class DailyTaskAppService : IDailyTaskAppService
+    public class DailyTaskAppService : AppService, IDailyTaskAppService
     {
         private readonly ILogger<DailyTaskAppService> _logger;
         private readonly IAccountDomainService _loginDomainService;
@@ -19,6 +20,7 @@ namespace Ray.BiliBiliTool.Application
         private readonly ILiveDomainService _liveDomainService;
         private readonly IVipPrivilegeDomainService _vipPrivilegeDomainService;
         private readonly IChargeDomainService _chargeDomainService;
+        private readonly DailyTaskOptions _dailyTaskOptions;
         private readonly ICoinDomainService _coinDomainService;
         private readonly SecurityOptions _securityOptions;
 
@@ -32,8 +34,9 @@ namespace Ray.BiliBiliTool.Application
             IVipPrivilegeDomainService vipPrivilegeDomainService,
             IChargeDomainService chargeDomainService,
             IOptionsMonitor<SecurityOptions> securityOptions,
+            IOptionsMonitor<DailyTaskOptions> dailyTaskOptions,
             ICoinDomainService coinDomainService
-            )
+        )
         {
             _logger = logger;
             _loginDomainService = loginDomainService;
@@ -43,18 +46,15 @@ namespace Ray.BiliBiliTool.Application
             _liveDomainService = liveDomainService;
             _vipPrivilegeDomainService = vipPrivilegeDomainService;
             _chargeDomainService = chargeDomainService;
+            _dailyTaskOptions = dailyTaskOptions.CurrentValue;
             _coinDomainService = coinDomainService;
             _securityOptions = securityOptions.CurrentValue;
         }
 
-        public void DoDailyTask()
-        {
-            if (_securityOptions.IsSkipDailyTask)
-            {
-                _logger.LogWarning("已配置为跳过每日任务\r\n");
-                return;
-            }
+        public override string TaskName => "Daily";
 
+        public override void DoTask()
+        {
             _logger.LogInformation("-----开始每日任务-----\r\n");
 
             UserInfo userInfo = Login();
@@ -70,7 +70,7 @@ namespace Ray.BiliBiliTool.Application
             ReceiveMangaVipReward(userInfo);
             Charge(userInfo);
 
-            _logger.LogInformation("-----全部任务已执行结束-----\r\n");
+            _logger.LogInformation("-----每日任务全部已执行结束-----\r\n");
         }
 
         /// <summary>
@@ -102,6 +102,11 @@ namespace Ray.BiliBiliTool.Application
         [TaskInterceptor("观看、分享视频", false)]
         private void WatchAndShareVideo(DailyTaskInfo dailyTaskInfo)
         {
+            if (!_dailyTaskOptions.IsWatchVideo && !_dailyTaskOptions.IsShareVideo)
+            {
+                _logger.LogInformation("已配置为关闭，跳过任务");
+                return;
+            }
             _videoDomainService.WatchAndShareVideo(dailyTaskInfo);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ray.BiliBiliTool.Config.Options
 {
@@ -7,6 +8,16 @@ namespace Ray.BiliBiliTool.Config.Options
     /// </summary>
     public class DailyTaskOptions
     {
+        /// <summary>
+        /// 是否观看视频
+        /// </summary>
+        public bool IsWatchVideo { get; set; }
+
+        /// <summary>
+        /// 是否分享视频
+        /// </summary>
+        public bool IsShareVideo { get; set; }
+
         /// <summary>
         /// 每日设定的投币数 [0,5]
         /// </summary>
@@ -30,12 +41,20 @@ namespace Ray.BiliBiliTool.Config.Options
         /// <summary>
         /// 充电Up主Id
         /// </summary>
-        public string AutoChargeUpId { get; set; } = "220893216";
+        public string AutoChargeUpId { get; set; } = "1585227649";
 
+        private string _chargeComment;
         /// <summary>
         /// 充电后留言
         /// </summary>
-        public string ChargeComment { get; set; } = "加油~";
+        public string ChargeComment
+        {
+            get =>
+                string.IsNullOrWhiteSpace(_chargeComment)
+                    ? DefaultComments[new Random().Next(0, DefaultComments.Count)]
+                    : _chargeComment;
+            set => _chargeComment = value;
+        }
 
         /// <summary>
         /// 每月几号自动领取会员权益的[-1,31]，-1表示不指定，默认每月1号；0表示不自动领取
@@ -43,14 +62,14 @@ namespace Ray.BiliBiliTool.Config.Options
         public int DayOfReceiveVipPrivilege { get; set; } = -1;
 
         /// <summary>
-        /// 是否开启直播中心银瓜子兑换硬币
+        /// 每月几号执行银瓜子兑换硬币[-1,31]，-1表示不指定，默认每月1号；-2表示每天；0表示不进行兑换
         /// </summary>
-        public bool IsExchangeSilver2Coin { get; set; } = true;
+        public int DayOfExchangeSilver2Coin { get; set; } = -1;
 
         /// <summary>
         /// 执行客户端操作时的平台 [ios,android]
         /// </summary>
-        public string DevicePlatform { get; set; } = "ios";
+        public string DevicePlatform { get; set; } = "android";
 
 
         public List<long> SupportUpIdList
@@ -63,12 +82,36 @@ namespace Ray.BiliBiliTool.Config.Options
                 var array = SupportUpIds.Split(',');
                 foreach (var item in array)
                 {
-                    if (int.TryParse(item.Trim(), out int upId))
+                    if (long.TryParse(item.Trim(), out long upId))
                         re.Add(upId);
+                    else
+                        re.Add(long.MinValue);
                 }
                 return re;
             }
         }
 
+        private static List<string> DefaultComments = new List<string>
+        {
+            "棒",
+            "棒唉",
+            "棒耶",
+            "加油~",
+            "UP加油!",
+            "支持~",
+            "支持支持！",
+            "催更啦",
+            "顶顶",
+            "留下脚印~",
+            "干杯",
+            "bilibili干杯",
+            "o(*￣▽￣*)o",
+            "(｡･∀･)ﾉﾞ嗨",
+            "(●ˇ∀ˇ●)",
+            "( •̀ ω •́ )y",
+            "(ง •_•)ง",
+            ">.<",
+            "^_~",
+        };
     }
 }

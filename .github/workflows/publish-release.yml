@@ -1,7 +1,7 @@
 name: Publish release
 
 on:
-  workflow_dispatch: # 手动触发
+  workflow_dispatch:
     inputs:
       version:
         description: '版本号'
@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     name: publish relesae
+    if: ${{ github.repository == 'RayWangQvQ/BiliBiliTool' }}
     runs-on: ubuntu-latest
     
     steps:

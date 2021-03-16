@@ -1,9 +1,14 @@
 {
   //命令行启动时的参数映射
   "CommandLineMappings": {
+    "-cookieStr": "BiliBiliCookie:CookieStr",
+
+    "-runTasks": "RunTasks",
+
     "-userId": "BiliBiliCookie:UserId",
     "-sessData": "BiliBiliCookie:SessData",
     "-biliJct": "BiliBiliCookie:BiliJct",
+    "-otherCookies": "BiliBiliCookie:OtherCookies",
 
     "-numberOfCoins": "DailyTaskConfig:NumberOfCoins",
     "-selectLike": "DailyTaskConfig:SelectLike",

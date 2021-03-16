@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Ray.BiliBiliTool.Agent;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Dtos;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Interfaces;
 using Ray.BiliBiliTool.Config.Options;
@@ -16,17 +17,22 @@ namespace Ray.BiliBiliTool.DomainService
         private readonly ILogger<ChargeDomainService> _logger;
         private readonly DailyTaskOptions _dailyTaskOptions;
         private readonly IDailyTaskApi _dailyTaskApi;
-        private readonly BiliBiliCookieOptions _cookieOptions;
+        private readonly BiliCookie _cookie;
+        private readonly IChargeApi _chargeApi;
 
-        public ChargeDomainService(ILogger<ChargeDomainService> logger,
+        public ChargeDomainService(
+            ILogger<ChargeDomainService> logger,
             IOptionsMonitor<DailyTaskOptions> dailyTaskOptions,
             IDailyTaskApi dailyTaskApi,
-            IOptionsMonitor<BiliBiliCookieOptions> cookieOptions)
+            BiliCookie cookie,
+            IChargeApi chargeApi
+            )
         {
             _logger = logger;
             _dailyTaskOptions = dailyTaskOptions.CurrentValue;
             _dailyTaskApi = dailyTaskApi;
-            _cookieOptions = cookieOptions.CurrentValue;
+            _cookie = cookie;
+            _chargeApi = chargeApi;
         }
 
         /// <summary>
@@ -70,20 +76,20 @@ namespace Ray.BiliBiliTool.DomainService
             string targetUpId = _dailyTaskOptions.AutoChargeUpId;
             //如果没有配置或配了-1，则为自己充电
             if (_dailyTaskOptions.AutoChargeUpId.IsNullOrEmpty() | _dailyTaskOptions.AutoChargeUpId == "-1")
-                targetUpId = _cookieOptions.UserId;
+                targetUpId = _cookie.UserId;
 
-            //BiliApiResponse<ChargeResponse> response = _dailyTaskApi.Charge(decimal.ToInt32(couponBalance * 10), _dailyTaskOptions.AutoChargeUpId, _cookieOptions.UserId, _cookieOptions.BiliJct).Result;
-            BiliApiResponse<ChargeV2Response> response = _dailyTaskApi.ChargeV2(couponBalance, targetUpId, targetUpId, _cookieOptions.BiliJct).Result;
+            var request = new ChargeRequest(couponBalance, long.Parse(targetUpId), _cookie.BiliJct);
+
+            //BiliApiResponse<ChargeResponse> response = _chargeApi.Charge(decimal.ToInt32(couponBalance * 10), _dailyTaskOptions.AutoChargeUpId, _cookieOptions.UserId, _cookieOptions.BiliJct).Result;
+            BiliApiResponse<ChargeV2Response> response = _chargeApi.ChargeV2(request)
+                .GetAwaiter().GetResult();
 
             if (response.Code == 0)
             {
                 if (response.Data.Status == 4)
                 {
                     _logger.LogInformation("充电成功，经验+{exp} √", couponBalance);
-                    _logger.LogInformation("本次充值了: {num}个B币，送的B币券没有浪费哦", couponBalance);
-
-                    if (_dailyTaskOptions.AutoChargeUpId == "220893216")
-                        _logger.LogInformation("这是一条彩蛋消息，看到它说明您选择了为开发者充电。个人维护开源不易，感谢您的贡献！如要更改充电对象，请参考配置说明文档进行修改~");
+                    _logger.LogInformation("本次为{upId}充值了: {num}个B币，送的B币券没有浪费哦", targetUpId, couponBalance);
 
                     //获取充电留言token
                     ChargeComments(response.Data.Order_no);
@@ -103,9 +109,10 @@ namespace Ray.BiliBiliTool.DomainService
         /// 充电后留言
         /// </summary>
         /// <param name="token"></param>
-        public void ChargeComments(string token)
+        public void ChargeComments(string orderNum)
         {
-            _dailyTaskApi.ChargeComment(token, _dailyTaskOptions.ChargeComment ?? "", _cookieOptions.BiliJct);
+            var request = new ChargeCommentRequest(orderNum, _dailyTaskOptions.ChargeComment ?? "", _cookie.BiliJct);
+            _chargeApi.ChargeComment(request);
         }
     }
 }

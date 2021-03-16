@@ -1,11 +1,9 @@
 name: Autocloser
-on: 
-  pull_request_target:
-  
+on: pull_request_target
 jobs:
   autoclose:
     runs-on: ubuntu-latest
-    if: github.repository == 'RayWangQvQ/BiliBiliTool.Docs'
+    if: github.repository == 'RayWangQvQ/BiliBiliTool'
     steps:
     - uses: roots/issue-closer@v1.1
       with:
