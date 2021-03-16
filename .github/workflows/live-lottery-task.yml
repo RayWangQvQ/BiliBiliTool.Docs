@@ -47,8 +47,6 @@ jobs:
 
   pre-check:
     runs-on: ubuntu-latest
-    env:
-      IsOpenLiveLotteryTask: ${{secrets.ISOPENLIVELOTTERYTASK}}
     outputs:
       result: ${{ steps.check.outputs.result }}
     steps:
