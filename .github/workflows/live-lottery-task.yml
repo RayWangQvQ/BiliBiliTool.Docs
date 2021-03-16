@@ -58,7 +58,8 @@ jobs:
   run-live-lottery:
     runs-on: ubuntu-latest
     needs: pre-check
-    if: needs.pre-check.outputs.result=='开启' # 发现job.if读取不到env或secrets，坑...
+    if: env.IsOpenLiveLotteryTask=='true' # 发现job.if读取不到env或secrets，坑...
+    # if: needs.pre-check.outputs.result=='开启'
     environment: Production
 
     steps:
