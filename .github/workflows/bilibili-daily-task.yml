@@ -51,6 +51,12 @@ jobs:
 
     steps:
 
+    # 检查开关
+    - name: Check
+      if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
+      run: |
+        echo "已配置为开启任务"
+
     # 输出IP
     - name: IP
       run: sudo curl ifconfig.me
