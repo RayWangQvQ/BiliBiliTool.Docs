@@ -52,7 +52,8 @@ jobs:
     steps:
     - id: check
       # if: secrets.ISOPENLIVELOTTERYTASK=='true'
-      run: echo "::set-output name=result::${{env.IsOpenLiveLotteryTask}}"
+      run: |
+        if ${{env.IsOpenLiveLotteryTask}}=='true' then echo "::set-output name=result::开启" else echo "::set-output name=result::开启" fi
 
   run-live-lottery:
     runs-on: ubuntu-latest
