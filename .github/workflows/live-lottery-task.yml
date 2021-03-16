@@ -64,7 +64,7 @@ jobs:
 
     # 输出IP、设置服务器时区为东八区 
     - name: PreWork
-      if: needs.pre-check.outputs.result==开启
+      if: needs.pre-check.outputs.result=='开启'
       run: |
         echo "${{needs.pre-check.outputs.result}}"
         sudo curl ifconfig.me
