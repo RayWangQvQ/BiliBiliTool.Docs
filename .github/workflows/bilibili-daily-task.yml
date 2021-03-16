@@ -44,8 +44,10 @@ env:
   Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}} 
 
 jobs:
-  check:
+  precheck:
     runs-on: ubuntu-latest
+    outputs:
+      result: ${{ env.ISOPENLIVELOTTERYTASK }}
     steps:
     - name: Check
       if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
@@ -55,7 +57,8 @@ jobs:
   
   run-bilibili-tool:
     runs-on: ubuntu-latest
-    needs: check
+    needs: precheck
+    if: needs.precheck.outputs.result=='true'
     environment: production_environment
     # if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
 
