@@ -44,8 +44,18 @@ env:
   Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}} 
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check
+      if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
+      run: |
+        echo "已配置为开启任务"
+    
+  
   run-bilibili-tool:
     runs-on: ubuntu-latest
+    needs: check
     environment: production_environment
     # if: contains(env.ISOPENLIVELOTTERYTASK, 'true')
 
