@@ -26,28 +26,31 @@
         - [3.3.5. AutoChargeUpId（充电对象）](#335-autochargeupid充电对象)
         - [3.3.6. DayOfReceiveVipPrivilege（每月几号自动领取会员权益）](#336-dayofreceivevipprivilege每月几号自动领取会员权益)
         - [3.3.7. DayOfExchangeSilver2Coin（每月几号进行直播中心银瓜子兑换硬币）](#337-dayofexchangesilver2coin每月几号进行直播中心银瓜子兑换硬币)
-    - [3.4. 推送相关](#34-推送相关)
-        - [3.4.1. Telegram机器人](#341-telegram机器人)
-            - [3.4.1.1. botToken](#3411-bottoken)
-            - [3.4.1.2. chatId](#3412-chatid)
-        - [3.4.2. 企业微信机器人](#342-企业微信机器人)
-            - [3.4.2.1. webHookUrl](#3421-webhookurl)
-        - [3.4.3. 钉钉机器人](#343-钉钉机器人)
-            - [3.4.3.1. webHookUrl](#3431-webhookurl)
-        - [3.4.4. Server酱](#344-server酱)
-            - [3.4.4.1. ScKey（从Server酱申请到的微信SCKEY）](#3441-sckey从server酱申请到的微信sckey)
-        - [3.4.5. 酷推](#345-酷推)
-            - [3.4.5.1. sKey](#3451-skey)
-        - [3.4.6. 推送到自定义Api](#346-推送到自定义api)
-            - [3.4.6.1. api](#3461-api)
-            - [3.4.6.2. placeholder](#3462-placeholder)
-            - [3.4.6.3. bodyJsonTemplate](#3463-bodyjsontemplate)
-    - [3.5. 日志相关](#35-日志相关)
-        - [3.5.1. ConsoleLogLevel（日志输出等级）](#351-consoleloglevel日志输出等级)
-        - [3.5.2. ConsoleLogTemplate（日志输出样式）](#352-consolelogtemplate日志输出样式)
-    - [3.6. 代理](#36-代理)
-    - [3.7. 关于如何配置为Debug日志模式获取详细的日志信息](#37-关于如何配置为debug日志模式获取详细的日志信息)
-    - [3.8. 关于如何按环境切换配置](#38-关于如何按环境切换配置)
+    - [3.4. 天选时刻抽奖相关](#34-天选时刻抽奖相关)
+        - [3.4.1. ExcludeAwardNames（根据关键字排除奖品）](#341-excludeawardnames根据关键字排除奖品)
+        - [3.4.2. IncludeAwardNames（根据关键字指定奖品）](#342-includeawardnames根据关键字指定奖品)
+    - [3.5. 推送相关](#35-推送相关)
+        - [3.5.1. Telegram机器人](#351-telegram机器人)
+            - [3.5.1.1. botToken](#3511-bottoken)
+            - [3.5.1.2. chatId](#3512-chatid)
+        - [3.5.2. 企业微信机器人](#352-企业微信机器人)
+            - [3.5.2.1. webHookUrl](#3521-webhookurl)
+        - [3.5.3. 钉钉机器人](#353-钉钉机器人)
+            - [3.5.3.1. webHookUrl](#3531-webhookurl)
+        - [3.5.4. Server酱](#354-server酱)
+            - [3.5.4.1. ScKey（从Server酱申请到的微信SCKEY）](#3541-sckey从server酱申请到的微信sckey)
+        - [3.5.5. 酷推](#355-酷推)
+            - [3.5.5.1. sKey](#3551-skey)
+        - [3.5.6. 推送到自定义Api](#356-推送到自定义api)
+            - [3.5.6.1. api](#3561-api)
+            - [3.5.6.2. placeholder](#3562-placeholder)
+            - [3.5.6.3. bodyJsonTemplate](#3563-bodyjsontemplate)
+    - [3.6. 日志相关](#36-日志相关)
+        - [3.6.1. ConsoleLogLevel（日志输出等级）](#361-consoleloglevel日志输出等级)
+        - [3.6.2. ConsoleLogTemplate（日志输出样式）](#362-consolelogtemplate日志输出样式)
+    - [3.7. 代理](#37-代理)
+    - [3.8. 关于如何配置为Debug日志模式获取详细的日志信息](#38-关于如何配置为debug日志模式获取详细的日志信息)
+    - [3.9. 关于如何按环境切换配置](#39-关于如何按环境切换配置)
 
 <!-- /TOC -->
 
@@ -340,17 +343,45 @@ Secret Value：`123abc`
 | 命令行示范   |  |
 | GitHub Secrets 示范  | Name:`DayOfExchangeSilver2Coin`  Value: `1`|
 
-<a id="markdown-34-推送相关" name="34-推送相关"></a>
-### 3.4. 推送相关
+<a id="markdown-34-天选时刻抽奖相关" name="34-天选时刻抽奖相关"></a>
+### 3.4. 天选时刻抽奖相关
+
+<a id="markdown-341-excludeawardnames根据关键字排除奖品" name="341-excludeawardnames根据关键字排除奖品"></a>
+#### 3.4.1. ExcludeAwardNames（根据关键字排除奖品）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 根据关键字排除奖品，当奖品名称中包含这些关键字时，不参与抽奖 |
+| 值域   | 一串字符串，多个关键字使用`|`符号隔开 |
+| 默认值   | `舰|船|航海|代金券|自拍|照|写真|图` |
+| 环境变量示范   |  |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`EXCLUDEAWARDNAMES`  Value: `舰|船|航海|代金券`|
+
+<a id="markdown-342-includeawardnames根据关键字指定奖品" name="342-includeawardnames根据关键字指定奖品"></a>
+#### 3.4.2. IncludeAwardNames（根据关键字指定奖品）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 根据关键字指定奖品，只有当奖品名称中包含这些关键字时，才参与抽奖，否则不参与 |
+| 值域   | 一串字符串，多个关键字使用`|`符号隔开 |
+| 默认值   | 空 |
+| 环境变量示范   |  |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`INCLUDEAWARDNAMES`  Value: `红包|现金|元|块|支付宝`|
+
+
+<a id="markdown-35-推送相关" name="35-推送相关"></a>
+### 3.5. 推送相关
 v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念，将推送仅看作不同地日志输出端，与Console、File没有本质区别。
 
 配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
 
-<a id="markdown-341-telegram机器人" name="341-telegram机器人"></a>
-#### 3.4.1. Telegram机器人
+<a id="markdown-351-telegram机器人" name="351-telegram机器人"></a>
+#### 3.5.1. Telegram机器人
 ![TG推送效果](/imgs/push-tg.png)
-<a id="markdown-3411-bottoken" name="3411-bottoken"></a>
-##### 3.4.1.1. botToken
+<a id="markdown-3511-bottoken" name="3511-bottoken"></a>
+##### 3.5.1.1. botToken
 点击 https://core.telegram.org/api#bot-api 查看如何创建机器人并获取到机器人的botToken。
 
 |   TITLE   | CONTENT   |
@@ -362,8 +393,8 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
 
-<a id="markdown-3412-chatid" name="3412-chatid"></a>
-##### 3.4.1.2. chatId
+<a id="markdown-3512-chatid" name="3512-chatid"></a>
+##### 3.5.1.2. chatId
 点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取到与机器人的chatId（需要用上面获取到的Token替换进链接里的{TOKEN}后访问）
 
 P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
@@ -377,14 +408,14 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHTGCHATID`  Value: `654321`|
 
-<a id="markdown-342-企业微信机器人" name="342-企业微信机器人"></a>
-#### 3.4.2. 企业微信机器人
+<a id="markdown-352-企业微信机器人" name="352-企业微信机器人"></a>
+#### 3.5.2. 企业微信机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
 
 ![企业微信推送效果](/imgs/push-workweixin.png)
 
-<a id="markdown-3421-webhookurl" name="3421-webhookurl"></a>
-##### 3.4.2.1. webHookUrl
+<a id="markdown-3521-webhookurl" name="3521-webhookurl"></a>
+##### 3.5.2.1. webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -395,14 +426,14 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHWEIXINURL`  Value: `abcdefg`|
 
-<a id="markdown-343-钉钉机器人" name="343-钉钉机器人"></a>
-#### 3.4.3. 钉钉机器人
+<a id="markdown-353-钉钉机器人" name="353-钉钉机器人"></a>
+#### 3.5.3. 钉钉机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
 
 ![钉钉推送效果](/imgs/push-ding.png)
 
-<a id="markdown-3431-webhookurl" name="3431-webhookurl"></a>
-##### 3.4.3.1. webHookUrl
+<a id="markdown-3531-webhookurl" name="3531-webhookurl"></a>
+##### 3.5.3.1. webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -413,13 +444,13 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHDINGURL`  Value: `abcdefg`|
 
-<a id="markdown-344-server酱" name="344-server酱"></a>
-#### 3.4.4. Server酱
+<a id="markdown-354-server酱" name="354-server酱"></a>
+#### 3.5.4. Server酱
 
 ![Server酱推送效果](/imgs/wechat-push.png)
 
-<a id="markdown-3441-sckey从server酱申请到的微信sckey" name="3441-sckey从server酱申请到的微信sckey"></a>
-##### 3.4.4.1. ScKey（从Server酱申请到的微信SCKEY）
+<a id="markdown-3541-sckey从server酱申请到的微信sckey" name="3541-sckey从server酱申请到的微信sckey"></a>
+##### 3.5.4.1. ScKey（从Server酱申请到的微信SCKEY）
 Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
 
 |   TITLE   | CONTENT   |
@@ -431,11 +462,11 @@ Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.c
 | 命令行示范   | `-pushScKey=abcdefg` |
 | GitHub Secrets 示范  | Name:`PUSHSCKEY`  Value: `abcdefg`|
 
-<a id="markdown-345-酷推" name="345-酷推"></a>
-#### 3.4.5. 酷推
+<a id="markdown-355-酷推" name="355-酷推"></a>
+#### 3.5.5. 酷推
 https://cp.xuthus.cc/
-<a id="markdown-3451-skey" name="3451-skey"></a>
-##### 3.4.5.1. sKey
+<a id="markdown-3551-skey" name="3551-skey"></a>
+##### 3.5.5.1. sKey
 该平台可能还在完善当中，对接时我发现其接口定义不规范，且机器人容易被封，所以不推荐使用，且不接受提酷推推送相关bug。
 
 |   TITLE   | CONTENT   |
@@ -447,11 +478,11 @@ https://cp.xuthus.cc/
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
 
-<a id="markdown-346-推送到自定义api" name="346-推送到自定义api"></a>
-#### 3.4.6. 推送到自定义Api
+<a id="markdown-356-推送到自定义api" name="356-推送到自定义api"></a>
+#### 3.5.6. 推送到自定义Api
 这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
-<a id="markdown-3461-api" name="3461-api"></a>
-##### 3.4.6.1. api
+<a id="markdown-3561-api" name="3561-api"></a>
+##### 3.5.6.1. api
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -461,8 +492,8 @@ https://cp.xuthus.cc/
 | 环境变量示范   |  |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
-<a id="markdown-3462-placeholder" name="3462-placeholder"></a>
-##### 3.4.6.2. placeholder
+<a id="markdown-3562-placeholder" name="3562-placeholder"></a>
+##### 3.5.6.2. placeholder
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -472,8 +503,8 @@ https://cp.xuthus.cc/
 | 环境变量示范   |  |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
-<a id="markdown-3463-bodyjsontemplate" name="3463-bodyjsontemplate"></a>
-##### 3.4.6.3. bodyJsonTemplate
+<a id="markdown-3563-bodyjsontemplate" name="3563-bodyjsontemplate"></a>
+##### 3.5.6.3. bodyJsonTemplate
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -484,11 +515,11 @@ https://cp.xuthus.cc/
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
 
-<a id="markdown-35-日志相关" name="35-日志相关"></a>
-### 3.5. 日志相关
+<a id="markdown-36-日志相关" name="36-日志相关"></a>
+### 3.6. 日志相关
 
-<a id="markdown-351-consoleloglevel日志输出等级" name="351-consoleloglevel日志输出等级"></a>
-#### 3.5.1. ConsoleLogLevel（日志输出等级）
+<a id="markdown-361-consoleloglevel日志输出等级" name="361-consoleloglevel日志输出等级"></a>
+#### 3.6.1. ConsoleLogLevel（日志输出等级）
 这里的日志等级指的是 Console 的等级，即 GitHub Actions 里和微信推送里看到的日志。
 
 为了美观， BiliBiliTool 默认只输出最低等级为 Information 的日志，保证只展示最精简的信息。
@@ -508,8 +539,8 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以其值域与 Serilog 的�
 | 命令行示范   | 暂未开放到命令行 |
 | GitHub Secrets 示范  | Name:`CONSOLELOGLEVEL`  Value: `Debug`|
 
-<a id="markdown-352-consolelogtemplate日志输出样式" name="352-consolelogtemplate日志输出样式"></a>
-#### 3.5.2. ConsoleLogTemplate（日志输出样式）
+<a id="markdown-362-consolelogtemplate日志输出样式" name="362-consolelogtemplate日志输出样式"></a>
+#### 3.6.2. ConsoleLogTemplate（日志输出样式）
 这里的日志样式指的是 Console 的等级，即 GitHub Actions 里和微信推送里看到的日志。
 
 通过更改模板样式，可以指定日志输出的样式，比如不输出时间和等级，做到最精简的样式。
@@ -526,21 +557,21 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 命令行示范   | 太长了，不考虑开放到命令行 |
 | GitHub Secrets 示范  | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
-<a id="markdown-36-代理" name="36-代理"></a>
-### 3.6. 代理
+<a id="markdown-37-代理" name="37-代理"></a>
+### 3.7. 代理
 增加代理支持，如果需要请看:
 1. 【github action】 : 在secrets中增加`PROXY`,值为代理地址+端口，如`127.0.0.1:10240`
 2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
 
 
-<a id="markdown-37-关于如何配置为debug日志模式获取详细的日志信息" name="37-关于如何配置为debug日志模式获取详细的日志信息"></a>
-### 3.7. 关于如何配置为Debug日志模式获取详细的日志信息
+<a id="markdown-38-关于如何配置为debug日志模式获取详细的日志信息" name="38-关于如何配置为debug日志模式获取详细的日志信息"></a>
+### 3.8. 关于如何配置为Debug日志模式获取详细的日志信息
 第一步，将ConsoleLogLevel配置为`Debug`
 
 第二步，将ConsoleLogTemplate配置为`[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}`
 
-<a id="markdown-38-关于如何按环境切换配置" name="38-关于如何按环境切换配置"></a>
-### 3.8. 关于如何按环境切换配置
+<a id="markdown-39-关于如何按环境切换配置" name="39-关于如何按环境切换配置"></a>
+### 3.9. 关于如何按环境切换配置
 增加指定不同环境来加载配置文件的功能(增加一个自己的避免更新配置被覆盖),仅针对`appsettings.json`中的配置。使用方法:
 
 1. 复制一个`appsettings.json`文件， 改为`appsettings.PRD.json`，中间这个`PRD`你也可以取其它名字，设置环境变量时匹配即可。
