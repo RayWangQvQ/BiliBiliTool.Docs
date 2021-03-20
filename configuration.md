@@ -351,11 +351,11 @@ Secret Value：`123abc`
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 根据关键字排除奖品，当奖品名称中包含这些关键字时，不参与抽奖 |
-| 值域   | 一串字符串，多个关键字使用`|`符号隔开 |
-| 默认值   | `舰|船|航海|代金券|自拍|照|写真|图` |
+| 值域   | 一串字符串，多个关键字使用`\|`符号隔开 |
+| 默认值   | `舰\|船\|航海\|代金券\|自拍\|照\|写真\|图` |
 | 环境变量示范   |  |
 | 命令行示范   |  |
-| GitHub Secrets 示范  | Name:`EXCLUDEAWARDNAMES`  Value: `舰|船|航海|代金券`|
+| GitHub Secrets 示范  | Name:`EXCLUDEAWARDNAMES`  Value: `舰\|船\|航海\|代金券`|
 
 <a id="markdown-342-includeawardnames根据关键字指定奖品" name="342-includeawardnames根据关键字指定奖品"></a>
 #### 3.4.2. IncludeAwardNames（根据关键字指定奖品）
@@ -363,11 +363,11 @@ Secret Value：`123abc`
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 根据关键字指定奖品，只有当奖品名称中包含这些关键字时，才参与抽奖，否则不参与 |
-| 值域   | 一串字符串，多个关键字使用`|`符号隔开 |
+| 值域   | 一串字符串，多个关键字使用`\|`符号隔开 |
 | 默认值   | 空 |
 | 环境变量示范   |  |
 | 命令行示范   |  |
-| GitHub Secrets 示范  | Name:`INCLUDEAWARDNAMES`  Value: `红包|现金|元|块|支付宝`|
+| GitHub Secrets 示范  | Name:`INCLUDEAWARDNAMES`  Value: `红包\|现金\|元\|块\|支付宝`|
 
 
 <a id="markdown-35-推送相关" name="35-推送相关"></a>
