@@ -78,7 +78,7 @@
 各个系统只要安装了net5环境，均可使用dotnet命令启动，命令样例：
 
 ```
-dotnet Ray.BiliBiliTool.Console.dll -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
+dotnet Ray.BiliBiliTool.Console.dll -cookieStr=abc -numberOfCoins=5
 ```
 
 * Windows系统
@@ -86,7 +86,7 @@ dotnet Ray.BiliBiliTool.Console.dll -userId=123 -sessData=456 -biliJct=789 -numb
 使用自包含包（win-x86-x64.zip），命令样例：
 
 ```
-Ray.BiliBiliTool.Console.exe -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
+Ray.BiliBiliTool.Console.exe -cookieStr=abc -numberOfCoins=5
 ```
 
 * Linux系统
@@ -94,7 +94,7 @@ Ray.BiliBiliTool.Console.exe -userId=123 -sessData=456 -biliJct=789 -numberOfCoi
 使用自包含包（linux.zip），命令样例：
 
 ```
-Ray.BiliBiliTool.Console.dll -userId=123 -sessData=456 -biliJct=789 -numberOfCoins=5
+Ray.BiliBiliTool.Console.dll -cookieStr=abc -numberOfCoins=5
 ```
 
 如映射文件所展示，支持使用命令行配置的配置项并不多，也不建议大量地使用该种方式进行配置。使用包运行地朋友，除了改配置文件和命令行参数配置外，还可以使用环境变量进行配置，这也是推荐的做法，如下。
@@ -105,9 +105,8 @@ Ray.BiliBiliTool.Console.dll -userId=123 -sessData=456 -biliJct=789 -numberOfCoi
 所有的配置项均可以通过添加环境变量来进行配置，以Windows下依赖net5的系统为例：
 
 ```
-set Ray_BiliBiliCookie__UserId=123
-set Ray_BiliBiliCookie__SessData=123
-set Ray_BiliBiliCookie__BiliJct=123
+set Ray_BiliBiliCookie__CookieStr=abc
+set Ray_DailyTaskConfig__NumberOfCoins=3
 dotnet Ray.BiliBiliTool.Console.dll
 ```
 
@@ -131,13 +130,13 @@ Secret Value：`123abc`
 <a id="markdown-2-优先级" name="2-优先级"></a>
 ## 2. 优先级
 
-以上 4 种配置源，其优先级由低到高依次是：文件 < 环境变量(和Github Secrets) < 命令行。
+以上 4 种配置源，其优先级由低到高依次是：json文件 < 环境变量(和Github Secrets) < 命令行。
 
 即，如果既在配置文件中写入了配置值，又在命令行启动时使用命令行参数指定了配置值，则最后会使用命令行的。
 
-对于使用 Github Action 线上运行的朋友，建议只使用 Secrets 进行配置。因为 Fork 项目后，不会拷贝源仓库中的 Secrets，可自由的在自己的仓库中进行私人配置。当有版本重大更新而需要将源仓库同步 PR 到自己 Fork 的仓库时，PR 操作会很顺滑，不会影响到已配置的值。
+**对于使用 Github Action 线上运行的朋友，建议只使用 Secrets 进行配置。**因为 Fork 项目后，不会拷贝源仓库中的 Secrets，可自由的在自己的仓库中进行私人配置。当有新版本发布时，同步仓库会很顺滑，不会影响到已配置的值。
 
-当然， Fork 之后自己改了 appsettings.json 文件再提交，也是可以实现配置的。但是一则你的配置值将被暴露出来（别人可通过访问你的仓库里的配置查看到值），二是以后如果需要 PR 源仓库的更新到自己仓库，则要注意保留自己的修改不要被 PR 覆盖。
+当然， Fork 之后自己改了 appsettings.json 文件再提交，也是可以实现配置的。但是一则你的配置值将被暴露出来（别人可通过访问你的仓库里的配置查看到值），二是以后如果需要 PR 源仓库的更新到自己仓库，则要注意保留自己的修改不要被同步操作覆盖。
 
 <a id="markdown-3-详细配置说明" name="3-详细配置说明"></a>
 ## 3. 详细配置说明
@@ -152,26 +151,26 @@ Secret Value：`123abc`
 | 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
 | 环境变量示范  | `set Ray_BiliBiliCookie__CookieStr=abc=123;def=456;` |
-| 命令行示范   | `-CookieStr=abc=123;def=456;` |
+| 命令行示范   | `-cookieStr=abc=123;def=456;` |
 | GitHub Secrets 示范  | Name:`COOKIESTR`  Value: `abc=123;def=456;`|
 
 <a id="markdown-32-安全相关的配置" name="32-安全相关的配置"></a>
 ### 3.2. 安全相关的配置
 <a id="markdown-321-isskipdailytask是否跳过执行任务" name="321-isskipdailytask是否跳过执行任务"></a>
 #### 3.2.1. IsSkipDailyTask（是否跳过执行任务）
-用于特殊情况下，通过配置灵活的开启和关闭任务.
-配置为关闭后，程序会跳过整个每日任务，不会调用B站任何接口。
+用于特殊情况下，通过配置灵活的开启和关闭整个应用.
+配置为关闭后，程序会跳过所有任务，不会调用B站任何接口。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 是否跳过执行任务 |
 | 值域   | [true,false] |
 | 默认值   | false |
-| 环境变量示范   |  |
-| 命令行示范   | 暂未开放命令行 |
+| 环境变量示范   | `set Ray_Security__IsSkipDailyTask=true` |
+| 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`ISSKIPDAILYTASK`  Value: `true`|
 
-若想要彻底关闭，即Actions不运行，点击Actions进入Workflows列表，点击名称为`bilibili-daily-task`的Workflow，在搜索框右侧有一个三个点的设置按钮，点击按钮后，在弹出的下拉列表里选中`Disable workflow`项即可。
+若想要彻底关闭，即Actions不运行，点击Actions进入Workflows列表，点击相应任务（如`bilibili-daily-task.yml`）的Workflow，在搜索框右侧有一个三个点的设置按钮，点击按钮后，在弹出的下拉列表里选中`Disable workflow`项即可。
 
 <a id="markdown-322-randomsleepmaxmin随机睡眠的最大时长" name="322-randomsleepmaxmin随机睡眠的最大时长"></a>
 #### 3.2.2. RandomSleepMaxMin（随机睡眠的最大时长）
@@ -203,7 +202,7 @@ Secret Value：`123abc`
 | 意义 | 两次调用B站Api之间的间隔秒数 |
 | 值域   | [0,+] |
 | 默认值   | 3 |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_Security__IntervalSecondsBetweenRequestApi=20` |
 | 命令行示范   | `-intervalSecondsBetweenRequestApi=10` |
 | GitHub Secrets 示范  | Name:`INTERVALSECONDSBETWEENREQUESTAPI`  Value: `10`|
 
@@ -217,7 +216,7 @@ Secret Value：`123abc`
 | 意义 | 两次调用B站Api之间的间隔秒数 |
 | 值域   | [GET,POST]，多个以英文逗号分隔 |
 | 默认值   | POST |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_Security__IntervalMethodTypes=GET,POST` |
 | 命令行示范   | `-intervalMethodTypes=GET,POST` |
 | GitHub Secrets 示范  | Name:`INTERVALMETHODTYPES`  Value: `GET,POST`|
 
@@ -230,7 +229,7 @@ Secret Value：`123abc`
 | 意义 | 请求B站接口时头部传递的User-Agent |
 | 值域   | 字符串，可以F12从自己的浏览器获取 |
 | 默认值   | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41 |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_Security__UserAgent=abc` |
 | 命令行示范   | 不开放命令行 |
 | GitHub Secrets 示范  | Name:`USERAGENT`  Value: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.41`|
 
@@ -249,7 +248,7 @@ Secret Value：`123abc`
 | 意义 | 每天投币的总目标数量 |
 | 值域   | [0,5]，为安全考虑，程序内部还会做验证，最大不能超过5 |
 | 默认值   | 5 |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__NumberOfCoins=abc` |
 | 命令行示范   | `-numberOfCoins=3` |
 | GitHub Secrets 示范  | Name:`NUMBEROFCOINS`  Value: `3`|
 
@@ -275,7 +274,7 @@ Secret Value：`123abc`
 
 程序会最多尝试随机获取10次，如果10均未获取到可投币的视频（比如都已经投过，不能重复投了），则会去你的**特别关注**列表中随机再获取，再然后会去**普通关注**列表中随机获取，最后会去排行榜中随机获取。
 
-**注意：该配置的默认值是作者的upId，算是一个小私心，希望大家可以体谅。如需换掉的话，直接更改即可。**
+**注意：该配置的默认值是作者的upId，如需换掉的话，直接更改即可。**
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
