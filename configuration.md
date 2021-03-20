@@ -49,8 +49,8 @@
         - [3.6.1. ConsoleLogLevel（日志输出等级）](#361-consoleloglevel日志输出等级)
         - [3.6.2. ConsoleLogTemplate（日志输出样式）](#362-consolelogtemplate日志输出样式)
     - [3.7. 代理](#37-代理)
-    - [3.8. 关于如何配置为Debug日志模式获取详细的日志信息](#38-关于如何配置为debug日志模式获取详细的日志信息)
-    - [3.9. 关于如何按环境切换配置](#39-关于如何按环境切换配置)
+- [4. 关于如何配置为Debug日志模式获取详细的日志信息](#4-关于如何配置为debug日志模式获取详细的日志信息)
+- [5. 关于如何按环境切换配置](#5-关于如何按环境切换配置)
 
 <!-- /TOC -->
 
@@ -563,14 +563,12 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
 
 
-<a id="markdown-38-关于如何配置为debug日志模式获取详细的日志信息" name="38-关于如何配置为debug日志模式获取详细的日志信息"></a>
-### 3.8. 关于如何配置为Debug日志模式获取详细的日志信息
-第一步，将ConsoleLogLevel配置为`Debug`
+<a id="markdown-4-关于如何配置为debug日志模式获取详细的日志信息" name="4-关于如何配置为debug日志模式获取详细的日志信息"></a>
+## 4. 关于如何配置为Debug日志模式获取详细的日志信息
+将ConsoleLogLevel配置为`Debug`
 
-第二步，将ConsoleLogTemplate配置为`[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}`
-
-<a id="markdown-39-关于如何按环境切换配置" name="39-关于如何按环境切换配置"></a>
-### 3.9. 关于如何按环境切换配置
+<a id="markdown-5-关于如何按环境切换配置" name="5-关于如何按环境切换配置"></a>
+## 5. 关于如何按环境切换配置
 增加指定不同环境来加载配置文件的功能(增加一个自己的避免更新配置被覆盖),仅针对`appsettings.json`中的配置。使用方法:
 
 1. 复制一个`appsettings.json`文件， 改为`appsettings.PRD.json`，中间这个`PRD`你也可以取其它名字，设置环境变量时匹配即可。
