@@ -38,13 +38,18 @@
         - [3.5.3. 钉钉机器人](#353-钉钉机器人)
             - [3.5.3.1. webHookUrl](#3531-webhookurl)
         - [3.5.4. Server酱](#354-server酱)
-            - [3.5.4.1. ScKey（从Server酱申请到的微信SCKEY）](#3541-sckey从server酱申请到的微信sckey)
+            - [3.5.4.1. TurboScKey（Server酱SCKEY）](#3541-turbosckeyserver酱sckey)
         - [3.5.5. 酷推](#355-酷推)
             - [3.5.5.1. sKey](#3551-skey)
         - [3.5.6. 推送到自定义Api](#356-推送到自定义api)
             - [3.5.6.1. api](#3561-api)
             - [3.5.6.2. placeholder](#3562-placeholder)
             - [3.5.6.3. bodyJsonTemplate](#3563-bodyjsontemplate)
+        - [3.5.7. PushPlus[推荐]](#357-pushplus推荐)
+            - [3.5.7.1. Token（PushPlus的Token）](#3571-tokenpushplus的token)
+            - [3.5.7.2. Topic（PushPlus的Topic）](#3572-topicpushplus的topic)
+            - [3.5.7.3. Channel（PushPlus的Channel）](#3573-channelpushplus的channel)
+            - [3.5.7.4. Webhook（PushPlus的Webhook）](#3574-webhookpushplus的webhook)
     - [3.6. 日志相关](#36-日志相关)
         - [3.6.1. ConsoleLogLevel（日志输出等级）](#361-consoleloglevel日志输出等级)
         - [3.6.2. ConsoleLogTemplate（日志输出样式）](#362-consolelogtemplate日志输出样式)
@@ -445,21 +450,22 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 
 <a id="markdown-354-server酱" name="354-server酱"></a>
 #### 3.5.4. Server酱
+官网： http://sc.ftqq.com/9.version 
 
 ![Server酱推送效果](/imgs/wechat-push.png)
 
-<a id="markdown-3541-sckey从server酱申请到的微信sckey" name="3541-sckey从server酱申请到的微信sckey"></a>
-##### 3.5.4.1. ScKey（从Server酱申请到的微信SCKEY）
-Server酱是一个免费的微信推送服务，我们可以去[http://sc.ftqq.com/3.version](http://sc.ftqq.com/3.version)网站下申请一个自己的SCKEY，将这个SCKEY配置到程序中，然后我们使用微信关注Server酱的公众号，之后就可以每天在公众号中收到推送的消息了。
+<a id="markdown-3541-turbosckeyserver酱sckey" name="3541-turbosckeyserver酱sckey"></a>
+##### 3.5.4.1. TurboScKey（Server酱SCKEY）
+获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
 | 意义 | 用于微信推送的SCKEY |
 | 值域   | 一串字符串 |
 | 默认值   | 空 |
-| 环境变量示范   |  |
-| 命令行示范   | `-pushScKey=abcdefg` |
-| GitHub Secrets 示范  | Name:`PUSHSCKEY`  Value: `abcdefg`|
+| 环境变量示范   | `set Ray_Serilog__WriteTo__6__Args__turboScKey=abcdefg` |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`PUSHSERVERTSCKEY`  Value: `abcdefg`|
 
 <a id="markdown-355-酷推" name="355-酷推"></a>
 #### 3.5.5. 酷推
@@ -513,6 +519,63 @@ https://cp.xuthus.cc/
 | 环境变量示范   |  |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
+
+<a id="markdown-357-pushplus推荐" name="357-pushplus推荐"></a>
+#### 3.5.7. PushPlus[推荐]
+官网： http://www.pushplus.plus/doc/ 
+
+<a id="markdown-3571-tokenpushplus的token" name="3571-tokenpushplus的token"></a>
+##### 3.5.7.1. Token（PushPlus的Token）
+获取方式请参考官网。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于推送的Token |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   | `set Ray_Serilog__WriteTo__9__Args__token=abcdefg` |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`PUSHPLUSTOKEN`  Value: `abcdefg`|
+
+<a id="markdown-3572-topicpushplus的topic" name="3572-topicpushplus的topic"></a>
+##### 3.5.7.2. Topic（PushPlus的Topic）
+获取方式请参考官网。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于设置群发 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   | `set Ray_Serilog__WriteTo__9__Args__topic=abcdefg` |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`PUSHPLUSTOPIC`  Value: `abcdefg`|
+
+<a id="markdown-3573-channelpushplus的channel" name="3573-channelpushplus的channel"></a>
+##### 3.5.7.3. Channel（PushPlus的Channel）
+获取方式请参考官网。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 用于设置推送通道 |
+| 值域   | 一串字符串，[wechat,webhook,cp,sms,mail] |
+| 默认值   | 空 |
+| 环境变量示范   | `set Ray_Serilog__WriteTo__9__Args__channel=abcdefg` |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`PUSHPLUSCHANNEL`  Value: `wechat`|
+
+<a id="markdown-3574-webhookpushplus的webhook" name="3574-webhookpushplus的webhook"></a>
+##### 3.5.7.4. Webhook（PushPlus的Webhook）
+获取方式请参考官网。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | webhook编码(不是地址)，在官网平台设定，仅在channel使用webhook渠道和CP渠道时需要填写 |
+| 值域   | 一串字符串 |
+| 默认值   | 空 |
+| 环境变量示范   | `set Ray_Serilog__WriteTo__9__Args__webhook=abcdefg` |
+| 命令行示范   |  |
+| GitHub Secrets 示范  | Name:`PUSHPLUSWEBHOOK`  Value: `abc`|
+
 
 <a id="markdown-36-日志相关" name="36-日志相关"></a>
 ### 3.6. 日志相关
