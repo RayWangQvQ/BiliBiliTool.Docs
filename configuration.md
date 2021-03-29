@@ -260,7 +260,7 @@ Secret Value：`123abc`
 | 意义 | 投币时是否同时点赞 |
 | 值域   | [true,false] |
 | 默认值   | false |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__SelectLike=true` |
 | 命令行示范   | `-selectLike=true` |
 | GitHub Secrets 示范  | Name:`SELECTLIKE`  Value: `true`|
 
@@ -281,7 +281,7 @@ Secret Value：`123abc`
 | 意义 | 优先选择支持的up主Id集合 |
 | 值域   | up主ID，多个用英文逗号分隔，默认是作者本人的UpId，如需删除可以配置为空格字符串或“-1”，也可以配置为其他人的UpId |
 | 默认值   | 作者的upId |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__SupportUpIds=220893216,17819768,43619319,14583962,44473221,123938419,34858100` |
 | 命令行示范   | `-supportUpIds=220893216,17819768,43619319,14583962,44473221,123938419,34858100` |
 | GitHub Secrets 示范  | Name:`SUPPORTUPIDS`  Value: `220893216,17819768,43619319,14583962,44473221,123938419,34858100`|
 
@@ -298,7 +298,7 @@ Secret Value：`123abc`
 | 意义 | 每月几号自动充电 |
 | 值域   | [-1,31]，-1表示不指定，默认月底最后一天；0表示不充电 |
 | 默认值   | -1 |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__DayOfAutoCharge=25` |
 | 命令行示范   | `-dayOfAutoCharge=25` |
 | GitHub Secrets 示范  | Name:`DAYOFAUTOCHARGE`  Value: `25`|
 
@@ -314,7 +314,7 @@ Secret Value：`123abc`
 | 意义 | 充电对象的Id |
 | 值域   | up的Id字符串，默认是作者本人的UpId；-1表示不指定，为自己充电；其他Id则会尝试为配置的UpId充电 |
 | 默认值   | 作者的upId |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__AutoChargeUpId=220893216` |
 | 命令行示范   | `-autoChargeUpId=220893216` |
 | GitHub Secrets 示范  | Name:`AUTOCHARGEUPID`  Value: `220893216`|
 
@@ -326,7 +326,7 @@ Secret Value：`123abc`
 | 意义 | 每月几号自动领取会员权益 |
 | 值域   | [-1,31]，-1表示不指定，默认每月1号；0表示不领取 |
 | 默认值   | 1 |
-| 环境变量示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__DayOfReceiveVipPrivilege=2` |
 | 命令行示范   | `-dayOfReceiveVipPrivilege=2` |
 | GitHub Secrets 示范  | Name:`DAYOFRECEIVEVIPPRIVILEGE`  Value: `2`|
 
@@ -338,8 +338,8 @@ Secret Value：`123abc`
 | 意义 | 每月几号进行直播中心银瓜子兑换硬币 |
 | 值域   | [-1,31]，-1表示不指定，默认每月最后一天；-2表示每天；0表示不进行兑换 |
 | 默认值   | -1 |
-| 环境变量示范   |  |
-| 命令行示范   |  |
+| 环境变量示范   | `set Ray_DailyTaskConfig__DayOfExchangeSilver2Coin=1` |
+| 命令行示范   | `-dayOfExchangeSilver2Coin=1` |
 | GitHub Secrets 示范  | Name:`DayOfExchangeSilver2Coin`  Value: `1`|
 
 <a id="markdown-34-天选时刻抽奖相关" name="34-天选时刻抽奖相关"></a>
@@ -353,8 +353,8 @@ Secret Value：`123abc`
 | 意义 | 根据关键字排除奖品，当奖品名称中包含这些关键字时，不参与抽奖 |
 | 值域   | 一串字符串，多个关键字使用`\|`符号隔开 |
 | 默认值   | `舰\|船\|航海\|代金券\|自拍\|照\|写真\|图` |
-| 环境变量示范   |  |
-| 命令行示范   |  |
+| 环境变量示范   | `set Ray_LiveLotteryTaskConfig__ExcludeAwardNames=舰\|船\|航海\|代金券` |
+| 命令行示范   | `-excludeAwardNames=舰\|船\|航海\|代金券` |
 | GitHub Secrets 示范  | Name:`EXCLUDEAWARDNAMES`  Value: `舰\|船\|航海\|代金券`|
 
 <a id="markdown-342-includeawardnames根据关键字指定奖品" name="342-includeawardnames根据关键字指定奖品"></a>
@@ -365,8 +365,8 @@ Secret Value：`123abc`
 | 意义 | 根据关键字指定奖品，只有当奖品名称中包含这些关键字时，才参与抽奖，否则不参与 |
 | 值域   | 一串字符串，多个关键字使用`\|`符号隔开 |
 | 默认值   | 空 |
-| 环境变量示范   |  |
-| 命令行示范   |  |
+| 环境变量示范   | `set Ray_LiveLotteryTaskConfig__IncludeAwardNames=红包\|现金\|元\|块\|支付宝` |
+| 命令行示范   | `-includeAwardNames=红包\|现金\|元\|块\|支付宝` |
 | GitHub Secrets 示范  | Name:`INCLUDEAWARDNAMES`  Value: `红包\|现金\|元\|块\|支付宝`|
 
 
