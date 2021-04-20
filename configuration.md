@@ -31,8 +31,8 @@
         - [3.4.2. IncludeAwardNames（根据关键字指定奖品）](#342-includeawardnames根据关键字指定奖品)
         - [3.4.3. AutoGroupFollowings（天选抽奖后是否自动分组关注的主播）](#343-autogroupfollowings天选抽奖后是否自动分组关注的主播)
     - [3.5. 批量取关相关](#35-批量取关相关)
-        - [3.5.1. GroupName（想要自动给取关的分组名称）](#351-groupname想要自动给取关的分组名称)
-        - [3.5.2. Count（自动取关的人数）](#352-count自动取关的人数)
+        - [3.5.1. GroupName（想要批量取关的分组名称）](#351-groupname想要批量取关的分组名称)
+        - [3.5.2. Count（批量取关的人数）](#352-count批量取关的人数)
     - [3.6. 推送相关](#36-推送相关)
         - [3.6.1. Telegram机器人](#361-telegram机器人)
             - [3.6.1.1. botToken](#3611-bottoken)
@@ -74,7 +74,7 @@
 
 如果运行环境为生产环境，则`appsettings.Production.json`优先级高于`appsettings.json`，即`appsettings.Production.json`里的配置会覆盖默认配置（同样不是全部覆盖，`appsettings.Production.json`里加了几个就覆盖几个）。
 
-对于不是开发人员的大部分人来说，只需要关注`appsettings.Production.json`即可，因为非调试状态下运行的默认环境就是生产环境。此时如需自定义配置，推荐在`appsettings.Production.json`文件中进行修改（并且以后都只修改`appsettings.Production.json`文件，`appsettings.json`只作为默认默认模板而存在）
+对于不是开发人员的大部分人来说，只需要关注`appsettings.Production.json`即可，因为非调试状态下运行的默认环境就是生产环境。此时如需自定义配置，推荐在`appsettings.Production.json`文件中进行修改（并且以后都只修改`appsettings.Production.json`文件，`appsettings.json`只作为默认模板而存在）
 
 <a id="markdown-12-方式二命令启动时通过命令行参数配置" name="12-方式二命令启动时通过命令行参数配置"></a>
 ### 1.2. 方式二：命令启动时通过命令行参数配置
@@ -101,7 +101,7 @@ Ray.BiliBiliTool.Console.exe -cookieStr=abc -numberOfCoins=5
 使用自包含包（linux.zip），命令样例：
 
 ```
-Ray.BiliBiliTool.Console.dll -cookieStr=abc -numberOfCoins=5
+Ray.BiliBiliTool.Console -cookieStr=abc -numberOfCoins=5
 ```
 
 如映射文件所展示，支持使用命令行配置的配置项并不多，也不建议大量地使用该种方式进行配置。使用包运行地朋友，除了改配置文件和命令行参数配置外，还可以使用环境变量进行配置，这也是推荐的做法，如下。
@@ -112,7 +112,9 @@ Ray.BiliBiliTool.Console.dll -cookieStr=abc -numberOfCoins=5
 所有的配置项均可以通过添加环境变量来进行配置，以Windows下依赖net5的系统为例：
 
 ```
-set Ray_BiliBiliCookie__CookieStr=abc
+set Ray_RunTasks=Daily
+set Ray_BiliBiliCookies__1=abc
+set Ray_BiliBiliCookies__2=efg
 set Ray_DailyTaskConfig__NumberOfCoins=3
 dotnet Ray.BiliBiliTool.Console.dll
 ```
@@ -130,7 +132,7 @@ Secret Name：`PUSHSCKEY`
 
 Secret Value：`123abc`
 
-这些 Secrets 会通过 workflow 里的 [bilibili-daily-task.yml脚本](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/.github/workflows/bilibili-daily-task.yml) 映射为环境变量，在应用启动时作为环境变量配置源传入程序当中，所以使用 GitHub Secrets 配置的本质是使用环境变量配置。
+这些 Secrets 会通过 workflow 里的yml脚本映射为环境变量，在应用启动时作为环境变量配置源传入程序当中，所以使用 GitHub Secrets 配置的本质是使用环境变量配置。
 
 ![添加GitHub Secrets](imgs/git-secrets.png)
 
@@ -141,7 +143,7 @@ Secret Value：`123abc`
 
 即，如果既在配置文件中写入了配置值，又在命令行启动时使用命令行参数指定了配置值，则最后会使用命令行的。
 
-**对于使用 Github Action 线上运行的朋友，建议只使用 Secrets 进行配置。**因为 Fork 项目后，不会拷贝源仓库中的 Secrets，可自由的在自己的仓库中进行私人配置。当有新版本发布时，同步仓库会很顺滑，不会影响到已配置的值。
+**对于使用 Github Action 线上运行的朋友，建议只使用 Secrets 进行配置。** 因为 Fork 项目后，不会拷贝源仓库中的 Secrets，可自由的在自己的仓库中进行私人配置。当有新版本发布时，同步仓库会很顺滑，不会影响到已配置的值。
 
 当然， Fork 之后自己改了 appsettings.json 文件再提交，也是可以实现配置的。但是一则你的配置值将被暴露出来（别人可通过访问你的仓库里的配置查看到值），二是以后如果需要 PR 源仓库的更新到自己仓库，则要注意保留自己的修改不要被同步操作覆盖。
 
@@ -157,7 +159,7 @@ Secret Value：`123abc`
 | 意义 | Cookie字符串1 |
 | 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr1=abc=123;def=456;` |
+| 环境变量示范  | `set Ray_BiliBiliCookies__1=abc=123;def=456;` |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`COOKIESTR`  Value: `abc=123;def=456;`|
 
@@ -166,7 +168,7 @@ Secret Value：`123abc`
 | 意义 | Cookie字符串2 |
 | 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr2=abc=123;def=456;` |
+| 环境变量示范  | `set Ray_BiliBiliCookies__2=abc=123;def=456;` |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`COOKIESTR2`  Value: `abc=123;def=456;`|
 
@@ -175,7 +177,7 @@ Secret Value：`123abc`
 | 意义 | Cookie字符串2 |
 | 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr3=abc=123;def=456;` |
+| 环境变量示范  | `set Ray_BiliBiliCookies__3=abc=123;def=456;` |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`COOKIESTR3`  Value: `abc=123;def=456;`|
 
@@ -409,20 +411,20 @@ Secret Value：`123abc`
 <a id="markdown-35-批量取关相关" name="35-批量取关相关"></a>
 ### 3.5. 批量取关相关
 
-<a id="markdown-351-groupname想要自动给取关的分组名称" name="351-groupname想要自动给取关的分组名称"></a>
-#### 3.5.1. GroupName（想要自动给取关的分组名称）
+<a id="markdown-351-groupname想要批量取关的分组名称" name="351-groupname想要批量取关的分组名称"></a>
+#### 3.5.1. GroupName（想要批量取关的分组名称）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
-| 意义 | 想要自动给取关的分组名称 |
+| 意义 | 想要批量取关的分组名称 |
 | 值域   | 字符串 |
 | 默认值   | 天选时刻 |
 | 环境变量示范   | `set Ray_UnfollowBatchedTaskConfig__GroupName=默认分组` |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | 无，在unfollow-batched-task.yml工作流中通过input输入 |
 
-<a id="markdown-352-count自动取关的人数" name="352-count自动取关的人数"></a>
-#### 3.5.2. Count（自动取关的人数）
+<a id="markdown-352-count批量取关的人数" name="352-count批量取关的人数"></a>
+#### 3.5.2. Count（批量取关的人数）
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
