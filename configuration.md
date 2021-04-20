@@ -18,6 +18,7 @@
         - [3.2.3. IntervalSecondsBetweenRequestApi（两次调用B站Api之间的间隔秒数）](#323-intervalsecondsbetweenrequestapi两次调用b站api之间的间隔秒数)
         - [3.2.4. IntervalMethodTypes（间隔秒数所针对的HttpMethod）](#324-intervalmethodtypes间隔秒数所针对的httpmethod)
         - [3.2.5. UserAgent（请求B站接口时头部传递的User-Agent）](#325-useragent请求b站接口时头部传递的user-agent)
+        - [3.2.6. WebProxy（代理）](#326-webproxy代理)
     - [3.3. 每日任务相关](#33-每日任务相关)
         - [3.3.1. NumberOfCoins（每日投币数量）](#331-numberofcoins每日投币数量)
         - [3.3.2. SelectLike（投币时是否同时点赞）](#332-selectlike投币时是否同时点赞)
@@ -57,7 +58,6 @@
     - [3.7. 日志相关](#37-日志相关)
         - [3.7.1. ConsoleLogLevel（日志输出等级）](#371-consoleloglevel日志输出等级)
         - [3.7.2. ConsoleLogTemplate（日志输出样式）](#372-consolelogtemplate日志输出样式)
-    - [3.8. 代理](#38-代理)
 
 <!-- /TOC -->
 
@@ -263,6 +263,20 @@ Secret Value：`123abc`
 获取浏览器中自己的UA的方法见下图：
 
 ![获取User-Agent](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/imgs/get-user-agent.png)
+
+
+<a id="markdown-326-webproxy代理" name="326-webproxy代理"></a>
+#### 3.2.6. WebProxy（代理）
+支持需要账户密码的代理。
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 调用api时的全局代理 |
+| 值域   | 字符串，形如：user:password@host:port |
+| 默认值   | 无 |
+| 环境变量示范   | `set Ray_Security__WebProxy=127.0.0.1:10240` |
+| 命令行示范   | 不开放命令行 |
+| GitHub Secrets 示范  | Name:`WEBPROXY`  Value: `user:password@host:port`|
 
 <a id="markdown-33-每日任务相关" name="33-每日任务相关"></a>
 ### 3.3. 每日任务相关
@@ -679,8 +693,3 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 命令行示范   | 太长了，不考虑开放到命令行 |
 | GitHub Secrets 示范  | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
-<a id="markdown-38-代理" name="38-代理"></a>
-### 3.8. 代理
-增加代理支持，如果需要请看:
-1. 【github action】 : 在secrets中增加`PROXY`,值为代理地址+端口，如`127.0.0.1:10240`
-2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
