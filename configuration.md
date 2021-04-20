@@ -29,33 +29,35 @@
     - [3.4. 天选时刻抽奖相关](#34-天选时刻抽奖相关)
         - [3.4.1. ExcludeAwardNames（根据关键字排除奖品）](#341-excludeawardnames根据关键字排除奖品)
         - [3.4.2. IncludeAwardNames（根据关键字指定奖品）](#342-includeawardnames根据关键字指定奖品)
-    - [3.5. 推送相关](#35-推送相关)
-        - [3.5.1. Telegram机器人](#351-telegram机器人)
-            - [3.5.1.1. botToken](#3511-bottoken)
-            - [3.5.1.2. chatId](#3512-chatid)
-        - [3.5.2. 企业微信机器人](#352-企业微信机器人)
-            - [3.5.2.1. webHookUrl](#3521-webhookurl)
-        - [3.5.3. 钉钉机器人](#353-钉钉机器人)
-            - [3.5.3.1. webHookUrl](#3531-webhookurl)
-        - [3.5.4. Server酱](#354-server酱)
-            - [3.5.4.1. TurboScKey（Server酱SCKEY）](#3541-turbosckeyserver酱sckey)
-        - [3.5.5. 酷推](#355-酷推)
-            - [3.5.5.1. sKey](#3551-skey)
-        - [3.5.6. 推送到自定义Api](#356-推送到自定义api)
-            - [3.5.6.1. api](#3561-api)
-            - [3.5.6.2. placeholder](#3562-placeholder)
-            - [3.5.6.3. bodyJsonTemplate](#3563-bodyjsontemplate)
-        - [3.5.7. PushPlus[推荐]](#357-pushplus推荐)
-            - [3.5.7.1. Token（PushPlus的Token）](#3571-tokenpushplus的token)
-            - [3.5.7.2. Topic（PushPlus的Topic）](#3572-topicpushplus的topic)
-            - [3.5.7.3. Channel（PushPlus的Channel）](#3573-channelpushplus的channel)
-            - [3.5.7.4. Webhook（PushPlus的Webhook）](#3574-webhookpushplus的webhook)
-    - [3.6. 日志相关](#36-日志相关)
-        - [3.6.1. ConsoleLogLevel（日志输出等级）](#361-consoleloglevel日志输出等级)
-        - [3.6.2. ConsoleLogTemplate（日志输出样式）](#362-consolelogtemplate日志输出样式)
-    - [3.7. 代理](#37-代理)
-- [4. 关于如何配置为Debug日志模式获取详细的日志信息](#4-关于如何配置为debug日志模式获取详细的日志信息)
-- [5. 关于如何按环境切换配置](#5-关于如何按环境切换配置)
+        - [3.4.3. AutoGroupFollowings（天选抽奖后是否自动分组关注的主播）](#343-autogroupfollowings天选抽奖后是否自动分组关注的主播)
+    - [3.5. 批量取关相关](#35-批量取关相关)
+        - [3.5.1. GroupName（想要自动给取关的分组名称）](#351-groupname想要自动给取关的分组名称)
+        - [3.5.2. Count（自动取关的人数）](#352-count自动取关的人数)
+    - [3.6. 推送相关](#36-推送相关)
+        - [3.6.1. Telegram机器人](#361-telegram机器人)
+            - [3.6.1.1. botToken](#3611-bottoken)
+            - [3.6.1.2. chatId](#3612-chatid)
+        - [3.6.2. 企业微信机器人](#362-企业微信机器人)
+            - [3.6.2.1. webHookUrl](#3621-webhookurl)
+        - [3.6.3. 钉钉机器人](#363-钉钉机器人)
+            - [3.6.3.1. webHookUrl](#3631-webhookurl)
+        - [3.6.4. Server酱](#364-server酱)
+            - [3.6.4.1. TurboScKey（Server酱SCKEY）](#3641-turbosckeyserver酱sckey)
+        - [3.6.5. 酷推](#365-酷推)
+            - [3.6.5.1. sKey](#3651-skey)
+        - [3.6.6. 推送到自定义Api](#366-推送到自定义api)
+            - [3.6.6.1. api](#3661-api)
+            - [3.6.6.2. placeholder](#3662-placeholder)
+            - [3.6.6.3. bodyJsonTemplate](#3663-bodyjsontemplate)
+        - [3.6.7. PushPlus[推荐]](#367-pushplus推荐)
+            - [3.6.7.1. Token（PushPlus的Token）](#3671-tokenpushplus的token)
+            - [3.6.7.2. Topic（PushPlus的Topic）](#3672-topicpushplus的topic)
+            - [3.6.7.3. Channel（PushPlus的Channel）](#3673-channelpushplus的channel)
+            - [3.6.7.4. Webhook（PushPlus的Webhook）](#3674-webhookpushplus的webhook)
+    - [3.7. 日志相关](#37-日志相关)
+        - [3.7.1. ConsoleLogLevel（日志输出等级）](#371-consoleloglevel日志输出等级)
+        - [3.7.2. ConsoleLogTemplate（日志输出样式）](#372-consolelogtemplate日志输出样式)
+    - [3.8. 代理](#38-代理)
 
 <!-- /TOC -->
 
@@ -152,12 +154,30 @@ Secret Value：`123abc`
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
-| 意义 | Cookie字符串 |
+| 意义 | Cookie字符串1 |
 | 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
 | 默认值   | 空 |
-| 环境变量示范  | `set Ray_BiliBiliCookie__CookieStr=abc=123;def=456;` |
-| 命令行示范   | `-cookieStr=abc=123;def=456;` |
+| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr1=abc=123;def=456;` |
+| 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`COOKIESTR`  Value: `abc=123;def=456;`|
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | Cookie字符串2 |
+| 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
+| 默认值   | 空 |
+| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr2=abc=123;def=456;` |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`COOKIESTR2`  Value: `abc=123;def=456;`|
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | Cookie字符串2 |
+| 值域   | 字符串，英文分号分隔，来自浏览器抓取 |
+| 默认值   | 空 |
+| 环境变量示范  | `set Ray_BiliBiliCookies__CookieStr3=abc=123;def=456;` |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`COOKIESTR3`  Value: `abc=123;def=456;`|
 
 <a id="markdown-32-安全相关的配置" name="32-安全相关的配置"></a>
 ### 3.2. 安全相关的配置
@@ -374,18 +394,56 @@ Secret Value：`123abc`
 | 命令行示范   | `-includeAwardNames=红包\|现金\|元\|块\|支付宝` |
 | GitHub Secrets 示范  | Name:`INCLUDEAWARDNAMES`  Value: `红包\|现金\|元\|块\|支付宝`|
 
+<a id="markdown-343-autogroupfollowings天选抽奖后是否自动分组关注的主播" name="343-autogroupfollowings天选抽奖后是否自动分组关注的主播"></a>
+#### 3.4.3. AutoGroupFollowings（天选抽奖后是否自动分组关注的主播）
 
-<a id="markdown-35-推送相关" name="35-推送相关"></a>
-### 3.5. 推送相关
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 天选抽奖后是否自动分组关注的主播 |
+| 值域   | [true,false] |
+| 默认值   | true |
+| 环境变量示范   | `set Ray_LiveLotteryTaskConfig__AutoGroupFollowings=true` |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | Name:`AUTOGROUPFOLLOWINGS`  Value: `true`|
+
+<a id="markdown-35-批量取关相关" name="35-批量取关相关"></a>
+### 3.5. 批量取关相关
+
+<a id="markdown-351-groupname想要自动给取关的分组名称" name="351-groupname想要自动给取关的分组名称"></a>
+#### 3.5.1. GroupName（想要自动给取关的分组名称）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 想要自动给取关的分组名称 |
+| 值域   | 字符串 |
+| 默认值   | 天选时刻 |
+| 环境变量示范   | `set Ray_UnfollowBatchedTaskConfig__GroupName=默认分组` |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | 无，在unfollow-batched-task.yml工作流中通过input输入 |
+
+<a id="markdown-352-count自动取关的人数" name="352-count自动取关的人数"></a>
+#### 3.5.2. Count（自动取关的人数）
+
+|   TITLE   | CONTENT   |
+| ---------- | -------------- |
+| 意义 | 分组下要取关的人数，从后往前取关 |
+| 值域   | 数字，[-1,+]，-1表示全部 |
+| 默认值   | 2 |
+| 环境变量示范   | `set Ray_UnfollowBatchedTaskConfig__Count=-1` |
+| 命令行示范   | 无 |
+| GitHub Secrets 示范  | 无，在unfollow-batched-task.yml工作流中通过input输入 |
+
+<a id="markdown-36-推送相关" name="36-推送相关"></a>
+### 3.6. 推送相关
 v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念，将推送仅看作不同地日志输出端，与Console、File没有本质区别。
 
 配置多个，多个端均会收到日志消息。推荐Telegram、企业微信、Server酱。
 
-<a id="markdown-351-telegram机器人" name="351-telegram机器人"></a>
-#### 3.5.1. Telegram机器人
+<a id="markdown-361-telegram机器人" name="361-telegram机器人"></a>
+#### 3.6.1. Telegram机器人
 ![TG推送效果](/imgs/push-tg.png)
-<a id="markdown-3511-bottoken" name="3511-bottoken"></a>
-##### 3.5.1.1. botToken
+<a id="markdown-3611-bottoken" name="3611-bottoken"></a>
+##### 3.6.1.1. botToken
 点击 https://core.telegram.org/api#bot-api 查看如何创建机器人并获取到机器人的botToken。
 
 |   TITLE   | CONTENT   |
@@ -397,8 +455,8 @@ v1.0.x仅支持推送到Server酱，v1.1.x之后重新定义了推送地概念�
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHTGTOKEN`  Value: `123456:abcdefg`|
 
-<a id="markdown-3512-chatid" name="3512-chatid"></a>
-##### 3.5.1.2. chatId
+<a id="markdown-3612-chatid" name="3612-chatid"></a>
+##### 3.6.1.2. chatId
 点击 https://api.telegram.org/bot{TOKEN}/getUpdates 获取到与机器人的chatId（需要用上面获取到的Token替换进链接里的{TOKEN}后访问）
 
 P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
@@ -412,14 +470,14 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHTGCHATID`  Value: `654321`|
 
-<a id="markdown-352-企业微信机器人" name="352-企业微信机器人"></a>
-#### 3.5.2. 企业微信机器人
+<a id="markdown-362-企业微信机器人" name="362-企业微信机器人"></a>
+#### 3.6.2. 企业微信机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
 
 ![企业微信推送效果](/imgs/push-workweixin.png)
 
-<a id="markdown-3521-webhookurl" name="3521-webhookurl"></a>
-##### 3.5.2.1. webHookUrl
+<a id="markdown-3621-webhookurl" name="3621-webhookurl"></a>
+##### 3.6.2.1. webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -430,14 +488,14 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHWEIXINURL`  Value: `abcdefg`|
 
-<a id="markdown-353-钉钉机器人" name="353-钉钉机器人"></a>
-#### 3.5.3. 钉钉机器人
+<a id="markdown-363-钉钉机器人" name="363-钉钉机器人"></a>
+#### 3.6.3. 钉钉机器人
 在群内添加机器人，获取到机器人的WebHook地址，添加到配置中。
 
 ![钉钉推送效果](/imgs/push-ding.png)
 
-<a id="markdown-3531-webhookurl" name="3531-webhookurl"></a>
-##### 3.5.3.1. webHookUrl
+<a id="markdown-3631-webhookurl" name="3631-webhookurl"></a>
+##### 3.6.3.1. webHookUrl
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -448,14 +506,14 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHDINGURL`  Value: `abcdefg`|
 
-<a id="markdown-354-server酱" name="354-server酱"></a>
-#### 3.5.4. Server酱
+<a id="markdown-364-server酱" name="364-server酱"></a>
+#### 3.6.4. Server酱
 官网： http://sc.ftqq.com/9.version 
 
 ![Server酱推送效果](/imgs/wechat-push.png)
 
-<a id="markdown-3541-turbosckeyserver酱sckey" name="3541-turbosckeyserver酱sckey"></a>
-##### 3.5.4.1. TurboScKey（Server酱SCKEY）
+<a id="markdown-3641-turbosckeyserver酱sckey" name="3641-turbosckeyserver酱sckey"></a>
+##### 3.6.4.1. TurboScKey（Server酱SCKEY）
 获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
@@ -467,11 +525,11 @@ P.S.访问链接需要能访问“外网”，有vpn的挂vpn。
 | 命令行示范   |  |
 | GitHub Secrets 示范  | Name:`PUSHSERVERTSCKEY`  Value: `abcdefg`|
 
-<a id="markdown-355-酷推" name="355-酷推"></a>
-#### 3.5.5. 酷推
+<a id="markdown-365-酷推" name="365-酷推"></a>
+#### 3.6.5. 酷推
 https://cp.xuthus.cc/
-<a id="markdown-3551-skey" name="3551-skey"></a>
-##### 3.5.5.1. sKey
+<a id="markdown-3651-skey" name="3651-skey"></a>
+##### 3.6.5.1. sKey
 该平台可能还在完善当中，对接时我发现其接口定义不规范，且机器人容易被封，所以不推荐使用，且不接受提酷推推送相关bug。
 
 |   TITLE   | CONTENT   |
@@ -483,11 +541,11 @@ https://cp.xuthus.cc/
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHCOOLSKEY`  Value: `abcdefg`|
 
-<a id="markdown-356-推送到自定义api" name="356-推送到自定义api"></a>
-#### 3.5.6. 推送到自定义Api
+<a id="markdown-366-推送到自定义api" name="366-推送到自定义api"></a>
+#### 3.6.6. 推送到自定义Api
 这是我简单封装了一个通用的推送接口，可以推送到任意的api地址，如果有自己的机器人或自己的用于接受日志的api，可以根据需要自定义配置。
-<a id="markdown-3561-api" name="3561-api"></a>
-##### 3.5.6.1. api
+<a id="markdown-3661-api" name="3661-api"></a>
+##### 3.6.6.1. api
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -497,8 +555,8 @@ https://cp.xuthus.cc/
 | 环境变量示范   |  |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERAPI`  Value: `abcdefg`|
-<a id="markdown-3562-placeholder" name="3562-placeholder"></a>
-##### 3.5.6.2. placeholder
+<a id="markdown-3662-placeholder" name="3662-placeholder"></a>
+##### 3.6.6.2. placeholder
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -508,8 +566,8 @@ https://cp.xuthus.cc/
 | 环境变量示范   |  |
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERPLACEHOLDER`  Value: `#msg#`|
-<a id="markdown-3563-bodyjsontemplate" name="3563-bodyjsontemplate"></a>
-##### 3.5.6.3. bodyJsonTemplate
+<a id="markdown-3663-bodyjsontemplate" name="3663-bodyjsontemplate"></a>
+##### 3.6.6.3. bodyJsonTemplate
 
 |   TITLE   | CONTENT   |
 | ---------- | -------------- |
@@ -520,12 +578,12 @@ https://cp.xuthus.cc/
 | 命令行示范   | 无 |
 | GitHub Secrets 示范  | Name:`PUSHOTHERBODYJSONTEMPLATE`  Value: `{\"content\":#msg#}`|
 
-<a id="markdown-357-pushplus推荐" name="357-pushplus推荐"></a>
-#### 3.5.7. PushPlus[推荐]
+<a id="markdown-367-pushplus推荐" name="367-pushplus推荐"></a>
+#### 3.6.7. PushPlus[推荐]
 官网： http://www.pushplus.plus/doc/ 
 
-<a id="markdown-3571-tokenpushplus的token" name="3571-tokenpushplus的token"></a>
-##### 3.5.7.1. Token（PushPlus的Token）
+<a id="markdown-3671-tokenpushplus的token" name="3671-tokenpushplus的token"></a>
+##### 3.6.7.1. Token（PushPlus的Token）
 获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
@@ -537,8 +595,8 @@ https://cp.xuthus.cc/
 | 命令行示范   |  |
 | GitHub Secrets 示范  | Name:`PUSHPLUSTOKEN`  Value: `abcdefg`|
 
-<a id="markdown-3572-topicpushplus的topic" name="3572-topicpushplus的topic"></a>
-##### 3.5.7.2. Topic（PushPlus的Topic）
+<a id="markdown-3672-topicpushplus的topic" name="3672-topicpushplus的topic"></a>
+##### 3.6.7.2. Topic（PushPlus的Topic）
 获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
@@ -550,8 +608,8 @@ https://cp.xuthus.cc/
 | 命令行示范   |  |
 | GitHub Secrets 示范  | Name:`PUSHPLUSTOPIC`  Value: `abcdefg`|
 
-<a id="markdown-3573-channelpushplus的channel" name="3573-channelpushplus的channel"></a>
-##### 3.5.7.3. Channel（PushPlus的Channel）
+<a id="markdown-3673-channelpushplus的channel" name="3673-channelpushplus的channel"></a>
+##### 3.6.7.3. Channel（PushPlus的Channel）
 获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
@@ -563,8 +621,8 @@ https://cp.xuthus.cc/
 | 命令行示范   |  |
 | GitHub Secrets 示范  | Name:`PUSHPLUSCHANNEL`  Value: `wechat`|
 
-<a id="markdown-3574-webhookpushplus的webhook" name="3574-webhookpushplus的webhook"></a>
-##### 3.5.7.4. Webhook（PushPlus的Webhook）
+<a id="markdown-3674-webhookpushplus的webhook" name="3674-webhookpushplus的webhook"></a>
+##### 3.6.7.4. Webhook（PushPlus的Webhook）
 获取方式请参考官网。
 
 |   TITLE   | CONTENT   |
@@ -577,11 +635,11 @@ https://cp.xuthus.cc/
 | GitHub Secrets 示范  | Name:`PUSHPLUSWEBHOOK`  Value: `abc`|
 
 
-<a id="markdown-36-日志相关" name="36-日志相关"></a>
-### 3.6. 日志相关
+<a id="markdown-37-日志相关" name="37-日志相关"></a>
+### 3.7. 日志相关
 
-<a id="markdown-361-consoleloglevel日志输出等级" name="361-consoleloglevel日志输出等级"></a>
-#### 3.6.1. ConsoleLogLevel（日志输出等级）
+<a id="markdown-371-consoleloglevel日志输出等级" name="371-consoleloglevel日志输出等级"></a>
+#### 3.7.1. ConsoleLogLevel（日志输出等级）
 这里的日志等级指的是 Console 的等级，即 GitHub Actions 里和微信推送里看到的日志。
 
 为了美观， BiliBiliTool 默认只输出最低等级为 Information 的日志，保证只展示最精简的信息。
@@ -601,8 +659,8 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以其值域与 Serilog 的�
 | 命令行示范   | 暂未开放到命令行 |
 | GitHub Secrets 示范  | Name:`CONSOLELOGLEVEL`  Value: `Debug`|
 
-<a id="markdown-362-consolelogtemplate日志输出样式" name="362-consolelogtemplate日志输出样式"></a>
-#### 3.6.2. ConsoleLogTemplate（日志输出样式）
+<a id="markdown-372-consolelogtemplate日志输出样式" name="372-consolelogtemplate日志输出样式"></a>
+#### 3.7.2. ConsoleLogTemplate（日志输出样式）
 这里的日志样式指的是 Console 的等级，即 GitHub Actions 里和微信推送里看到的日志。
 
 通过更改模板样式，可以指定日志输出的样式，比如不输出时间和等级，做到最精简的样式。
@@ -619,24 +677,8 @@ BiliBiliTool 使用 Serilog 作为日志组件，所以可以参考 Serilog 的�
 | 命令行示范   | 太长了，不考虑开放到命令行 |
 | GitHub Secrets 示范  | Name:`CONSOLELOGTEMPLATE`  Value: `{Message:lj}{NewLine}{Exception}`|
 
-<a id="markdown-37-代理" name="37-代理"></a>
-### 3.7. 代理
+<a id="markdown-38-代理" name="38-代理"></a>
+### 3.8. 代理
 增加代理支持，如果需要请看:
 1. 【github action】 : 在secrets中增加`PROXY`,值为代理地址+端口，如`127.0.0.1:10240`
 2. 【本地运行或docker】: 设置环境变量`RAY_WebProxy`=`代理地址，格式如上`
-
-
-<a id="markdown-4-关于如何配置为debug日志模式获取详细的日志信息" name="4-关于如何配置为debug日志模式获取详细的日志信息"></a>
-## 4. 关于如何配置为Debug日志模式获取详细的日志信息
-将ConsoleLogLevel配置为`Debug`
-
-<a id="markdown-5-关于如何按环境切换配置" name="5-关于如何按环境切换配置"></a>
-## 5. 关于如何按环境切换配置
-增加指定不同环境来加载配置文件的功能(增加一个自己的避免更新配置被覆盖),仅针对`appsettings.json`中的配置。使用方法:
-
-1. 复制一个`appsettings.json`文件， 改为`appsettings.PRD.json`，中间这个`PRD`你也可以取其它名字，设置环境变量时匹配即可。
-2. 删除所有配置，然后把你想要修改的设置项复制过来，修改为你想要的值。
-3. 设置环境变量
-
-【github action】 : 在secrets中增加`ENV`,值为刚才取的名字
-【本地运行或docker】: 设置环境变量`ASPNETCORE_ENVIRONMENT`=`刚才取的名字`
