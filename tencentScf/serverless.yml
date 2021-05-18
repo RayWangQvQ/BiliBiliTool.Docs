@@ -1,0 +1,43 @@
+# https://github.com/serverless-components/tencent-scf/blob/master/docs/configure.md
+
+#组件信息
+component: scf
+name: bilibili_tool
+
+#组件参数配置
+inputs:
+  name: ${name}_scf
+  enableRoleAuth: false
+  src: ./bin/publish/
+  handler: index.main_handler
+  runtime: CustomRuntime
+  region: ap-guangzhou # 函数所在区域，默认广州
+  description: This is a function in ${app} application.
+  memorySize: 128
+  initTimeout: 30
+  timeout: 86400
+  asyncRunEnable: true
+  traceEnable: true
+  events: # 根据自己的需要修改
+    - timer: # 每日任务触发器
+        parameters:
+          name: DailyTask
+          cronExpression: "0 30 12 * * * *"
+          enable: true
+          argument: Daily
+    - timer: # 天选抽奖触发器
+        parameters:
+          name: LiveLotteryTask
+          cronExpression: "0 0 */4 * * * *"
+          enable: true
+          argument: LiveLottery
+    - timer: # 自动取关
+        parameters:
+          name: UnfollowBatchedTask
+          cronExpression: "0 0 0 * * MON *"
+          enable: true
+          argument: UnfollowBatched
+  environment:
+    variables: # 根据自己的需要修改
+      Ray_CloseConsoleWhenEnd: 1
+      Ray_BiliBiliCookies__1: 123 # cookie，必填
