@@ -18,11 +18,11 @@ BiliBiliTool
 
 </div>
 
-原开源仓库 [RayWangQvQ/BiliBiliTool](https://github.com/RayWangQvQ/BiliBiliTool) 因为神奇魔法，被迫闭源了。
+**原开源仓库 [RayWangQvQ/BiliBiliTool](https://github.com/RayWangQvQ/BiliBiliTool) 成为了 GitHub 的“官方认可”项目，当然代价就是神秘消失了。**
 
-如果你之前已经部署好了[docker](https://hub.docker.com/repository/docker/zai7lou/bilibili_tool)和腾讯云函数，那么之前的版本不会受到影响，可以继续正常使用。
+**如果你之前已经部署好了本地、[docker](https://hub.docker.com/repository/docker/zai7lou/bilibili_tool)或腾讯云函数，那么之前的版本不会受到影响，可以继续正常使用。**
 
-该仓库只用来存放之前的文档，没有代码。后面是否会继续维护，暂时还没想好，再说吧。
+**该仓库只用来存放之前的文档，没有代码。后面是否会继续维护，暂时还没想好，再说吧。**
 
 [目录]
 
