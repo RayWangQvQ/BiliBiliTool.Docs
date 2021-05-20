@@ -8,13 +8,13 @@ BiliBiliTool
 
 </h1>
 
-[![GitHub Stars](https://img.shields.io/github/stars/RayWangQvQ/BiliBiliTool?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/RayWangQvQ/BiliBiliTool?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/network)
-[![GitHub Issues](https://img.shields.io/github/issues/RayWangQvQ/BiliBiliTool?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/issues)
-[![GitHub Contributors](https://img.shields.io/github/contributors/RayWangQvQ/BiliBiliTool?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/graphs/contributors)
-[![GitHub All Releases](https://img.shields.io/github/downloads/RayWangQvQ/BiliBiliTool/total?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/releases)
-![GitHub Release (latest SemVer)](https://img.shields.io/github/v/release/RayWangQvQ/BiliBiliTool?style=flat-square)
-[![GitHub License](https://img.shields.io/github/license/RayWangQvQ/BiliBiliTool?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool/blob/main/LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/network)
+[![GitHub Issues](https://img.shields.io/github/issues/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/issues)
+[![GitHub Contributors](https://img.shields.io/github/contributors/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/graphs/contributors)
+[![GitHub All Releases](https://img.shields.io/github/downloads/RayWangQvQ/BiliBiliTool.Docs/total?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/releases)
+![GitHub Release (latest SemVer)](https://img.shields.io/github/v/release/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)
+[![GitHub License](https://img.shields.io/github/license/RayWangQvQ/BiliBiliTool.Docs?style=flat-square)](https://github.com/RayWangQvQ/BiliBiliTool.Docs/blob/main/LICENSE)
 
 </div>
 
@@ -129,7 +129,7 @@ BiliBiliTool 就是收集了一系列api，通过每日自动运行程序，依�
 
 Ⅰ. **下载应用文件**
 
-点击 [BiliBiliTool/release](https://github.com/RayWangQvQ/BiliBiliTool/releases)，下载已发布的最新版本。
+点击 [BiliBiliTool/release](https://github.com/RayWangQvQ/BiliBiliTool.Docs/releases)，下载已发布的最新版本。
 
 * 如果本地已安装 `.NET 5.0` 环境：
 
