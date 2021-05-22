@@ -26,7 +26,7 @@ Window系统推荐使用Docker Desktop，官方下载安装包，一路鼠标点
 
 ## 2. 构建镜像（非必须）
 
-如果不明白什么是镜像，请跳过该步骤去下一节，直接使用我提供和维护的镜像即可：`[zai7lou/bilibili_tool](https://hub.docker.com/repository/docker/zai7lou/bilibili_tool)`;
+如果不明白什么是镜像，请跳过该步骤去下一节，直接使用我提供和维护的镜像即可：[zai7lou/bilibili_tool](https://hub.docker.com/repository/docker/zai7lou/bilibili_tool)
 
 如果需要自己定制功能，可以使用源码自己构建镜像，如下：
 
