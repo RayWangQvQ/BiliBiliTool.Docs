@@ -46,6 +46,7 @@ jobs:
           curl -s -X POST "$git_refs_url" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -d @- << EOF
+          
           {
             "ref": "refs/tags/$new_tag",
             "sha": "$commit"
