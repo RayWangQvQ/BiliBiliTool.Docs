@@ -58,7 +58,7 @@ jobs:
           git_ref_posted=$( echo "${git_refs_response}" | jq .ref | tr -d '"' )
 
           echo $git_refs_response
-          if [ "${git_ref_posted}" = "refs/tags/${new}" ]
+          if [ "$git_ref_posted" = "refs/tags/$new_tag" ]
           then
               echo "successed."          
               exit 0
