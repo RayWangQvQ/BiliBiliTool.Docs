@@ -28,7 +28,7 @@ jobs:
 
       - name: Tag and push
         run: |
-          apt install jp -y
+          sudo apt-get install jp -y
 
           new_tag=${{ steps.current_version.outputs.current_version }}
           dt=$(date '+%Y-%m-%dT%H:%M:%SZ')
