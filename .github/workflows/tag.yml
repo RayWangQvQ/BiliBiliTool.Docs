@@ -29,6 +29,7 @@ jobs:
       - name: Tag and push
         run: |
           git config --global --add safe.directory /github/workspace
+          git fetch --tags
           sudo apt-get install jp -y
 
           new_tag=${{ steps.current_version.outputs.current_version }}
