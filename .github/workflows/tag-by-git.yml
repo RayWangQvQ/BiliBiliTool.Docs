@@ -1,0 +1,35 @@
+name: Tag by git
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  tag:
+    name: add tag
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        
+      - name: Get current version
+        id: current_version
+        run: |
+          version=$(git rev-list --count HEAD)
+          echo "Curent version: $version"
+          echo "current_version=$version" >> $GITHUB_OUTPUT
+          
+      - name: Tag and push
+        run: |
+          new_tag=${{ steps.current_version.outputs.current_version }}
+          git tag "$new_tag"
+          git push originssh refs/tags/${new_tag}
