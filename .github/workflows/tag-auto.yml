@@ -1,4 +1,4 @@
-name: Tag
+name: Tag by git commit
 
 on:
   push:
@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
         
       - name: Get current version
         id: current_version
