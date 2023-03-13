@@ -1,14 +1,15 @@
 name: Tag by git commit
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+    workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     types:
+#       - closed
+#     branches:
+#       - main
 
 jobs:
   tag:
