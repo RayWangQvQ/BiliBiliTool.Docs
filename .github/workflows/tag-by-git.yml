@@ -32,4 +32,4 @@ jobs:
         run: |
           new_tag=${{ steps.current_version.outputs.current_version }}
           git tag "$new_tag"
-          git push originssh refs/tags/${new_tag}
+          git push origin ${new_tag}
